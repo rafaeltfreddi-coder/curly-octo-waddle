@@ -8,7 +8,145 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Todo o conteúdo HTML está aqui (o arquivo completo foi gerado) -->
-    <!-- ... (código completo já salvo) -->
+    <!-- Tela de Boas-vindas -->
+    <section id="welcome-screen" class="welcome-screen">
+        <div class="welcome-content">
+            <div class="logo-welcome">
+                <span class="logo-text">Visual</span><span class="logo-sync">Sync</span>
+            </div>
+            <h1 class="title">Bem-vindo à VisualSync</h1>
+            <p class="subtitle">Transformando imagens comuns em resultados extraordinários com inteligência artificial.</p>
+            
+            <div class="name-input-container">
+                <input type="text" id="user-name" placeholder="Digite seu nome" class="name-input">
+                <button onclick="proceedToMain()" class="proceed-btn">Prosseguir</button>
+            </div>
+            <p id="error-msg" class="error-msg"></p>
+        </div>
+    </section>
+
+    <!-- Página Principal -->
+    <div id="main-content" class="main-content hidden">
+        <!-- Navbar -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo-nav">
+                    <span class="logo-text">Visual</span><span class="logo-sync">Sync</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#servicos">Serviços</a>
+                    <a href="#portfolio">Portfólio</a>
+                    <a href="#planos">Planos</a>
+                    <a href="#faq">Perguntas Frequentes</a>
+                </div>
+                <a href="https://wa.me/5516989477519" target="_blank" class="whatsapp-btn">Falar no WhatsApp</a>
+            </div>
+        </nav>
+
+        <!-- Hero -->
+        <header class="hero">
+            <div class="hero-content">
+                <h2 id="greeting" class="greeting"></h2>
+                <p class="hero-text">Somos uma equipe especializada em Inteligência Artificial, Design Profissional e Aprimoramento Visual.</p>
+                <p class="hero-subtext">Nosso objetivo é transformar imagens comuns em resultados profissionais.</p>
+            </div>
+        </header>
+
+        <!-- Serviços -->
+        <section id="servicos" class="section">
+            <div class="container">
+                <h2 class="section-title">Nossos Serviços</h2>
+                <div class="services-grid" id="services-grid"></div>
+            </div>
+        </section>
+
+        <!-- Portfólio -->
+        <section id="portfolio" class="section bg-gray">
+            <div class="container">
+                <h2 class="section-title">Alguns dos nossos trabalhos</h2>
+                <div class="portfolio-grid" id="portfolio-grid"></div>
+            </div>
+        </section>
+
+        <!-- Estatísticas -->
+        <section class="section stats-section">
+            <div class="container">
+                <div class="stats-grid" id="stats-grid"></div>
+            </div>
+        </section>
+
+        <!-- Planos -->
+        <section id="planos" class="section">
+            <div class="container">
+                <h2 class="section-title">Nossos Planos</h2>
+                <div class="plans-grid" id="plans-grid"></div>
+            </div>
+        </section>
+
+        <!-- Pacotes Promocionais -->
+        <section class="section bg-gray">
+            <div class="container">
+                <h2 class="section-title">Pacotes Promocionais</h2>
+                <div class="packages-grid" id="packages-grid"></div>
+            </div>
+        </section>
+
+        <!-- Por que escolher -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Por que escolher a VisualSync?</h2>
+                <div class="why-grid" id="why-grid"></div>
+            </div>
+        </section>
+
+        <!-- Depoimentos -->
+        <section class="section bg-gray">
+            <div class="container">
+                <h2 class="section-title">O que nossos clientes dizem</h2>
+                <div class="testimonials-grid" id="testimonials-grid"></div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq" class="section">
+            <div class="container">
+                <h2 class="section-title">Perguntas Frequentes</h2>
+                <div class="faq-list" id="faq-list"></div>
+            </div>
+        </section>
+
+        <!-- Chamada Final -->
+        <section class="cta-section">
+            <div class="container">
+                <h2>Pronto para transformar suas imagens?</h2>
+                <p>Entre em contato agora mesmo e solicite um orçamento sem compromisso.</p>
+                <a href="https://wa.me/5516989477519?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento%20para%20aprimoramento%20de%20imagens." target="_blank" class="cta-button">Solicitar orçamento pelo WhatsApp</a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div>
+                        <div class="logo-footer">
+                            <span class="logo-text">Visual</span><span class="logo-sync">Sync</span>
+                        </div>
+                        <p>Transformando imagens comuns em resultados extraordinários.</p>
+                    </div>
+                    <div class="footer-links">
+                        <a href="#servicos">Serviços</a>
+                        <a href="#portfolio">Portfólio</a>
+                        <a href="#planos">Planos</a>
+                    </div>
+                </div>
+                <div class="copyright">
+                    © 2026 VisualSync. Todos os direitos reservados.
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
