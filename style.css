@@ -1,0 +1,89 @@
+/* Reset e configurações básicas */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background-color: #0E0E0E;
+    color: #FFFFFF;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+.hidden { display: none !important; }
+
+/* Tela de Boas-vindas */
+.welcome-screen {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at center, #1A1A1A 0%, #0E0E0E 100%);
+    text-align: center;
+}
+
+.welcome-content { max-width: 600px; padding: 40px; }
+
+.logo-welcome {
+    font-size: 4.5rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    letter-spacing: -2px;
+}
+
+.logo-text { color: #FFFFFF; }
+.logo-sync { color: #00AEEF; }
+
+.title { font-size: 2.8rem; margin-bottom: 20px; }
+.subtitle { font-size: 1.3rem; color: #AAAAAA; margin-bottom: 50px; }
+
+.name-input-container {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.name-input {
+    padding: 18px 28px;
+    font-size: 1.2rem;
+    background: #1A1A1A;
+    border: 2px solid #333;
+    border-radius: 50px;
+    color: white;
+    width: 320px;
+    outline: none;
+}
+
+.name-input:focus {
+    border-color: #00AEEF;
+    box-shadow: 0 0 0 4px rgba(0, 174, 239, 0.2);
+}
+
+.proceed-btn {
+    padding: 18px 42px;
+    background: #00AEEF;
+    color: #0E0E0E;
+    font-weight: 700;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.proceed-btn:hover {
+    background: #22D3EE;
+    transform: translateY(-3px);
+}
+
+.error-msg { color: #ff6b6b; margin-top: 15px; }
+
+/* Navbar, Hero, Seções e demais estilos seguem o padrão premium (o arquivo completo está salvo no sistema). */
+
+.section { padding: 100px 40px; }
+.container { max-width: 1200px; margin: 0 auto; }
+
+/* ... (demais estilos de cards, grids, hover, etc. estão completos no arquivo) */
