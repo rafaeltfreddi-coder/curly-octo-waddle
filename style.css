@@ -13,7 +13,9 @@ body {
     line-height: 1.6;
 }
 
-.hidden { display: none !important; }
+.hidden {
+    display: none !important;
+}
 
 /* Tela de Boas-vindas */
 .welcome-screen {
@@ -23,9 +25,14 @@ body {
     justify-content: center;
     background: radial-gradient(circle at center, #1A1A1A 0%, #0E0E0E 100%);
     text-align: center;
+    position: relative;
 }
 
-.welcome-content { max-width: 600px; padding: 40px; }
+.welcome-content {
+    max-width: 600px;
+    padding: 40px;
+    z-index: 2;
+}
 
 .logo-welcome {
     font-size: 4.5rem;
@@ -34,11 +41,24 @@ body {
     letter-spacing: -2px;
 }
 
-.logo-text { color: #FFFFFF; }
-.logo-sync { color: #00AEEF; }
+.logo-text {
+    color: #FFFFFF;
+}
 
-.title { font-size: 2.8rem; margin-bottom: 20px; }
-.subtitle { font-size: 1.3rem; color: #AAAAAA; margin-bottom: 50px; }
+.logo-sync {
+    color: #00AEEF;
+}
+
+.title {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+}
+
+.subtitle {
+    font-size: 1.3rem;
+    color: #AAAAAA;
+    margin-bottom: 50px;
+}
 
 .name-input-container {
     display: flex;
@@ -56,6 +76,7 @@ body {
     color: white;
     width: 320px;
     outline: none;
+    transition: all 0.3s;
 }
 
 .name-input:focus {
@@ -72,6 +93,7 @@ body {
     border: none;
     border-radius: 50px;
     cursor: pointer;
+    transition: all 0.3s;
 }
 
 .proceed-btn:hover {
@@ -79,11 +101,250 @@ body {
     transform: translateY(-3px);
 }
 
-.error-msg { color: #ff6b6b; margin-top: 15px; }
+.error-msg {
+    color: #ff6b6b;
+    margin-top: 15px;
+    font-size: 1.1rem;
+}
 
-/* Navbar, Hero, Seções e demais estilos seguem o padrão premium (o arquivo completo está salvo no sistema). */
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(14, 14, 14, 0.95);
+    backdrop-filter: blur(20px);
+    z-index: 1000;
+    border-bottom: 1px solid #222;
+}
 
-.section { padding: 100px 40px; }
-.container { max-width: 1200px; margin: 0 auto; }
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-/* ... (demais estilos de cards, grids, hover, etc. estão completos no arquivo) */
+.logo-nav {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin: 0 20px;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #00AEEF;
+}
+
+.whatsapp-btn {
+    background: #25D366;
+    color: white;
+    padding: 10px 24px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* Hero */
+.hero {
+    padding: 160px 40px 100px;
+    text-align: center;
+    background: linear-gradient(135deg, #0E0E0E, #1A1A1A);
+}
+
+.greeting {
+    font-size: 2.4rem;
+    margin-bottom: 20px;
+    color: #00AEEF;
+}
+
+.hero-text {
+    font-size: 1.6rem;
+    max-width: 800px;
+    margin: 0 auto 20px;
+}
+
+.hero-subtext {
+    font-size: 1.3rem;
+    color: #AAAAAA;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Seções gerais */
+.section {
+    padding: 100px 40px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-size: 2.8rem;
+    text-align: center;
+    margin-bottom: 60px;
+    position: relative;
+}
+
+.section-title:after {
+    content: '';
+    width: 80px;
+    height: 3px;
+    background: #00AEEF;
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Grid de serviços */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.service-card {
+    background: #1A1A1A;
+    padding: 40px 30px;
+    border-radius: 24px;
+    text-align: center;
+    transition: all 0.4s;
+    border: 1px solid #222;
+}
+
+.service-card:hover {
+    transform: translateY(-15px);
+    border-color: #00AEEF;
+    box-shadow: 0 20px 40px rgba(0, 174, 239, 0.15);
+}
+
+/* Portfólio */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 40px;
+}
+
+.before-after {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* Outros estilos semelhantes para stats, planos etc. */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    text-align: center;
+}
+
+.stat-item h3 {
+    font-size: 3.5rem;
+    color: #00AEEF;
+}
+
+.plans-grid, .packages-grid, .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.plan-card, .package-card {
+    background: #1A1A1A;
+    padding: 40px;
+    border-radius: 24px;
+    position: relative;
+}
+
+.featured {
+    border: 3px solid #00AEEF;
+}
+
+/* FAQ */
+.faq-item {
+    margin-bottom: 15px;
+    background: #1A1A1A;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.faq-question {
+    padding: 25px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.faq-answer {
+    padding: 0 25px 25px;
+    display: none;
+}
+
+/* CTA */
+.cta-section {
+    background: linear-gradient(135deg, #00AEEF, #22D3EE);
+    color: #0E0E0E;
+    text-align: center;
+    padding: 120px 40px;
+}
+
+.cta-button {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 22px 60px;
+    background: #0E0E0E;
+    color: white;
+    font-size: 1.4rem;
+    font-weight: 700;
+    border-radius: 50px;
+    text-decoration: none;
+}
+
+/* Footer */
+.footer {
+    background: #0A0A0A;
+    padding: 80px 40px 40px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 40px;
+    border-top: 1px solid #222;
+    margin-top: 40px;
+    color: #666;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .name-input-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .nav-links {
+        display: none;
+    }
+    .hero {
+        padding: 140px 20px 80px;
+    }
+}
