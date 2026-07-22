@@ -23,23 +23,45 @@ const stats = [
     { numero: 5000, texto: "Imagens Aprimoradas" }
 ];
 
+// VARIABILIDADE DE PLANOS INDIVIDUAIS
 const planos = [
-    { nome: "Profissional", preco: "69,90", itens: ["15 aprimoramentos", "Atendimento prioritário", "Revisões ilimitadas"], destaque: true }
+    { 
+        nome: "Iniciante", 
+        preco: "49,90", 
+        itens: ["10 aprimoramentos", "Entrega em até 24h", "Qualidade HD"], 
+        destaque: false 
+    },
+    { 
+        nome: "Profissional", 
+        preco: "69,90", 
+        itens: ["20 aprimoramentos", "Atendimento prioritário", "Revisões ilimitadas", "Ultra Resolução"], 
+        destaque: true 
+    },
+    { 
+        nome: "Master", 
+        preco: "119,90", 
+        itens: ["40 aprimoramentos", "Suporte VIP via WhatsApp", "Revisões ilimitadas", "Arquivos em alta fidelidade"], 
+        destaque: false 
+    }
 ];
 
+// VARIABILIDADE DE PACOTES DE ALTO VOLUME
 const pacotes = [
-    { nome: "Scale Content", qtd: "200 imagens", de: "799,90", por: "599,90", destaque: true }
+    { nome: "Starter Pack", qtd: "50 imagens", de: "249,90", por: "189,90", destaque: false },
+    { nome: "Scale Content", qtd: "200 imagens", de: "799,90", por: "599,90", destaque: true },
+    { nome: "Enterprise", qtd: "500 imagens", de: "1.799,90", por: "1.299,90", destaque: false }
 ];
 
 const porQue = [
-    "Algoritmos de IA de ponta combinados com supervisão profissional"
+    "Algoritmos de IA de ponta combinados com supervisão e ajuste profissional"
 ];
 
+// Foto oficial fornecida para a Ana Souza + Carlos Mendes
 const depoimentos = [
     { 
         nome: "Ana Souza", 
         texto: "Incrível! As fotos dos meus produtos mudaram de nível da noite para o dia. Super recomendo o trabalho da equipe.", 
-        foto: "https://i.pinimg.com/564x/4f/2e/d8/4f2ed84f1f2374e3cb20a233b2bf405e.jpg" 
+        foto: "https://i.pinimg.com/originals/5a/ca/bd/5acabd7ca056f85db76caf75282a0b98.jpg" 
     },
     { 
         nome: "Carlos Mendes", 
@@ -107,7 +129,6 @@ function renderPortfolio() {
                 <span class="badge badge-depois">DEPOIS</span>
                 <input type="range" min="0" max="100" value="50" class="slider-input" oninput="moveSlider(this)">
                 <div class="slider-handle" id="sliderHandle">
-                    <div class="handle-line"></div>
                     <div class="handle-button"><i class="fa-solid fa-code-compare"></i></div>
                 </div>
             </div>
@@ -125,7 +146,7 @@ function renderStats() {
     const container = document.getElementById('stats-grid');
     container.innerHTML = stats.map(stat => `
         <div class="stat-item">
-            <div class="stat-number" data-target="${stat.numero}">0${stat.sufixo || ''}</div>
+            <div class="stat-number" data-target="${stat.numero}">0</div>
             <p>${stat.texto}</p>
         </div>
     `).join('');
@@ -147,15 +168,14 @@ function animateNumbers() {
         const target = parseInt(el.getAttribute('data-target'));
         let count = 0;
         const increment = Math.ceil(target / 50);
-        const suffix = el.textContent.includes('%') ? '%' : '';
         
         const timer = setInterval(() => {
             count += increment;
             if (count >= target) {
-                el.textContent = target.toLocaleString('pt-BR') + suffix;
+                el.textContent = target.toLocaleString('pt-BR');
                 clearInterval(timer);
             } else {
-                el.textContent = Math.floor(count).toLocaleString('pt-BR') + suffix;
+                el.textContent = Math.floor(count).toLocaleString('pt-BR');
             }
         }, 30);
     });
@@ -165,12 +185,14 @@ function renderPlans() {
     const container = document.getElementById('plans-grid');
     container.innerHTML = planos.map(plan => `
         <div class="plan-card ${plan.destaque ? 'featured' : ''}">
-            ${plan.destaque ? `<div class="featured-badge">Mais Recomendado</div>` : ''}
-            <h3>${plan.nome}</h3>
-            <div class="price">R$ ${plan.preco}</div>
-            <ul>
-                ${plan.itens.map(i => `<li><i class="fa-solid fa-check" style="color:var(--primary); margin-right:8px;"></i>${i}</li>`).join('')}
-            </ul>
+            ${plan.destaque ? `<div class="featured-badge">Mais Popular</div>` : ''}
+            <div>
+                <h3>${plan.nome}</h3>
+                <div class="price">R$ ${plan.preco}</div>
+                <ul>
+                    ${plan.itens.map(i => `<li><i class="fa-solid fa-check" style="color:var(--accent); margin-right:8px;"></i>${i}</li>`).join('')}
+                </ul>
+            </div>
             <button onclick="contactWhatsApp()">Contratar Plano</button>
         </div>
     `).join('');
@@ -181,11 +203,13 @@ function renderPackages() {
     container.innerHTML = pacotes.map(p => `
         <div class="package-card ${p.destaque ? 'featured' : ''}">
             ${p.destaque ? `<div class="featured-badge">Melhor Custo</div>` : ''}
-            <h3>${p.nome}</h3>
-            <p class="qtd">${p.qtd}</p>
-            <div class="price">
-                <span style="font-size:0.85rem; color:var(--text-muted); text-decoration:line-through; font-weight:normal;">De R$ ${p.de}</span><br>
-                R$ ${p.por}
+            <div>
+                <h3>${p.nome}</h3>
+                <p class="qtd">${p.qtd}</p>
+                <div class="price">
+                    <span style="font-size:0.85rem; color:var(--text-muted); text-decoration:line-through; font-weight:normal;">De R$ ${p.de}</span><br>
+                    R$ ${p.por}
+                </div>
             </div>
             <button onclick="contactWhatsApp()">Adquirir Pacote</button>
         </div>
@@ -196,7 +220,7 @@ function renderWhy() {
     const container = document.getElementById('why-grid');
     container.innerHTML = porQue.map(item => `
         <div class="why-card">
-            <p><i class="fa-solid fa-shield-halved" style="color:var(--primary); margin-right:8px;"></i>${item}</p>
+            <p><i class="fa-solid fa-shield-halved" style="color:var(--accent); margin-right:8px;"></i>${item}</p>
         </div>
     `).join('');
 }
