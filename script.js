@@ -1,71 +1,70 @@
-// ==================== DADOS ====================
+// ==================== DADOS DA APLICAÇÃO ====================
 
 const servicos = [
-    { titulo: "Aprimoramento de imagens", desc: "Melhoria automática de qualidade com IA" },
-    { titulo: "Aumento de resolução", desc: "Upscaling inteligente para alta definição" },
-    { titulo: "Restauração de fotos", desc: "Recuperação de imagens antigas" },
-    { titulo: "Correção de cores", desc: "Ajustes profissionais de tonalidade" },
-    { titulo: "Remoção de imperfeições", desc: "Limpeza e retoques precisos" },
-    { titulo: "Criação de anúncios", desc: "Anúncios visualmente impactantes" },
-    { titulo: "Artes para redes sociais", desc: "Conteúdo otimizado para plataformas" },
-    { titulo: "Design para empresas", desc: "Identidade visual completa" }
+    { titulo: "Aprimoramento Visual", desc: "Melhoria automática de clareza e detalhes acionada por IA." },
+    { titulo: "Super Resolução", desc: "Upscaling inteligente de imagens sem perda de definição." },
+    { titulo: "Restauração Digital", desc: "Recuperação minuciosa de fotografias antigas ou danificadas." },
+    { titulo: "Ajuste Cromático", desc: "Correções profissionais de cor, balanço de branco e iluminação." },
+    { titulo: "Limpeza de Imperfeições", desc: "Remoção precisa de ruídos, manchas e elementos indesejados." },
+    { titulo: "Artes Publicitárias", desc: "Criação de banners e anúncios focados em conversão." },
+    { titulo: "Social Media Kits", desc: "Conteúdos otimizados para Instagram, LinkedIn e TikTok." },
+    { titulo: "Branding Corporativo", desc: "Identidade visual elegante para empresas e marcas." }
 ];
 
 const portfolioItems = [
-    { titulo: "Cardápio de Restaurante", antes: "https://picsum.photos/id/1015/800/600", depois: "https://picsum.photos/id/106/800/600" },
-    { titulo: "Anúncio de Produto", antes: "https://picsum.photos/id/201/800/600", depois: "https://picsum.photos/id/237/800/600" },
-    { titulo: "Fotografia Antiga", antes: "https://picsum.photos/id/133/800/600", depois: "https://picsum.photos/id/180/800/600" }
+    { titulo: "Cardápio de Gastronomia", antes: "https://picsum.photos/id/1015/800/600", depois: "https://picsum.photos/id/106/800/600" },
+    { titulo: "Campanha de Produto", antes: "https://picsum.photos/id/201/800/600", depois: "https://picsum.photos/id/237/800/600" },
+    { titulo: "Fotografia Histórica", antes: "https://picsum.photos/id/133/800/600", depois: "https://picsum.photos/id/180/800/600" }
 ];
 
 const stats = [
-    { numero: 5000, texto: "Imagens aprimoradas" },
-    { numero: 1200, texto: "Clientes atendidos" },
-    { numero: 98,  texto: "Satisfação", sufixo: "%" },
-    { numero: 24,   texto: "Horas de entrega média" }
+    { numero: 5000, texto: "Imagens Aprimoradas" },
+    { numero: 1200, texto: "Clientes Atendidos" },
+    { numero: 98,  texto: "Aprovação", sufixo: "%" },
+    { numero: 24,   texto: "Horas Médias de Entrega" }
 ];
 
 const planos = [
-    { nome: "Essencial", preco: "49,90", itens: ["10 aprimoramentos", "Alta qualidade", "Entrega rápida"] },
-    { nome: "Profissional", preco: "69,90", itens: ["15 aprimoramentos", "Atendimento prioritário", "Revisão incluída"], destaque: true },
-    { nome: "Premium", preco: "89,90", itens: ["20 aprimoramentos", "Qualidade máxima", "Revisões extras"] }
+    { nome: "Essencial", preco: "49,90", itens: ["10 aprimoramentos", "Qualidade Full HD", "Entrega padrão"] },
+    { nome: "Profissional", preco: "69,90", itens: ["15 aprimoramentos", "Atendimento prioritário", "Revisões ilimitadas"], destaque: true },
+    { nome: "Enterprise", preco: "89,90", itens: ["20 aprimoramentos", "Qualidade Ultra HD 4K", "Suporte VIP dedicado"] }
 ];
 
 const pacotes = [
-    { nome: "Loja Virtual", qtd: "50 imagens", de: "249,90", por: "199,90" },
-    { nome: "Empresarial", qtd: "100 imagens", de: "499,90", por: "349,90" },
-    { nome: "Criador de Conteúdo", qtd: "200 imagens", de: "799,90", por: "599,90", destaque: true }
+    { nome: "E-Commerce", qtd: "50 imagens", de: "249,90", por: "199,90" },
+    { nome: "Corporativo", qtd: "100 imagens", de: "499,90", por: "349,90" },
+    { nome: "Scale Content", qtd: "200 imagens", de: "799,90", por: "599,90", destaque: true }
 ];
 
 const porQue = [
-    "Inteligência Artificial avançada",
-    "Designers profissionais",
-    "Entrega rápida",
-    "Garantia de qualidade",
-    "Resultados premium",
-    "Atendimento personalizado"
+    "Algoritmos de IA de ponta",
+    "Supervisão por designers experientes",
+    "Prazos flexíveis e entregas ágeis",
+    "Garantia estendida de satisfação",
+    "Padrão de qualidade Ultra HD",
+    "Suporte personalizado 1 a 1"
 ];
 
-// Fotos das avaliações atualizadas com os links enviados
 const depoimentos = [
-    { nome: "Carlos Mendes", texto: "Transformaram meu cardápio completamente! Vendas aumentaram muito.", foto: "https://i.pinimg.com/474x/e1/05/41/e105419e21e2f0dfd1579c6aef739bb5.jpg" },
-    { nome: "Ana Silva", texto: "Minhas fotos antigas voltaram à vida. Serviço incrível!", foto: "https://i.pinimg.com/736x/fb/7b/30/fb7b300123dcd922492c421c9465661a.jpg" }
+    { nome: "Carlos Mendes", texto: "Superou minhas expectativas. Nossos materiais visuais ganharam um nível totalmente profissional.", foto: "https://i.pinimg.com/474x/e1/05/41/e105419e21e2f0dfd1579c6aef739bb5.jpg" },
+    { nome: "Ana Silva", texto: "A restauração das minhas fotos antigas ficou impecável! Processo rápido e resultado fantástico.", foto: "https://i.pinimg.com/736x/fb/7b/30/fb7b300123dcd922492c421c9465661a.jpg" }
 ];
 
 const faqs = [
-    { q: "Quanto tempo demora o serviço?", a: "A maioria dos trabalhos é entregue em até 24 horas." },
-    { q: "Como envio minhas imagens?", a: "Basta enviar por WhatsApp ou e-mail após a contratação." },
-    { q: "Quais formatos são aceitos?", a: "JPG, PNG, WEBP e arquivos RAW." },
-    { q: "Há garantia de satisfação?", a: "Sim, oferecemos até 3 revisões gratuitas." }
+    { q: "Qual o prazo padrão para entrega das imagens?", a: "A grande maioria dos projetos é entregue dentro do prazo de 24 horas úteis." },
+    { q: "Como realizo o envio dos meus arquivos?", a: "Após confirmação do pedido, você pode enviar os arquivos diretamente via WhatsApp ou Google Drive." },
+    { q: "Quais extensões de imagem são suportadas?", a: "Aceitamos os principais formatos do mercado: JPG, PNG, WEBP, TIFF e arquivos RAW." },
+    { q: "E se eu precisar de ajustes no resultado?", a: "Todos os nossos planos cobrem revisões para garantir a sua total satisfação." }
 ];
 
-// ==================== FUNÇÕES DE RENDER ====================
+// ==================== LÓGICA E RENDERIZAÇÃO ====================
 
 function proceedToMain() {
     const nome = document.getElementById('user-name').value.trim();
     const errorMsg = document.getElementById('error-msg');
     
     if (nome === '') {
-        errorMsg.textContent = "Por favor, digite seu nome para continuar.";
+        errorMsg.textContent = "Por favor, informe seu nome para prosseguir.";
         return;
     }
     
@@ -73,7 +72,7 @@ function proceedToMain() {
     document.getElementById('welcome-screen').classList.add('hidden');
     document.getElementById('main-content').classList.remove('hidden');
     
-    document.getElementById('greeting').innerHTML = `Olá, ${nome}! 👋`;
+    document.getElementById('greeting').innerHTML = `Bem-vindo(a), ${nome}! 👋`;
     
     renderAll();
 }
@@ -122,7 +121,7 @@ function renderStats() {
     const container = document.getElementById('stats-grid');
     container.innerHTML = stats.map(stat => `
         <div class="stat-item">
-            <h3 data-target="${stat.numero}" class="stat-number">0${stat.sufixo || ''}</h3>
+            <div class="stat-number" data-target="${stat.numero}">0${stat.sufixo || ''}</div>
             <p>${stat.texto}</p>
         </div>
     `).join('');
@@ -134,7 +133,8 @@ function renderStats() {
                 observer.disconnect();
             }
         });
-    });
+    }, { threshold: 0.3 });
+
     observer.observe(container);
 }
 
@@ -142,18 +142,18 @@ function animateNumbers() {
     document.querySelectorAll('.stat-number').forEach(el => {
         const target = parseInt(el.getAttribute('data-target'));
         let count = 0;
-        const increment = Math.ceil(target / 60);
+        const increment = Math.ceil(target / 50);
         const suffix = el.textContent.includes('%') ? '%' : '';
         
         const timer = setInterval(() => {
             count += increment;
             if (count >= target) {
-                el.textContent = target + suffix;
+                el.textContent = target.toLocaleString('pt-BR') + suffix;
                 clearInterval(timer);
             } else {
-                el.textContent = Math.floor(count) + suffix;
+                el.textContent = Math.floor(count).toLocaleString('pt-BR') + suffix;
             }
-        }, 40);
+        }, 30);
     });
 }
 
@@ -161,13 +161,13 @@ function renderPlans() {
     const container = document.getElementById('plans-grid');
     container.innerHTML = planos.map(plan => `
         <div class="plan-card ${plan.destaque ? 'featured' : ''}">
-            ${plan.destaque ? `<div class="featured-badge">Mais Escolhido</div>` : ''}
+            ${plan.destaque ? `<div class="featured-badge">Mais Recomendado</div>` : ''}
             <h3>${plan.nome}</h3>
             <div class="price">R$ ${plan.preco}</div>
             <ul>
-                ${plan.itens.map(i => `<li>✓ ${i}</li>`).join('')}
+                ${plan.itens.map(i => `<li><i class="fa-solid fa-check" style="color:var(--primary); margin-right:8px;"></i>${i}</li>`).join('')}
             </ul>
-            <button onclick="contactWhatsApp()">Escolher Plano</button>
+            <button onclick="contactWhatsApp()">Contratar Plano</button>
         </div>
     `).join('');
 }
@@ -176,12 +176,12 @@ function renderPackages() {
     const container = document.getElementById('packages-grid');
     container.innerHTML = pacotes.map(p => `
         <div class="package-card ${p.destaque ? 'featured' : ''}">
-            ${p.destaque ? `<div class="featured-badge">Destaque</div>` : ''}
+            ${p.destaque ? `<div class="featured-badge">Melhor Custo</div>` : ''}
             <h3>${p.nome}</h3>
             <p class="qtd">${p.qtd}</p>
             <div class="price">
-                <span style="font-size:1rem; color:#aaa; text-decoration:line-through;">De R$ ${p.de}</span><br>
-                por <strong>R$ ${p.por}</strong>
+                <span style="font-size:0.9rem; color:var(--text-muted); text-decoration:line-through; font-weight:normal;">De R$ ${p.de}</span><br>
+                R$ ${p.por}
             </div>
             <button onclick="contactWhatsApp()">Adquirir Pacote</button>
         </div>
@@ -192,7 +192,7 @@ function renderWhy() {
     const container = document.getElementById('why-grid');
     container.innerHTML = porQue.map(item => `
         <div class="why-card">
-            <p>🚀 ${item}</p>
+            <p><i class="fa-solid fa-shield-halved" style="color:var(--primary); margin-right:8px;"></i>${item}</p>
         </div>
     `).join('');
 }
@@ -203,7 +203,7 @@ function renderTestimonials() {
         <div class="testimonial">
             <img src="${d.foto}" alt="${d.nome}">
             <p>"${d.texto}"</p>
-            <strong style="margin-top:10px; display:block;">${d.nome}</strong>
+            <strong>${d.nome}</strong>
         </div>
     `).join('');
 }
@@ -214,7 +214,7 @@ function renderFAQ() {
         <div class="faq-item">
             <div class="faq-question" onclick="toggleFAQ(this)">
                 <span>${faq.q}</span>
-                <span class="toggle-icon">+</span>
+                <span class="toggle-icon"><i class="fa-solid fa-plus"></i></span>
             </div>
             <div class="faq-answer">${faq.a}</div>
         </div>
@@ -223,14 +223,14 @@ function renderFAQ() {
 
 function toggleFAQ(el) {
     const answer = el.nextElementSibling;
-    const icon = el.querySelector('.toggle-icon');
+    const icon = el.querySelector('.toggle-icon i');
     
     if (answer.style.display === 'block') {
         answer.style.display = 'none';
-        icon.textContent = '+';
+        icon.className = 'fa-solid fa-plus';
     } else {
         answer.style.display = 'block';
-        icon.textContent = '−';
+        icon.className = 'fa-solid fa-minus';
     }
 }
 
@@ -238,14 +238,14 @@ function contactWhatsApp() {
     window.open('https://wa.me/5516989477519?text=Olá!%20Gostaria%20de%20mais%20informações%20sobre%20os%20serviços.', '_blank');
 }
 
-// ==================== INICIALIZAÇÃO ====================
+// ==================== AUTO-START ====================
 
 window.onload = () => {
     const savedName = localStorage.getItem('userName');
     if (savedName) {
         document.getElementById('welcome-screen').classList.add('hidden');
         document.getElementById('main-content').classList.remove('hidden');
-        document.getElementById('greeting').innerHTML = `Olá, ${savedName}! 👋`;
+        document.getElementById('greeting').innerHTML = `Bem-vindo(a), ${savedName}! 👋`;
         renderAll();
     }
 };
