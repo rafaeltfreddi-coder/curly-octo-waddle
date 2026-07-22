@@ -1,8 +1,6 @@
-// ==================== DADOS ====================
+<!-- ==================== DADOS ==================== -->
 
-// ==================== DADOS ====================
-
-// Dados dos serviços
+<!-- Dados dos serviços -->
 const servicos = [
     { titulo: "Aprimoramento de imagens", desc: "Melhoria automática de qualidade com IA" },
     { titulo: "Aumento de resolução", desc: "Upscaling inteligente para alta definição" },
@@ -69,7 +67,6 @@ const faqs = [
 
 // ==================== FUNÇÕES DE RENDER ====================
 
-// Função para prosseguir da tela inicial
 function proceedToMain() {
     const nome = document.getElementById('user-name').value.trim();
     const errorMsg = document.getElementById('error-msg');
@@ -158,13 +155,15 @@ function animateNumbers() {
         const target = parseInt(el.getAttribute('data-target'));
         let count = 0;
         const increment = Math.ceil(target / 60);
+        const suffix = el.textContent.includes('%') ? '%' : '';
+        
         const timer = setInterval(() => {
             count += increment;
             if (count >= target) {
-                el.textContent = target + (el.textContent.includes('%') ? '%' : '');
+                el.textContent = target + suffix;
                 clearInterval(timer);
             } else {
-                el.textContent = Math.floor(count) + (el.textContent.includes('%') ? '%' : '');
+                el.textContent = Math.floor(count) + suffix;
             }
         }, 40);
     });
