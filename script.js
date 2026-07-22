@@ -1,3 +1,72 @@
+// ==================== CONFIGURAÇÃO DO SUPABASE ====================
+// Substitua pelas suas credenciais do projeto no Supabase
+const SUPABASE_URL = 'https://SEU_PROJETO.supabase.co';
+const SUPABASE_ANON_KEY = 'SUA_CHAVE_ANONIMA_AQUI';
+
+const supabase = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+
+// Login com Google via Supabase
+async function loginWithGoogle() {
+    if (!supabase) {
+        showInDevelopment('Login com Google');
+        return;
+    }
+
+    const { data, error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+            redirectTo: window.location.origin
+        }
+    });
+
+    if (error) {
+        alert('Erro ao realizar login: ' + error.message);
+    }
+}
+
+// Logout do Supabase
+async function logout() {
+    if (supabase) {
+        await supabase.auth.signOut();
+    }
+    localStorage.removeItem('userName');
+    window.location.reload();
+}
+
+// Verificar Sessão de Usuário Ativa
+async function checkUserSession() {
+    if (!supabase) return;
+
+    const { data: { session } } = await supabase.auth.getSession();
+
+    if (session) {
+        const user = session.user;
+        const userName = user.user_metadata?.full_name || user.email;
+
+        localStorage.setItem('userName', userName);
+        
+        document.getElementById('welcome-screen').classList.add('hidden');
+        document.getElementById('main-content').classList.remove('hidden');
+        document.getElementById('greeting').innerHTML = `Bem-vindo(a), ${userName}! 👋`;
+
+        const loginBtn = document.getElementById('login-nav-btn');
+        if (loginBtn) {
+            loginBtn.innerHTML = `<i class="fa-solid fa-right-from-bracket"></i> <span>Sair</span>`;
+            loginBtn.onclick = logout;
+        }
+
+        renderAll();
+    }
+}
+
+if (supabase) {
+    supabase.auth.onAuthStateChange((event, session) => {
+        if (event === 'SIGNED_IN') {
+            checkUserSession();
+        }
+    });
+}
+
 // ==================== GERENCIADOR DE TEMAS ====================
 
 const themes = ['dark', 'gray', 'light'];
@@ -82,23 +151,19 @@ function initTechBackground() {
     function animate() {
         ctx.clearRect(0, 0, width, height);
 
-        // Define as cores dinamicamente dependendo do tema ativo no momento
         const currentTheme = document.body.getAttribute('data-theme') || 'dark';
         
         let color1, color2, lineColor;
 
         if (currentTheme === 'light') {
-            // Tema claro: azul escuro e preto
             color1 = 'rgba(37, 99, 235, ';
             color2 = 'rgba(0, 0, 0, ';
             lineColor = 'rgba(15, 23, 42, ';
         } else if (currentTheme === 'gray') {
-            // Tema cinza
             color1 = 'rgba(0, 240, 255, ';
             color2 = 'rgba(112, 0, 255, ';
             lineColor = 'rgba(255, 255, 255, ';
         } else {
-            // Tema escuro (Preto OLED): branco e ciano
             color1 = 'rgba(255, 255, 255, ';
             color2 = 'rgba(0, 240, 255, ';
             lineColor = 'rgba(255, 255, 255, ';
@@ -154,11 +219,12 @@ const servicos = [
     { titulo: "Branding Corporativo", desc: "Adequação de imagens para identidades visuais de marcas e empresas." }
 ];
 
+// Comparativo de Imagem Única sem clonagem
 const portfolioItems = [
     { 
         titulo: "Recuperação de Nitidez & Resolução IA", 
-        antes: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9YufkeKJAA4dSH8u0jwadar3-lCeeKx6mXN9L3wJs0KqUhwyJHLJ6aXH2&s=10", 
-        depois: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9YufkeKJAA4dSH8u0jwadar3-lCeeKx6mXN9L3wJs0KqUhwyJHLJ6aXH2&s=10" 
+        antes: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop&q=30&blur=6", 
+        depois: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=800&auto=format&fit=crop&q=100" 
     }
 ];
 
@@ -278,7 +344,6 @@ function renderServices() {
     `).join('');
 }
 
-// Renderização lado a lado (Esquerda: Antes, Direita: Depois)
 function renderPortfolio() {
     const container = document.getElementById('portfolio-grid');
     container.innerHTML = portfolioItems.map(item => `
@@ -429,7 +494,8 @@ window.onload = () => {
     applyTheme(savedTheme);
 
     initTechBackground();
-    
+    checkUserSession();
+
     const savedName = localStorage.getItem('userName');
     if (savedName) {
         document.getElementById('welcome-screen').classList.add('hidden');
