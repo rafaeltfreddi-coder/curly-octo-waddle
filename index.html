@@ -1,235 +1,102 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VisualSync | IA de Alta Performance Visual</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    
-    <link rel="stylesheet" href="style.css">
-
-    <!-- Supabase JS SDK CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landing Page</title>
+  <!-- Google Fonts & Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Supabase JS Client -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- Arquivo CSS -->
+  <link rel="stylesheet" href="style.css">
 </head>
-<body data-theme="dark">
+<body>
 
-    <canvas id="tech-bg"></canvas>
+  <!-- Background Canvas para Animação de Partículas -->
+  <canvas id="particleCanvas"></canvas>
 
-    <div class="bg-glow bg-glow-primary"></div>
-    <div class="bg-glow bg-glow-accent"></div>
-
-    <div id="toast" class="toast hidden">
-        <i class="fa-solid fa-code"></i>
-        <span id="toast-message">Em desenvolvimento</span>
-    </div>
-
-    <section id="welcome-screen" class="welcome-screen">
-        <div class="welcome-card">
-            <div class="brand-badge"><i class="fa-solid fa-bolt"></i> IA Visual Pro</div>
-            <div class="logo-welcome">Visual<span>Sync</span></div>
-            <h1 class="title">Sua visão, potencializada por IA.</h1>
-            <p class="subtitle">Acesse com Google ou informe seu nome para prosseguir.</p>
-            
-            <div class="name-input-container">
-                <!-- Botão Login Google (Supabase) -->
-                <button id="google-login-btn" onclick="loginWithGoogle()" class="google-login-btn">
-                    <i class="fa-brands fa-google"></i>
-                    <span>Entrar com o Google</span>
-                </button>
-
-                <div class="divider">
-                    <span>ou acesse como convidado</span>
-                </div>
-
-                <div class="input-wrapper">
-                    <i class="fa-regular fa-user input-icon"></i>
-                    <input type="text" id="user-name" placeholder="Como podemos te chamar?" class="name-input" autocomplete="off" aria-label="Nome do usuário">
-                </div>
-                <button id="proceed-btn" onclick="proceedToMain()" class="proceed-btn">
-                    <span>Acessar Plataforma</span>
-                    <i class="fa-solid fa-arrow-right"></i>
-                </button>
-            </div>
-            <p id="error-msg" class="error-msg" role="alert"></p>
-        </div>
+  <div class="container">
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div class="badge">
+        <i class="fas fa-sparkles"></i> Design & Desenvolvimento Web
+      </div>
+      <h1>
+        Transforme Suas Ideias em <span class="gradient-text">Experiências Digitais</span>
+      </h1>
+      <p class="subtitle">
+        Desenvolvimento de sites modernos, performáticos e otimizados para converter visitantes em clientes.
+      </p>
+      <div class="cta-group">
+        <a href="javascript:void(0);" onclick="contactWhatsApp()" class="cta-button">
+          <i class="fab fa-whatsapp"></i> Falar no WhatsApp
+        </a>
+      </div>
     </section>
 
-    <div id="main-content" class="hidden">
-        <nav class="navbar">
-            <div class="nav-container">
-                <div class="logo-nav">Visual<span>Sync</span></div>
-                
-                <div class="nav-links">
-                    <a href="#services"><i class="fa-solid fa-wand-magic-sparkles"></i> Serviços</a>
-                    <a href="#portfolio"><i class="fa-solid fa-layer-group"></i> Portfólio</a>
-                    <a href="#plans"><i class="fa-solid fa-tag"></i> Planos</a>
-                    <a href="#faq"><i class="fa-solid fa-circle-question"></i> FAQ</a>
-                    <a href="#contact"><i class="fa-solid fa-envelope"></i> Contato</a>
-                </div>
+    <!-- FAQ SECTION -->
+    <section class="faq-section">
+      <h2 class="section-title">Perguntas Frequentes</h2>
+      <div class="faq-container">
+        
+        <div class="faq-item" onclick="toggleFAQ(this)">
+          <div class="faq-question">
+            <span>Quanto tempo leva para desenvolver um site?</span>
+            <i class="fas fa-plus"></i>
+          </div>
+          <div class="faq-answer">
+            <p>O tempo médio de desenvolvimento varia entre 1 e 3 semanas, dependendo da complexidade das funcionalidades e da entrega do conteúdo do projeto.</p>
+          </div>
+        </div>
 
-                <div class="nav-user-tools">
-                    <button class="nav-action-btn" onclick="showInDevelopment('Pix')">
-                        <i class="fa-solid fa-pix"></i> <span>Pix</span>
-                    </button>
-                    <button class="nav-action-btn" onclick="showInDevelopment('Saldo')">
-                        <i class="fa-solid fa-wallet"></i> <span>Saldo</span>
-                    </button>
-                    <button class="nav-action-btn btn-login" id="login-nav-btn" onclick="resetUserSession()">
-                        <i class="fa-solid fa-right-from-bracket"></i> <span>Sair</span>
-                    </button>
-                </div>
-                
-                <div class="nav-actions">
-                    <button id="theme-btn" class="theme-btn" onclick="toggleTheme()" aria-label="Mudar tema de cores">
-                        <i id="theme-icon" class="fa-solid fa-moon"></i>
-                        <span id="theme-text">Escuro</span>
-                    </button>
+        <div class="faq-item" onclick="toggleFAQ(this)">
+          <div class="faq-question">
+            <span>O site será otimizado para celulares?</span>
+            <i class="fas fa-plus"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Com certeza! Todos os projetos são desenvolvidos com a metodologia Mobile-First, garantindo perfeito funcionamento em smartphones, tablets e computadores.</p>
+          </div>
+        </div>
 
-                    <a href="https://wa.me/5516989477519" target="_blank" rel="noopener" class="whatsapp-btn nav-wsp">
-                        <i class="fab fa-whatsapp"></i>
-                        <span>Atendimento</span>
-                    </a>
-                </div>
-            </div>
-        </nav>
+        <div class="faq-item" onclick="toggleFAQ(this)">
+          <div class="faq-question">
+            <span>Como funciona o suporte pós-lançamento?</span>
+            <i class="fas fa-plus"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Oferecemos 30 dias de suporte gratuito pós-entrega para ajustes pontuais e treinamento para gerenciamento do conteúdo.</p>
+          </div>
+        </div>
 
-        <header class="hero">
-            <div class="container">
-                <div class="hero-badge"><i class="fa-solid fa-sparkles"></i> Tecnologia de Alta Definição</div>
-                <h2 id="greeting" class="greeting"></h2>
-                <p class="hero-text">Transformação e otimização visual com Inteligência Artificial de última geração.</p>
-                <p class="hero-subtext">Aprimoramento de nitidez, restauração detalhada e tratamento profissional para mídias digitais e impressas.</p>
-            </div>
-        </header>
+      </div>
+    </section>
 
-        <section id="services" class="section">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-tag">Capacidades</span>
-                    <h2 class="section-title">Soluções Visuais Inteligentes</h2>
-                </div>
-                <div class="services-grid" id="services-grid"></div>
-            </div>
-        </section>
+    <!-- CONTACT FORM SECTION -->
+    <section class="contact-section">
+      <h2 class="section-title">Entre em Contato</h2>
+      <form id="contactForm" onsubmit="handleFormSubmit(event)">
+        <div class="form-group">
+          <label for="nome">Nome</label>
+          <input type="text" id="nome" required placeholder="Seu nome completo">
+        </div>
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" required placeholder="seu@email.com">
+        </div>
+        <div class="form-group">
+          <label for="mensagem">Mensagem</label>
+          <textarea id="mensagem" rows="4" required placeholder="Como posso te ajudar?"></textarea>
+        </div>
+        <button type="submit" class="submit-btn" id="submitBtn">Enviar Mensagem</button>
+      </form>
+      <div id="formStatus" class="form-status"></div>
+    </section>
+  </div>
 
-        <section id="portfolio" class="section section-dark">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-tag">Resultados Reais</span>
-                    <h2 class="section-title">Comparativo Visual</h2>
-                </div>
-                <div class="portfolio-grid" id="portfolio-grid"></div>
-            </div>
-        </section>
-
-        <section class="section">
-            <div class="container">
-                <div class="stats-grid" id="stats-grid"></div>
-            </div>
-        </section>
-
-        <section id="plans" class="section section-dark">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-tag">Escolha a quantidade perfeita</span>
-                    <h2 class="section-title">Planos Individuais</h2>
-                </div>
-                <div class="plans-grid" id="plans-grid"></div>
-            </div>
-        </section>
-
-        <section class="section">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-tag">Escala & Alto Volume</span>
-                    <h2 class="section-title">Pacotes Promocionais</h2>
-                </div>
-                <div class="packages-grid" id="packages-grid"></div>
-            </div>
-        </section>
-
-        <section class="section section-dark">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-tag">Diferenciais</span>
-                    <h2 class="section-title">Por Que A VisualSync?</h2>
-                </div>
-                <div class="why-grid" id="why-grid"></div>
-            </div>
-        </section>
-
-        <section class="section">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-tag">Avaliações</span>
-                    <h2 class="section-title">O Que Dizem Nossos Clientes</h2>
-                </div>
-                <div class="testimonials-grid" id="testimonials-grid"></div>
-            </div>
-        </section>
-
-        <section id="faq" class="section section-dark">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-tag">Dúvidas</span>
-                    <h2 class="section-title">Perguntas Frequentes</h2>
-                </div>
-                <div id="faq-list" class="faq-container"></div>
-            </div>
-        </section>
-
-        <!-- Formulário de Contato Direto com Supabase -->
-        <section id="contact" class="section">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-tag">Fale Conosco</span>
-                    <h2 class="section-title">Envie uma Mensagem</h2>
-                </div>
-                <form id="contact-form" class="contact-form">
-                    <div class="input-wrapper">
-                        <input type="text" id="contact-nome" placeholder="Seu Nome" required class="name-input">
-                    </div>
-                    <div class="input-wrapper">
-                        <input type="email" id="contact-email" placeholder="Seu E-mail" required class="name-input">
-                    </div>
-                    <div class="input-wrapper">
-                        <textarea id="contact-mensagem" placeholder="Sua Mensagem" required class="name-input textarea-input" rows="4"></textarea>
-                    </div>
-                    <button type="submit" id="submit-msg-btn" class="proceed-btn">
-                        <span>Enviar Mensagem</span>
-                        <i class="fa-solid fa-paper-plane"></i>
-                    </button>
-                </form>
-            </div>
-        </section>
-
-        <section class="cta-section">
-            <div class="container">
-                <h2 class="cta-title">Pronto para transformar suas imagens?</h2>
-                <p class="cta-desc">Fale diretamente com nossa equipe no WhatsApp e solicite um atendimento personalizado.</p>
-                <a href="#" onclick="contactWhatsApp()" class="cta-button">
-                    <i class="fab fa-whatsapp"></i>
-                    <span>Iniciar Atendimento Agora</span>
-                </a>
-            </div>
-        </section>
-
-        <footer class="footer">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <div class="logo-nav">Visual<span>Sync</span></div>
-                    <p>Eleve a percepção visual do seu negócio com Inteligência Artificial avançada.</p>
-                </div>
-            </div>
-            <p class="copyright">&copy; 2026 VisualSync. Todos os direitos reservados.</p>
-            <p class="version-tag">versão 1.0</p>
-        </footer>
-    </div>
-
-    <script src="script.js"></script>
+  <!-- Arquivo JS -->
+  <script src="script.js"></script>
 </body>
 </html>
