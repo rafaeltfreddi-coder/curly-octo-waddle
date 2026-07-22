@@ -4,7 +4,6 @@
     --bg-card: rgba(22, 12, 14, 0.7);
     --bg-card-hover: rgba(36, 16, 20, 0.85);
     
-    /* Nova Paleta Vermelha Premium */
     --primary: #FF2A4B;
     --primary-hover: #E01938;
     --primary-glow: rgba(255, 42, 75, 0.35);
@@ -372,7 +371,7 @@ body {
     font-size: 0.9rem;
 }
 
-/* ==================== PORTFÓLIO (IMAGENS PEQUENAS E AJUSTADAS) ==================== */
+/* ==================== PORTFÓLIO SLIDER INTERATIVO ==================== */
 .portfolio-grid {
     display: flex;
     justify-content: center;
@@ -383,62 +382,116 @@ body {
     border: 1px solid var(--border);
     border-radius: 24px;
     padding: 24px;
-    max-width: 480px;
+    max-width: 520px;
     width: 100%;
-    transition: all 0.3s ease;
-}
-
-.portfolio-item:hover {
-    border-color: var(--border-hover);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .portfolio-item h3 {
     text-align: center;
-    margin-bottom: 18px;
+    margin-bottom: 20px;
     font-size: 1.1rem;
     color: var(--text-white);
 }
 
-.before-after {
-    display: flex;
-    gap: 12px;
-}
-
-.before-after .img-box {
-    width: 50%;
+.comparison-slider {
     position: relative;
-    border-radius: 14px;
+    width: 100%;
+    height: 320px;
+    border-radius: 18px;
     overflow: hidden;
+    user-select: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
-.before-after small {
+.comparison-slider img {
     position: absolute;
-    top: 8px;
-    left: 8px;
-    background: rgba(10, 4, 5, 0.85);
-    backdrop-filter: blur(4px);
-    color: var(--primary);
-    padding: 4px 10px;
-    border-radius: 50px;
-    font-size: 0.7rem;
-    font-weight: 700;
-    text-transform: uppercase;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+.img-before-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
     z-index: 2;
+}
+
+.img-before-wrapper .img-before {
+    width: 472px;
+    max-width: none;
+}
+
+.badge {
+    position: absolute;
+    top: 14px;
+    background: rgba(10, 4, 5, 0.85);
+    backdrop-filter: blur(6px);
+    color: #FFF;
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    z-index: 3;
     border: 1px solid rgba(255, 42, 75, 0.3);
 }
 
-.before-after img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 14px;
-    display: block;
-    transition: transform 0.4s ease;
+.badge-antes {
+    left: 14px;
 }
 
-.portfolio-item:hover .before-after img {
-    transform: scale(1.03);
+.badge-depois {
+    right: 14px;
+    color: var(--primary);
+}
+
+.slider-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 5;
+    cursor: ew-resize;
+}
+
+.slider-handle {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 2px;
+    height: 100%;
+    background: #FFF;
+    z-index: 4;
+    transform: translateX(-50%);
+    pointer-events: none;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.handle-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    background: var(--primary);
+    color: #FFF;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    box-shadow: 0 0 15px var(--primary-glow);
+    border: 2px solid #FFF;
 }
 
 /* ==================== ESTATÍSTICAS ==================== */
@@ -578,23 +631,31 @@ body {
 .testimonials-grid {
     display: flex;
     justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
 .testimonial {
     background: var(--bg-card);
     border: 1px solid var(--border);
-    padding: 32px 28px;
+    padding: 28px 24px;
     border-radius: 24px;
     text-align: center;
-    max-width: 480px;
+    max-width: 400px;
     width: 100%;
+    transition: all 0.3s ease;
+}
+
+.testimonial:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-4px);
 }
 
 .testimonial img {
-    width: 70px;
-    height: 70px;
+    width: 65px;
+    height: 65px;
     border-radius: 50%;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
     object-fit: cover;
     border: 2px solid var(--primary);
     box-shadow: 0 0 15px var(--primary-glow);
@@ -603,13 +664,13 @@ body {
 .testimonial p {
     color: var(--text-muted);
     font-style: italic;
-    font-size: 0.95rem;
-    margin-bottom: 14px;
+    font-size: 0.9rem;
+    margin-bottom: 12px;
 }
 
 .testimonial strong {
     color: var(--text-white);
-    font-size: 1rem;
+    font-size: 0.95rem;
 }
 
 /* ==================== FAQ ==================== */
@@ -730,7 +791,7 @@ body {
         font-size: 1.8rem;
     }
 
-    .before-after img {
-        height: 140px;
+    .comparison-slider {
+        height: 240px;
     }
 }
