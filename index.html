@@ -19,6 +19,11 @@
     <div class="bg-glow bg-glow-primary"></div>
     <div class="bg-glow bg-glow-accent"></div>
 
+    <div id="toast" class="toast hidden">
+        <i class="fa-solid fa-code"></i>
+        <span id="toast-message">Em desenvolvimento</span>
+    </div>
+
     <section id="welcome-screen" class="welcome-screen">
         <div class="welcome-card">
             <div class="brand-badge"><i class="fa-solid fa-bolt"></i> IA Visual Pro</div>
@@ -44,24 +49,35 @@
         <nav class="navbar">
             <div class="nav-container">
                 <div class="logo-nav">Visual<span>Sync</span></div>
+                
                 <div class="nav-links">
                     <a href="#services"><i class="fa-solid fa-wand-magic-sparkles"></i> Serviços</a>
                     <a href="#portfolio"><i class="fa-solid fa-layer-group"></i> Portfólio</a>
                     <a href="#plans"><i class="fa-solid fa-tag"></i> Planos</a>
                     <a href="#faq"><i class="fa-solid fa-circle-question"></i> FAQ</a>
                 </div>
+
+                <div class="nav-user-tools">
+                    <button class="nav-action-btn" onclick="showInDevelopment('Pix')">
+                        <i class="fa-solid fa-pix"></i> <span>Pix</span>
+                    </button>
+                    <button class="nav-action-btn" onclick="showInDevelopment('Saldo')">
+                        <i class="fa-solid fa-wallet"></i> <span>Saldo</span>
+                    </button>
+                    <button class="nav-action-btn btn-login" onclick="showInDevelopment('Login')">
+                        <i class="fa-solid fa-user-lock"></i> <span>Login</span>
+                    </button>
+                </div>
                 
                 <div class="nav-actions">
-                    <div class="theme-switch-container">
-                        <button id="theme-btn" class="theme-btn" onclick="toggleTheme()" aria-label="Mudar tema de cores">
-                            <i id="theme-icon" class="fa-solid fa-moon"></i>
-                            <span id="theme-text">Tema</span>
-                        </button>
-                    </div>
+                    <button id="theme-btn" class="theme-btn" onclick="toggleTheme()" aria-label="Mudar tema de cores">
+                        <i id="theme-icon" class="fa-solid fa-moon"></i>
+                        <span id="theme-text">Escuro</span>
+                    </button>
 
                     <a href="https://wa.me/5516989477519" target="_blank" rel="noopener" class="whatsapp-btn nav-wsp">
                         <i class="fab fa-whatsapp"></i>
-                        <span>Falar no WhatsApp</span>
+                        <span>Atendimento</span>
                     </a>
                 </div>
             </div>
@@ -171,7 +187,7 @@
                 </div>
             </div>
             <p class="copyright">&copy; 2026 VisualSync. Todos os direitos reservados.</p>
-            <p class="version-tag">v1.0</p>
+            <p class="version-tag">versão 1.0</p>
         </footer>
     </div>
 
