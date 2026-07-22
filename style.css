@@ -1,8 +1,11 @@
-/* ==================== PALETA DE CORES EQUILIBRADA & MODERNA ==================== */
-:root {
+/* ==================== SISTEMA DE TEMAS (ESCURO, CINZA, CLARO) ==================== */
+
+/* Tema 1: Escuro (Default) */
+body[data-theme="dark"] {
     --bg-main: #0B0E14;
-    --bg-card: rgba(18, 24, 38, 0.75);
-    --bg-card-hover: rgba(26, 35, 54, 0.9);
+    --bg-card: rgba(18, 24, 38, 0.85);
+    --bg-card-hover: rgba(26, 35, 54, 0.95);
+    --bg-section-dark: rgba(0, 0, 0, 0.4);
     
     --primary: #FF3B5C;          
     --primary-hover: #E02B49;
@@ -11,13 +14,59 @@
     --accent: #6366F1;           
     --accent-glow: rgba(99, 102, 241, 0.3);
     
+    --text-white: #FFFFFF;
+    --text-muted: #A0AEC0;
+    --border: rgba(255, 255, 255, 0.12);
+    --border-hover: rgba(255, 59, 92, 0.5);
+    --nav-bg: rgba(11, 14, 20, 0.92);
+}
+
+/* Tema 2: Cinza (Slate/Balanced) */
+body[data-theme="gray"] {
+    --bg-main: #1E293B;
+    --bg-card: rgba(30, 41, 59, 0.9);
+    --bg-card-hover: rgba(51, 65, 85, 0.95);
+    --bg-section-dark: rgba(15, 23, 42, 0.5);
+    
+    --primary: #38BDF8;          
+    --primary-hover: #0284C7;
+    --primary-glow: rgba(56, 189, 248, 0.35);
+    
+    --accent: #818CF8;           
+    --accent-glow: rgba(129, 140, 248, 0.3);
+    
+    --text-white: #F8FAFC;
+    --text-muted: #CBD5E1;
+    --border: rgba(255, 255, 255, 0.15);
+    --border-hover: rgba(56, 189, 248, 0.5);
+    --nav-bg: rgba(30, 41, 59, 0.95);
+}
+
+/* Tema 3: Claro (Light) */
+body[data-theme="light"] {
+    --bg-main: #F8FAFC;
+    --bg-card: #FFFFFF;
+    --bg-card-hover: #F1F5F9;
+    --bg-section-dark: #EDF2F7;
+    
+    --primary: #4F46E5;          
+    --primary-hover: #4338CA;
+    --primary-glow: rgba(79, 70, 229, 0.2);
+    
+    --accent: #0284C7;           
+    --accent-glow: rgba(2, 132, 199, 0.2);
+    
+    --text-white: #0F172A;
+    --text-muted: #475569;
+    --border: rgba(0, 0, 0, 0.12);
+    --border-hover: rgba(79, 70, 229, 0.4);
+    --nav-bg: rgba(255, 255, 255, 0.95);
+}
+
+/* Variáveis Fixas */
+:root {
     --whatsapp-green: #25D366;   
     --whatsapp-glow: rgba(37, 211, 102, 0.4);
-    
-    --text-white: #FFFFFF;
-    --text-muted: #94A3B8;
-    --border: rgba(255, 255, 255, 0.08);
-    --border-hover: rgba(255, 59, 92, 0.4);
     --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
 }
 
@@ -37,6 +86,7 @@ body {
     color: var(--text-white);
     overflow-x: hidden;
     line-height: 1.6;
+    transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 /* Canvas para Animação Tecnológica de Fundo */
@@ -61,7 +111,7 @@ body {
     padding: 0 24px;
 }
 
-/* Ambient Glow Effects com Animação de Pulso suave */
+/* Glow Effects */
 .bg-glow {
     position: fixed;
     width: 550px;
@@ -98,7 +148,6 @@ body {
     align-items: center;
     justify-content: center;
     padding: 20px;
-    background: radial-gradient(circle at center, rgba(21, 26, 40, 0.8) 0%, rgba(11, 14, 20, 0.95) 100%);
 }
 
 .welcome-card {
@@ -110,7 +159,7 @@ body {
     max-width: 480px;
     width: 100%;
     text-align: center;
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
 }
 
 .brand-badge {
@@ -124,7 +173,7 @@ body {
     font-size: 0.85rem;
     font-weight: 700;
     margin-bottom: 20px;
-    border: 1px solid rgba(99, 102, 241, 0.3);
+    border: 1px solid var(--border);
 }
 
 .logo-welcome {
@@ -175,10 +224,10 @@ body {
     padding: 16px 20px 16px 50px;
     font-size: 0.95rem;
     font-family: inherit;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.1);
     border: 1px solid var(--border);
     border-radius: 50px;
-    color: white;
+    color: var(--text-white);
     outline: none;
     transition: all 0.3s;
 }
@@ -191,7 +240,7 @@ body {
 .proceed-btn {
     width: 100%;
     padding: 16px;
-    background: linear-gradient(135deg, var(--primary), var(--accent));
+    background: var(--primary);
     color: #FFF;
     font-weight: 700;
     font-size: 1rem;
@@ -208,13 +257,14 @@ body {
 
 .proceed-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 30px var(--primary-glow);
+    background: var(--primary-hover);
 }
 
 .error-msg {
     color: #FF4949;
     margin-top: 12px;
     font-size: 0.9rem;
+    font-weight: 600;
 }
 
 /* ==================== NAVBAR ==================== */
@@ -223,10 +273,11 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    background: rgba(11, 14, 20, 0.88);
+    background: var(--nav-bg);
     backdrop-filter: blur(16px);
     z-index: 1000;
     border-bottom: 1px solid var(--border);
+    transition: background-color 0.4s;
 }
 
 .nav-container {
@@ -252,7 +303,7 @@ body {
     color: var(--text-muted);
     text-decoration: none;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.92rem;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -261,6 +312,33 @@ body {
 
 .nav-links a:hover {
     color: var(--primary);
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* Botão de Tema */
+.theme-btn {
+    background: var(--bg-card);
+    color: var(--text-white);
+    border: 1px solid var(--border);
+    padding: 8px 16px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.theme-btn:hover {
+    border-color: var(--primary);
+    transform: translateY(-1px);
 }
 
 .whatsapp-btn {
@@ -294,22 +372,21 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: rgba(255, 255, 255, 0.04);
+    background: var(--bg-card);
     border: 1px solid var(--border);
     padding: 6px 16px;
     border-radius: 50px;
     font-size: 0.85rem;
     color: var(--accent);
     margin-bottom: 20px;
+    font-weight: 700;
 }
 
 .greeting {
     font-size: 3rem;
     font-weight: 800;
     margin-bottom: 16px;
-    background: linear-gradient(180deg, #FFFFFF 0%, #94A3B8 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--text-white);
 }
 
 .hero-text {
@@ -317,13 +394,13 @@ body {
     max-width: 700px;
     margin: 0 auto 10px;
     color: var(--text-white);
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .hero-subtext {
     font-size: 1rem;
     color: var(--text-muted);
-    max-width: 600px;
+    max-width: 650px;
     margin: 0 auto;
 }
 
@@ -333,7 +410,7 @@ body {
 }
 
 .section-dark {
-    background: rgba(0, 0, 0, 0.3);
+    background: var(--bg-section-dark);
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
 }
@@ -344,9 +421,9 @@ body {
 }
 
 .section-tag {
-    color: var(--accent);
+    color: var(--primary);
     text-transform: uppercase;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     font-weight: 800;
     letter-spacing: 2px;
     display: block;
@@ -378,19 +455,20 @@ body {
 .service-card:hover {
     transform: translateY(-4px);
     background: var(--bg-card-hover);
-    border-color: rgba(99, 102, 241, 0.4);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    border-color: var(--border-hover);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
 }
 
 .service-card h3 {
     font-size: 1.15rem;
     margin-bottom: 8px;
     color: var(--text-white);
+    font-weight: 700;
 }
 
 .service-card p {
     color: var(--text-muted);
-    font-size: 0.9rem;
+    font-size: 0.92rem;
 }
 
 /* ==================== PORTFÓLIO SLIDER INTERATIVO ==================== */
@@ -413,6 +491,7 @@ body {
     margin-bottom: 20px;
     font-size: 1.1rem;
     color: var(--text-white);
+    font-weight: 700;
 }
 
 .comparison-slider {
@@ -422,7 +501,7 @@ body {
     border-radius: 18px;
     overflow: hidden;
     user-select: none;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .comparison-slider img {
@@ -453,7 +532,7 @@ body {
 .badge {
     position: absolute;
     top: 14px;
-    background: rgba(11, 14, 20, 0.88);
+    background: rgba(0, 0, 0, 0.75);
     backdrop-filter: blur(6px);
     color: #FFF;
     padding: 4px 12px;
@@ -462,18 +541,16 @@ body {
     font-weight: 800;
     letter-spacing: 1px;
     z-index: 3;
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .badge-antes {
     left: 14px;
-    color: var(--text-muted);
 }
 
 .badge-depois {
     right: 14px;
     color: var(--primary);
-    border-color: rgba(255, 59, 92, 0.3);
 }
 
 .slider-input {
@@ -539,12 +616,11 @@ body {
     color: var(--primary);
     line-height: 1;
     margin-bottom: 8px;
-    text-shadow: 0 0 20px var(--primary-glow);
 }
 
 .stat-item p {
     color: var(--text-muted);
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     font-weight: 600;
 }
 
@@ -576,7 +652,6 @@ body {
 
 .featured {
     border: 2px solid var(--primary);
-    background: rgba(255, 59, 92, 0.05);
     box-shadow: 0 0 30px var(--primary-glow);
 }
 
@@ -596,6 +671,7 @@ body {
 .plan-card h3, .package-card h3 {
     font-size: 1.3rem;
     margin-bottom: 6px;
+    font-weight: 800;
 }
 
 .price {
@@ -613,7 +689,7 @@ body {
 .plan-card li {
     color: var(--text-muted);
     margin-bottom: 10px;
-    font-size: 0.9rem;
+    font-size: 0.92rem;
     display: flex;
     align-items: center;
 }
@@ -634,12 +710,11 @@ body {
 
 .plan-card button:hover, .package-card button:hover {
     background: var(--primary-hover);
-    box-shadow: 0 8px 25px var(--primary-glow);
 }
 
 .package-card .qtd {
     color: var(--accent);
-    font-weight: 700;
+    font-weight: 800;
     font-size: 1rem;
 }
 
@@ -657,7 +732,7 @@ body {
     text-align: center;
     font-weight: 600;
     font-size: 1rem;
-    max-width: 600px;
+    max-width: 650px;
     width: 100%;
 }
 
@@ -681,7 +756,7 @@ body {
 }
 
 .testimonial:hover {
-    border-color: rgba(99, 102, 241, 0.4);
+    border-color: var(--border-hover);
     transform: translateY(-4px);
 }
 
@@ -692,7 +767,6 @@ body {
     margin-bottom: 16px;
     object-fit: cover;
     border: 2px solid var(--accent);
-    box-shadow: 0 0 15px var(--accent-glow);
 }
 
 .testimonial p {
@@ -740,13 +814,12 @@ body {
     padding: 0 24px 20px;
     display: none;
     color: var(--text-muted);
-    font-size: 0.9rem;
+    font-size: 0.92rem;
     line-height: 1.6;
 }
 
 /* ==================== CTA SECTION ==================== */
 .cta-section {
-    background: radial-gradient(circle at center, rgba(37, 211, 102, 0.12) 0%, rgba(11, 14, 20, 1) 100%);
     border-top: 1px solid var(--border);
     text-align: center;
     padding: 80px 24px;
@@ -782,14 +855,14 @@ body {
 .cta-button:hover {
     transform: translateY(-2px);
     background: #20BD5A;
-    box-shadow: 0 0 35px var(--whatsapp-glow);
 }
 
 /* ==================== FOOTER ==================== */
 .footer {
-    background: #07090E;
     padding: 48px 24px 24px;
     border-top: 1px solid var(--border);
+    background: var(--bg-section-dark);
+    position: relative;
 }
 
 .footer-content {
@@ -806,10 +879,20 @@ body {
 
 .copyright {
     text-align: center;
-    color: rgba(255, 255, 255, 0.25);
-    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-size: 0.85rem;
     border-top: 1px solid var(--border);
     padding-top: 20px;
+}
+
+.version-tag {
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    opacity: 0.5;
+    margin-top: 6px;
+    font-weight: 600;
+    letter-spacing: 1px;
 }
 
 /* ==================== RESPONSIVIDADE ==================== */
