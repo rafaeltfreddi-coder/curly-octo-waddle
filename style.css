@@ -1,6 +1,5 @@
 /* ==================== PALETAS E TEMAS FUTURISTAS ==================== */
 
-/* Tema Escuro (Preto Total Cyber / OLED) */
 body[data-theme="dark"] {
     --bg-main: #000000;
     --bg-card: rgba(10, 10, 12, 0.85);
@@ -21,7 +20,6 @@ body[data-theme="dark"] {
     --nav-bg: rgba(0, 0, 0, 0.88);
 }
 
-/* Tema Cinza (Titanium Slate Tecnológico) */
 body[data-theme="gray"] {
     --bg-main: #12161F;
     --bg-card: rgba(24, 30, 42, 0.85);
@@ -42,7 +40,6 @@ body[data-theme="gray"] {
     --nav-bg: rgba(18, 22, 31, 0.92);
 }
 
-/* Tema Claro (Clean High-Tech White) */
 body[data-theme="light"] {
     --bg-main: #FFFFFF;
     --bg-card: #F8FAFC;
@@ -88,7 +85,6 @@ body {
     transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-/* Fundo Interativo em Canvas */
 #tech-bg {
     position: fixed;
     top: 0;
@@ -110,7 +106,6 @@ body {
     padding: 0 24px;
 }
 
-/* Glow Background Effects */
 .bg-glow {
     position: fixed;
     width: 600px;
@@ -140,7 +135,6 @@ body {
     background: var(--accent);
 }
 
-/* Notificação Toast */
 .toast {
     position: fixed;
     bottom: 30px;
@@ -297,7 +291,7 @@ body {
     font-weight: 600;
 }
 
-/* ==================== NAVBAR RESPONSIVA COM SCROLL MOBILE ==================== */
+/* ==================== NAVBAR ==================== */
 .navbar {
     position: fixed;
     top: 0;
@@ -355,13 +349,6 @@ body {
     padding: 4px 8px;
     border-radius: 50px;
     border: 1px solid var(--border);
-    overflow-x: auto;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-}
-
-.nav-user-tools::-webkit-scrollbar {
-    display: none;
 }
 
 .nav-action-btn {
@@ -916,16 +903,13 @@ body {
     letter-spacing: 1px;
 }
 
-/* Responsividade Celular */
+/* Responsividade Mobile */
 @media (max-width: 900px) {
     .nav-links {
         display: none;
     }
     .nav-container {
         padding: 10px 12px;
-    }
-    .nav-user-tools span {
-        display: inline !important;
     }
     .whatsapp-btn.nav-wsp span {
         display: none;
