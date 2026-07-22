@@ -1,102 +1,100 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Landing Page</title>
-  <!-- Google Fonts & Font Awesome -->
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Supabase JS Client -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <!-- Arquivo CSS -->
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Personalizada</title>
+    <!-- Google Fonts & Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Supabase JS Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Background Canvas para Animação de Partículas -->
-  <canvas id="particleCanvas"></canvas>
+    <!-- Background Canvas para Animação -->
+    <canvas id="particleCanvas"></canvas>
 
-  <div class="container">
-    <!-- HERO SECTION -->
-    <section class="hero">
-      <div class="badge">
-        <i class="fas fa-sparkles"></i> Design & Desenvolvimento Web
-      </div>
-      <h1>
-        Transforme Suas Ideias em <span class="gradient-text">Experiências Digitais</span>
-      </h1>
-      <p class="subtitle">
-        Desenvolvimento de sites modernos, performáticos e otimizados para converter visitantes em clientes.
-      </p>
-      <div class="cta-group">
-        <a href="javascript:void(0);" onclick="contactWhatsApp()" class="cta-button">
-          <i class="fab fa-whatsapp"></i> Falar no WhatsApp
-        </a>
-      </div>
-    </section>
+    <div class="container">
+        <!-- HERO SECTION -->
+        <section class="hero">
+            <div class="badge">
+                <i class="fas fa-sparkles"></i> Soluções Sob Medida
+            </div>
+            <h1>
+                Transforme Suas Ideias em <span class="gradient-text">Resultados Incríveis</span>
+            </h1>
+            <p class="subtitle">
+                Estratégias inovadoras, design moderno e alta performance para impulsionar a sua presença digital de forma simples e rápida.
+            </p>
+            <div class="cta-group">
+                <a href="javascript:void(0);" onclick="contactWhatsApp()" class="cta-button">
+                    <i class="fab fa-whatsapp"></i> Falar no WhatsApp
+                </a>
+            </div>
+        </section>
 
-    <!-- FAQ SECTION -->
-    <section class="faq-section">
-      <h2 class="section-title">Perguntas Frequentes</h2>
-      <div class="faq-container">
-        
-        <div class="faq-item" onclick="toggleFAQ(this)">
-          <div class="faq-question">
-            <span>Quanto tempo leva para desenvolver um site?</span>
-            <i class="fas fa-plus"></i>
-          </div>
-          <div class="faq-answer">
-            <p>O tempo médio de desenvolvimento varia entre 1 e 3 semanas, dependendo da complexidade das funcionalidades e da entrega do conteúdo do projeto.</p>
-          </div>
-        </div>
+        <!-- FAQ SECTION -->
+        <section class="faq-section">
+            <h2 class="section-title">Perguntas Frequentes</h2>
+            <div class="faq-container">
+                
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <span>Como funciona o atendimento pelo WhatsApp?</span>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Ao clicar no botão de atendimento, você será direcionado diretamente para uma conversa no WhatsApp com a nossa equipe para tirar todas as dúvidas rapidamente.</p>
+                    </div>
+                </div>
 
-        <div class="faq-item" onclick="toggleFAQ(this)">
-          <div class="faq-question">
-            <span>O site será otimizado para celulares?</span>
-            <i class="fas fa-plus"></i>
-          </div>
-          <div class="faq-answer">
-            <p>Com certeza! Todos os projetos são desenvolvidos com a metodologia Mobile-First, garantindo perfeito funcionamento em smartphones, tablets e computadores.</p>
-          </div>
-        </div>
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <span>Quais são os prazos de entrega?</span>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Os prazos variam de acordo com a complexidade e o escopo do projeto, mas sempre definimos prazos claros e acordados previamente.</p>
+                    </div>
+                </div>
 
-        <div class="faq-item" onclick="toggleFAQ(this)">
-          <div class="faq-question">
-            <span>Como funciona o suporte pós-lançamento?</span>
-            <i class="fas fa-plus"></i>
-          </div>
-          <div class="faq-answer">
-            <p>Oferecemos 30 dias de suporte gratuito pós-entrega para ajustes pontuais e treinamento para gerenciamento do conteúdo.</p>
-          </div>
-        </div>
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">
+                        <span>Como posso enviar uma mensagem de contato?</span>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Você pode preencher o formulário abaixo com seu nome, e-mail e detalhes do seu projeto. Entraremos em contato o mais breve possível!</p>
+                    </div>
+                </div>
 
-      </div>
-    </section>
+            </div>
+        </section>
 
-    <!-- CONTACT FORM SECTION -->
-    <section class="contact-section">
-      <h2 class="section-title">Entre em Contato</h2>
-      <form id="contactForm" onsubmit="handleFormSubmit(event)">
-        <div class="form-group">
-          <label for="nome">Nome</label>
-          <input type="text" id="nome" required placeholder="Seu nome completo">
-        </div>
-        <div class="form-group">
-          <label for="email">E-mail</label>
-          <input type="email" id="email" required placeholder="seu@email.com">
-        </div>
-        <div class="form-group">
-          <label for="mensagem">Mensagem</label>
-          <textarea id="mensagem" rows="4" required placeholder="Como posso te ajudar?"></textarea>
-        </div>
-        <button type="submit" class="submit-btn" id="submitBtn">Enviar Mensagem</button>
-      </form>
-      <div id="formStatus" class="form-status"></div>
-    </section>
-  </div>
+        <!-- CONTACT FORM SECTION -->
+        <section class="contact-section">
+            <h2 class="section-title">Entre em Contato</h2>
+            <form id="contactForm" onsubmit="handleFormSubmit(event)">
+                <div class="form-group">
+                    <label for="nome">Nome</label>
+                    <input type="text" id="nome" required placeholder="Seu nome completo">
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" required placeholder="seu@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="mensagem">Mensagem</label>
+                    <textarea id="mensagem" rows="4" required placeholder="Como podemos te ajudar?"></textarea>
+                </div>
+                <button type="submit" class="submit-btn" id="submitBtn">Enviar Mensagem</button>
+            </form>
+            <div id="formStatus" class="form-status"></div>
+        </section>
+    </div>
 
-  <!-- Arquivo JS -->
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
