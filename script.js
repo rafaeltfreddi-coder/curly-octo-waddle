@@ -11,62 +11,43 @@ const servicos = [
     { titulo: "Branding Corporativo", desc: "Identidade visual elegante para empresas e marcas." }
 ];
 
+// Apenas um item no Portfólio (Gastronomia)
 const portfolioItems = [
     { 
         titulo: "Fotografia Gastronômica (Melhoria de Foto de Comida)", 
         antes: "https://cozinhabase.com.br/wp-content/uploads/2025/08/prompt-4-para-melhorar-foto-de-comida.jpg", 
         depois: "https://cozinhabase.com.br/wp-content/uploads/2025/08/prompt-6-para-melhorar-foto-de-comida.jpg" 
-    },
-    { 
-        titulo: "Campanha de Produto", 
-        antes: "https://picsum.photos/id/201/800/600", 
-        depois: "https://picsum.photos/id/237/800/600" 
-    },
-    { 
-        titulo: "Fotografia Histórica", 
-        antes: "https://picsum.photos/id/133/800/600", 
-        depois: "https://picsum.photos/id/180/800/600" 
     }
 ];
 
+// Apenas uma Estatística
 const stats = [
-    { numero: 5000, texto: "Imagens Aprimoradas" },
-    { numero: 1200, texto: "Clientes Atendidos" },
-    { numero: 98,  texto: "Aprovação", sufixo: "%" },
-    { numero: 24,   texto: "Horas Médias de Entrega" }
+    { numero: 5000, texto: "Imagens Aprimoradas" }
 ];
 
+// Apenas um Plano
 const planos = [
-    { nome: "Essencial", preco: "49,90", itens: ["10 aprimoramentos", "Qualidade Full HD", "Entrega padrão"] },
-    { nome: "Profissional", preco: "69,90", itens: ["15 aprimoramentos", "Atendimento prioritário", "Revisões ilimitadas"], destaque: true },
-    { nome: "Enterprise", preco: "89,90", itens: ["20 aprimoramentos", "Qualidade Ultra HD 4K", "Suporte VIP dedicado"] }
+    { nome: "Profissional", preco: "69,90", itens: ["15 aprimoramentos", "Atendimento prioritário", "Revisões ilimitadas"], destaque: true }
 ];
 
+// Apenas um Pacote
 const pacotes = [
-    { nome: "E-Commerce", qtd: "50 imagens", de: "249,90", por: "199,90" },
-    { nome: "Corporativo", qtd: "100 imagens", de: "499,90", por: "349,90" },
     { nome: "Scale Content", qtd: "200 imagens", de: "799,90", por: "599,90", destaque: true }
 ];
 
+// Apenas um Diferencial
 const porQue = [
-    "Algoritmos de IA de ponta",
-    "Supervisão por designers experientes",
-    "Prazos flexíveis e entregas ágeis",
-    "Garantia estendida de satisfação",
-    "Padrão de qualidade Ultra HD",
-    "Suporte personalizado 1 a 1"
+    "Algoritmos de IA de ponta combinados com supervisão profissional"
 ];
 
+// Apenas um Depoimento
 const depoimentos = [
-    { nome: "Carlos Mendes", texto: "Superou minhas expectativas. Nossos materiais visuais ganharam um nível totalmente profissional.", foto: "https://i.pinimg.com/474x/e1/05/41/e105419e21e2f0dfd1579c6aef739bb5.jpg" },
-    { nome: "Ana Silva", texto: "A restauração das minhas fotos antigas ficou impecável! Processo rápido e resultado fantástico.", foto: "https://i.pinimg.com/736x/fb/7b/30/fb7b300123dcd922492c421c9465661a.jpg" }
+    { nome: "Carlos Mendes", texto: "Superou minhas expectativas. Nossos materiais visuais ganharam um nível totalmente profissional.", foto: "https://i.pinimg.com/474x/e1/05/41/e105419e21e2f0dfd1579c6aef739bb5.jpg" }
 ];
 
+// Apenas uma pergunta no FAQ
 const faqs = [
-    { q: "Qual o prazo padrão para entrega das imagens?", a: "A grande maioria dos projetos é entregue dentro do prazo de 24 horas úteis." },
-    { q: "Como realizo o envio dos meus arquivos?", a: "Após confirmação do pedido, você pode enviar os arquivos diretamente via WhatsApp ou Google Drive." },
-    { q: "Quais extensões de imagem são suportadas?", a: "Aceitamos os principais formatos do mercado: JPG, PNG, WEBP, TIFF e arquivos RAW." },
-    { q: "E se eu precisar de ajustes no resultado?", a: "Todos os nossos planos cobrem revisões para garantir a sua total satisfação." }
+    { q: "Qual o prazo padrão para entrega das imagens?", a: "A grande maioria dos projetos é entregue dentro do prazo de 24 horas úteis." }
 ];
 
 // ==================== LÓGICA E RENDERIZAÇÃO ====================
