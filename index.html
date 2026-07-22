@@ -3,20 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VisualSync - IA para Imagens</title>
+    <title>VisualSync | Inteligência Artificial Visual</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+
     <section id="welcome-screen" class="welcome-screen">
-        <div class="welcome-content">
-            <div class="logo-welcome"><span class="logo-text">Visual</span><span class="logo-sync">Sync</span></div>
-            <h1 class="title">Bem-vindo!</h1>
-            <p class="subtitle">Transformando suas imagens com o poder da IA</p>
+        <div class="welcome-card">
+            <div class="brand-badge"><i class="fa-solid fa-bolt"></i> IA de Alta Precisão</div>
+            <div class="logo-welcome">Visual<span>Sync</span></div>
+            <h1 class="title">Sua visão, potencializada por IA.</h1>
+            <p class="subtitle">Insira seu nome para acessar o painel de transformações visuais.</p>
+            
             <div class="name-input-container">
-                <input type="text" id="user-name" placeholder="Digite seu nome" class="name-input">
-                <button onclick="proceedToMain()" class="proceed-btn">Entrar</button>
+                <div class="input-wrapper">
+                    <i class="fa-regular fa-user input-icon"></i>
+                    <input type="text" id="user-name" placeholder="Como podemos te chamar?" class="name-input" autocomplete="off">
+                </div>
+                <button onclick="proceedToMain()" class="proceed-btn">
+                    <span>Acessar Plataforma</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
             </div>
             <p id="error-msg" class="error-msg"></p>
         </div>
@@ -25,35 +41,45 @@
     <div id="main-content" class="hidden">
         <nav class="navbar">
             <div class="nav-container">
-                <div class="logo-nav"><span class="logo-text">Visual</span><span class="logo-sync">Sync</span></div>
+                <div class="logo-nav">Visual<span>Sync</span></div>
                 <div class="nav-links">
-                    <a href="#services">Serviços</a>
-                    <a href="#portfolio">Portfólio</a>
-                    <a href="#plans">Planos</a>
-                    <a href="#faq">FAQ</a>
+                    <a href="#services"><i class="fa-solid fa-wand-magic-sparkles"></i> Serviços</a>
+                    <a href="#portfolio"><i class="fa-solid fa-layer-group"></i> Portfólio</a>
+                    <a href="#plans"><i class="fa-solid fa-tag"></i> Planos</a>
+                    <a href="#faq"><i class="fa-solid fa-circle-question"></i> FAQ</a>
                 </div>
-                <a href="https://wa.me/5516989477519" target="_blank" class="whatsapp-btn"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                <a href="https://wa.me/5516989477519" target="_blank" class="whatsapp-btn">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>Falar com Especialista</span>
+                </a>
             </div>
         </nav>
 
         <header class="hero">
             <div class="container">
+                <div class="hero-badge"><i class="fa-solid fa-sparkles"></i> Tecnologia de Última Geração</div>
                 <h2 id="greeting" class="greeting"></h2>
-                <p class="hero-text">Eleve a qualidade visual da sua marca com nossas soluções inteligentes.</p>
-                <p class="hero-subtext">Edição, restauração e aprimoramento em questão de segundos.</p>
+                <p class="hero-text">Transformação de imagens em alta resolução com o poder da Inteligência Artificial.</p>
+                <p class="hero-subtext">Restauração, criação de artes e aprimoramento profissional em instantes.</p>
             </div>
         </header>
 
         <section id="services" class="section">
             <div class="container">
-                <h2 class="section-title">Nossos Serviços</h2>
+                <div class="section-header">
+                    <span class="section-tag">Capacidades</span>
+                    <h2 class="section-title">Soluções Visuais Inteligentes</h2>
+                </div>
                 <div class="services-grid" id="services-grid"></div>
             </div>
         </section>
 
-        <section id="portfolio" class="section" style="background:#111;">
+        <section id="portfolio" class="section section-dark">
             <div class="container">
-                <h2 class="section-title">Antes × Depois</h2>
+                <div class="section-header">
+                    <span class="section-tag">Resultados Reais</span>
+                    <h2 class="section-title">Antes × Depois</h2>
+                </div>
                 <div class="portfolio-grid" id="portfolio-grid"></div>
             </div>
         </section>
@@ -64,53 +90,72 @@
             </div>
         </section>
 
-        <section id="plans" class="section" style="background:#111;">
+        <section id="plans" class="section section-dark">
             <div class="container">
-                <h2 class="section-title">Planos Individuais</h2>
+                <div class="section-header">
+                    <span class="section-tag">Investimento</span>
+                    <h2 class="section-title">Planos Individuais</h2>
+                </div>
                 <div class="plans-grid" id="plans-grid"></div>
             </div>
         </section>
 
         <section class="section">
             <div class="container">
-                <h2 class="section-title">Pacotes Promocionais</h2>
+                <div class="section-header">
+                    <span class="section-tag">Escala & Volume</span>
+                    <h2 class="section-title">Pacotes Promocionais</h2>
+                </div>
                 <div class="packages-grid" id="packages-grid"></div>
             </div>
         </section>
 
-        <section class="section" style="background:#111;">
+        <section class="section section-dark">
             <div class="container">
-                <h2 class="section-title">Por Que Escolher a VisualSync?</h2>
+                <div class="section-header">
+                    <span class="section-tag">Diferenciais</span>
+                    <h2 class="section-title">Por Que A VisualSync?</h2>
+                </div>
                 <div class="why-grid" id="why-grid"></div>
             </div>
         </section>
 
         <section class="section">
             <div class="container">
-                <h2 class="section-title">Depoimentos</h2>
+                <div class="section-header">
+                    <span class="section-tag">Avaliações</span>
+                    <h2 class="section-title">O Que Dizem Nossos Clientes</h2>
+                </div>
                 <div class="testimonials-grid" id="testimonials-grid"></div>
             </div>
         </section>
 
-        <section id="faq" class="section" style="background:#111;">
+        <section id="faq" class="section section-dark">
             <div class="container">
-                <h2 class="section-title">Perguntas Frequentes</h2>
-                <div id="faq-list"></div>
+                <div class="section-header">
+                    <span class="section-tag">Dúvidas</span>
+                    <h2 class="section-title">Perguntas Frequentes</h2>
+                </div>
+                <div id="faq-list" class="faq-container"></div>
             </div>
         </section>
 
         <section class="cta-section">
             <div class="container">
-                <h2>Pronto para transformar suas imagens?</h2>
-                <a href="#" onclick="contactWhatsApp()" class="cta-button">Falar no WhatsApp</a>
+                <h2 class="cta-title">Pronto para elevar o nível das suas imagens?</h2>
+                <p class="cta-desc">Atendimento rápido e personalizado via WhatsApp.</p>
+                <a href="#" onclick="contactWhatsApp()" class="cta-button">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>Iniciar Projeto Agora</span>
+                </a>
             </div>
         </section>
 
         <footer class="footer">
             <div class="footer-content">
-                <div>
-                    <h3>VisualSync</h3>
-                    <p>Inovação visual com Inteligência Artificial.</p>
+                <div class="footer-brand">
+                    <div class="logo-nav">Visual<span>Sync</span></div>
+                    <p>Eleve a percepção visual do seu negócio com Inteligência Artificial avançada.</p>
                 </div>
             </div>
             <p class="copyright">&copy; 2026 VisualSync. Todos os direitos reservados.</p>
