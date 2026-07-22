@@ -1,3 +1,7 @@
+// ==================== DADOS ====================
+
+// ==================== DADOS ====================
+
 // Dados dos serviços
 const servicos = [
     { titulo: "Aprimoramento de imagens", desc: "Melhoria automática de qualidade com IA" },
@@ -21,8 +25,8 @@ const portfolioItems = [
 const stats = [
     { numero: 5000, texto: "Imagens aprimoradas" },
     { numero: 1200, texto: "Clientes atendidos" },
-    { numero: 98, texto: "Satisfação (%)", sufixo: "%" },
-    { numero: 24, texto: "Horas de entrega média" }
+    { numero: 98,  texto: "Satisfação", sufixo: "%" },
+    { numero: 24,   texto: "Horas de entrega média" }
 ];
 
 // Planos
@@ -32,14 +36,14 @@ const planos = [
     { nome: "Premium", preco: "89,90", itens: ["20 aprimoramentos", "Qualidade máxima", "Revisões extras"] }
 ];
 
-// Pacotes
+// Pacotes Promocionais
 const pacotes = [
     { nome: "Loja Virtual", qtd: "50 imagens", de: "249,90", por: "199,90" },
     { nome: "Empresarial", qtd: "100 imagens", de: "499,90", por: "349,90" },
     { nome: "Criador de Conteúdo", qtd: "200 imagens", de: "799,90", por: "599,90", destaque: true }
 ];
 
-// Por quê escolher
+// Por que escolher
 const porQue = [
     "Inteligência Artificial avançada",
     "Designers profissionais",
@@ -63,6 +67,8 @@ const faqs = [
     { q: "Há garantia de satisfação?", a: "Sim, oferecemos até 3 revisões gratuitas." }
 ];
 
+// ==================== FUNÇÕES DE RENDER ====================
+
 // Função para prosseguir da tela inicial
 function proceedToMain() {
     const nome = document.getElementById('user-name').value.trim();
@@ -79,6 +85,11 @@ function proceedToMain() {
     
     document.getElementById('greeting').innerHTML = `Olá, ${nome}! 👋`;
     
+    renderAll();
+}
+
+// Renderiza todos os blocos
+function renderAll() {
     renderServices();
     renderPortfolio();
     renderStats();
@@ -89,7 +100,7 @@ function proceedToMain() {
     renderFAQ();
 }
 
-// Render Services
+// Serviços
 function renderServices() {
     const container = document.getElementById('services-grid');
     container.innerHTML = servicos.map(s => `
@@ -100,21 +111,27 @@ function renderServices() {
     `).join('');
 }
 
-// Render Portfolio
+// Portfólio
 function renderPortfolio() {
     const container = document.getElementById('portfolio-grid');
     container.innerHTML = portfolioItems.map(item => `
         <div class="portfolio-item">
             <h3>${item.titulo}</h3>
             <div class="before-after">
-                <img src="${item.antes}" alt="Antes">
-                <img src="${item.depois}" alt="Depois">
+                <div>
+                    <small>Antes</small>
+                    <img src="${item.antes}" alt="Antes">
+                </div>
+                <div>
+                    <small>Depois</small>
+                    <img src="${item.depois}" alt="Depois">
+                </div>
             </div>
         </div>
     `).join('');
 }
 
-// Render Stats with animation
+// Estatísticas com animação
 function renderStats() {
     const container = document.getElementById('stats-grid');
     container.innerHTML = stats.map(stat => `
@@ -123,23 +140,24 @@ function renderStats() {
             <p>${stat.texto}</p>
         </div>
     `).join('');
-    
-    const observers = new IntersectionObserver((entries) => {
+
+    // Animação ao entrar na tela
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 animateNumbers();
-                observers.unobserve(entry.target);
+                observer.disconnect();
             }
         });
     });
-    observers.observe(container);
+    observer.observe(container);
 }
 
 function animateNumbers() {
     document.querySelectorAll('.stat-number').forEach(el => {
         const target = parseInt(el.getAttribute('data-target'));
         let count = 0;
-        const increment = target / 60;
+        const increment = Math.ceil(target / 60);
         const timer = setInterval(() => {
             count += increment;
             if (count >= target) {
@@ -148,65 +166,72 @@ function animateNumbers() {
             } else {
                 el.textContent = Math.floor(count) + (el.textContent.includes('%') ? '%' : '');
             }
-        }, 30);
+        }, 40);
     });
 }
 
-// Render Plans
+// Planos
 function renderPlans() {
     const container = document.getElementById('plans-grid');
     container.innerHTML = planos.map(plan => `
         <div class="plan-card ${plan.destaque ? 'featured' : ''}">
-            ${plan.destaque ? '<div class="featured-badge" style="position:absolute;top:-15px;right:20px;background:#00AEEF;color:black;padding:5px 15px;border-radius:20px;font-size:0.9rem;">Mais Escolhido</div>' : ''}
+            ${plan.destaque ? `<div class="featured-badge">Mais Escolhido</div>` : ''}
             <h3>${plan.nome}</h3>
-            <div class="price" style="font-size:2.5rem;margin:20px 0;">R$ ${plan.preco}</div>
-            <ul>\( {plan.itens.map(i => `<li> \){i}</li>`).join('')}</ul>
+            <div class="price">R$ ${plan.preco}</div>
+            <ul>
+                ${plan.itens.map(i => `<li>✓ ${i}</li>`).join('')}
+            </ul>
+            <button onclick="contactWhatsApp()">Escolher Plano</button>
         </div>
     `).join('');
 }
 
-// Render Packages
+// Pacotes
 function renderPackages() {
     const container = document.getElementById('packages-grid');
     container.innerHTML = pacotes.map(p => `
         <div class="package-card ${p.destaque ? 'featured' : ''}">
             <h3>${p.nome}</h3>
-            <p>${p.qtd}</p>
-            <div class="price">De <s>R$ \( {p.de}</s> por <strong>R \) ${p.por}</strong></div>
+            <p class="qtd">${p.qtd}</p>
+            <div class="price">
+                De <s>R$ ${p.de}</s><br>
+                por <strong>R$ ${p.por}</strong>
+            </div>
+            <button onclick="contactWhatsApp()">Adquirir Pacote</button>
         </div>
     `).join('');
 }
 
-// Render Why Choose Us
+// Por que escolher
 function renderWhy() {
     const container = document.getElementById('why-grid');
     container.innerHTML = porQue.map(item => `
-        <div class="why-card" style="background:#1A1A1A;padding:30px;border-radius:20px;">
+        <div class="why-card">
             <p>🚀 ${item}</p>
         </div>
     `).join('');
 }
 
-// Render Testimonials
+// Depoimentos
 function renderTestimonials() {
     const container = document.getElementById('testimonials-grid');
     container.innerHTML = depoimentos.map(d => `
-        <div class="testimonial" style="background:#1A1A1A;padding:30px;border-radius:20px;text-align:center;">
-            <img src="\( {d.foto}" alt=" \){d.nome}" style="border-radius:50%;width:80px;height:80px;">
+        <div class="testimonial">
+            <img src="\( {d.foto}" alt=" \){d.nome}">
             <p>"${d.texto}"</p>
             <strong>${d.nome}</strong>
         </div>
     `).join('');
 }
 
-// Render FAQ
+// FAQ
 function renderFAQ() {
     const container = document.getElementById('faq-list');
-    container.innerHTML = faqs.map((faq) => `
+    container.innerHTML = faqs.map(faq => `
         <div class="faq-item">
             <div class="faq-question" onclick="toggleFAQ(this)">
                 <span>${faq.q}</span>
-                <span>+</span>
+                <span class="toggle-icon">+</span>
             </div>
             <div class="faq-answer">${faq.a}</div>
         </div>
@@ -215,23 +240,29 @@ function renderFAQ() {
 
 function toggleFAQ(el) {
     const answer = el.nextElementSibling;
-    answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+    const icon = el.querySelector('.toggle-icon');
+    
+    if (answer.style.display === 'block') {
+        answer.style.display = 'none';
+        icon.textContent = '+';
+    } else {
+        answer.style.display = 'block';
+        icon.textContent = '−';
+    }
 }
 
-// Load saved name
+function contactWhatsApp() {
+    window.open('https://wa.me/5516989477519?text=Olá!%20Gostaria%20de%20mais%20informações%20sobre%20os%20planos.', '_blank');
+}
+
+// ==================== INICIALIZAÇÃO ====================
+
 window.onload = () => {
     const savedName = localStorage.getItem('userName');
     if (savedName) {
         document.getElementById('welcome-screen').classList.add('hidden');
         document.getElementById('main-content').classList.remove('hidden');
         document.getElementById('greeting').innerHTML = `Olá, ${savedName}! 👋`;
-        renderServices();
-        renderPortfolio();
-        renderStats();
-        renderPlans();
-        renderPackages();
-        renderWhy();
-        renderTestimonials();
-        renderFAQ();
+        renderAll();
     }
 };
