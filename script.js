@@ -1,6 +1,30 @@
-// ==================== APLICAÇÃO LOCAL (SEM SUPABASE OBRIGATÓRIO) ====================
+// ==================== CONFIGURAÇÃO DO SUPABASE ====================
+const SUPABASE_URL = 'SUA_SUPABASE_URL'; // ex: https://xyz.supabase.co
+const SUPABASE_KEY = 'SUA_SUPABASE_ANON_KEY';
 
-function resetUserSession() {
+const supabaseClient = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
+
+// Login via OAuth Google
+async function loginWithGoogle() {
+    if (!supabaseClient) return alert('Supabase não inicializado.');
+    
+    const { data, error } = await supabaseClient.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+            redirectTo: window.location.origin
+        }
+    });
+
+    if (error) {
+        console.error('Erro ao fazer login:', error.message);
+        alert('Erro ao tentar logar com Google.');
+    }
+}
+
+async function resetUserSession() {
+    if (supabaseClient) {
+        await supabaseClient.auth.signOut();
+    }
     localStorage.removeItem('userName');
     window.location.reload();
 }
@@ -242,7 +266,19 @@ const faqs = [
     }
 ];
 
-// ==================== FUNÇÃO DE ENTRADA (GARANTIDA) ====================
+// ==================== FUNÇÃO DE ENTRADA E EXIBIÇÃO ====================
+
+function showAppScreen(userName) {
+    const welcomeScreen = document.getElementById('welcome-screen');
+    const mainContent = document.getElementById('main-content');
+    const greeting = document.getElementById('greeting');
+
+    if (welcomeScreen) welcomeScreen.classList.add('hidden');
+    if (mainContent) mainContent.classList.remove('hidden');
+    if (greeting) greeting.innerHTML = `Bem-vindo(a), ${userName}! 👋`;
+    
+    renderAll();
+}
 
 function proceedToMain() {
     const nameInput = document.getElementById('user-name');
@@ -257,20 +293,8 @@ function proceedToMain() {
         return;
     }
     
-    // Salva o nome no armazenamento do navegador
     localStorage.setItem('userName', nome);
-    
-    // Altera visibilidade das telas
-    const welcomeScreen = document.getElementById('welcome-screen');
-    const mainContent = document.getElementById('main-content');
-    const greeting = document.getElementById('greeting');
-    
-    if (welcomeScreen) welcomeScreen.classList.add('hidden');
-    if (mainContent) mainContent.classList.remove('hidden');
-    if (greeting) greeting.innerHTML = `Bem-vindo(a), ${nome}! 👋`;
-    
-    // Renderiza todo o conteúdo da aplicação
-    renderAll();
+    showAppScreen(nome);
 }
 
 function renderAll() {
@@ -445,15 +469,59 @@ function contactWhatsApp() {
     window.open('https://wa.me/5516989477519?text=Olá!%20Gostaria%20de%20mais%20informações%20sobre%20os%20serviços.', '_blank');
 }
 
-// ==================== INICIALIZAÇÃO DE EVENTOS ====================
+// ==================== INICIALIZAÇÃO E SUPABASE HANDLERS ====================
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     const savedTheme = localStorage.getItem('siteTheme') || 'dark';
     applyTheme(savedTheme);
 
     initTechBackground();
 
-    // Evento de apertar ENTER no campo de texto
+    // Listener do Formulário de Contato enviando para a tabela 'mensagen' do Supabase
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submit-msg-btn');
+            if (submitBtn) submitBtn.disabled = true;
+
+            const nome = document.getElementById('contact-nome').value;
+            const email = document.getElementById('contact-email').value;
+            const mensagem = document.getElementById('contact-mensagem').value;
+
+            if (supabaseClient) {
+                const { error } = await supabaseClient
+                    .from('mensagen')
+                    .insert([{ nome, email, mensagem }]);
+
+                if (error) {
+                    console.error('Erro ao enviar mensagem para o Supabase:', error);
+                    alert('Houve um erro ao enviar a mensagem.');
+                } else {
+                    alert('Mensagem enviada com sucesso!');
+                    contactForm.reset();
+                }
+            } else {
+                alert('Mensagem enviada (Modo simulação).');
+                contactForm.reset();
+            }
+
+            if (submitBtn) submitBtn.disabled = false;
+        });
+    }
+
+    // Checa se o usuário retornou de um login do Google
+    if (supabaseClient) {
+        const { data: { session } } = await supabaseClient.auth.getSession();
+        if (session && session.user) {
+            const googleUserName = session.user.user_metadata.full_name || session.user.email;
+            showAppScreen(googleUserName);
+            return;
+        }
+    }
+
+    // Tecla Enter no nome do convidado
     const nameInput = document.getElementById('user-name');
     if (nameInput) {
         nameInput.addEventListener('keydown', (e) => {
@@ -464,17 +532,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Verifica se já existia um nome salvo anteriormente
+    // Checa nome salvo no LocalStorage
     const savedName = localStorage.getItem('userName');
     if (savedName) {
-        const welcomeScreen = document.getElementById('welcome-screen');
-        const mainContent = document.getElementById('main-content');
-        const greeting = document.getElementById('greeting');
-
-        if (welcomeScreen) welcomeScreen.classList.add('hidden');
-        if (mainContent) mainContent.classList.remove('hidden');
-        if (greeting) greeting.innerHTML = `Bem-vindo(a), ${savedName}! 👋`;
-        
-        renderAll();
+        showAppScreen(savedName);
     }
 });
