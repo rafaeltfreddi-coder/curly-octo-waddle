@@ -11,41 +11,34 @@ const servicos = [
     { titulo: "Branding Corporativo", desc: "Identidade visual elegante para empresas e marcas." }
 ];
 
-// Apenas um item no Portfólio (Gastronomia)
+// Apenas 1 item e 1 imagem por container
 const portfolioItems = [
     { 
-        titulo: "Fotografia Gastronômica (Melhoria de Foto de Comida)", 
-        antes: "https://cozinhabase.com.br/wp-content/uploads/2025/08/prompt-4-para-melhorar-foto-de-comida.jpg", 
-        depois: "https://cozinhabase.com.br/wp-content/uploads/2025/08/prompt-6-para-melhorar-foto-de-comida.jpg" 
+        titulo: "Fotografia Gastronômica Aprimorada", 
+        imagem: "https://cozinhabase.com.br/wp-content/uploads/2025/08/prompt-6-para-melhorar-foto-de-comida.jpg" 
     }
 ];
 
-// Apenas uma Estatística
 const stats = [
     { numero: 5000, texto: "Imagens Aprimoradas" }
 ];
 
-// Apenas um Plano
 const planos = [
     { nome: "Profissional", preco: "69,90", itens: ["15 aprimoramentos", "Atendimento prioritário", "Revisões ilimitadas"], destaque: true }
 ];
 
-// Apenas um Pacote
 const pacotes = [
     { nome: "Scale Content", qtd: "200 imagens", de: "799,90", por: "599,90", destaque: true }
 ];
 
-// Apenas um Diferencial
 const porQue = [
     "Algoritmos de IA de ponta combinados com supervisão profissional"
 ];
 
-// Apenas um Depoimento
 const depoimentos = [
     { nome: "Carlos Mendes", texto: "Superou minhas expectativas. Nossos materiais visuais ganharam um nível totalmente profissional.", foto: "https://i.pinimg.com/474x/e1/05/41/e105419e21e2f0dfd1579c6aef739bb5.jpg" }
 ];
 
-// Apenas uma pergunta no FAQ
 const faqs = [
     { q: "Qual o prazo padrão para entrega das imagens?", a: "A grande maioria dos projetos é entregue dentro do prazo de 24 horas úteis." }
 ];
@@ -96,15 +89,8 @@ function renderPortfolio() {
     container.innerHTML = portfolioItems.map(item => `
         <div class="portfolio-item">
             <h3>${item.titulo}</h3>
-            <div class="before-after">
-                <div>
-                    <small>Antes</small>
-                    <img src="${item.antes}" alt="Antes">
-                </div>
-                <div>
-                    <small>Depois</small>
-                    <img src="${item.depois}" alt="Depois">
-                </div>
+            <div class="portfolio-single-img">
+                <img src="${item.imagem}" alt="${item.titulo}">
             </div>
         </div>
     `).join('');
@@ -189,56 +175,3 @@ function renderWhy() {
         </div>
     `).join('');
 }
-
-function renderTestimonials() {
-    const container = document.getElementById('testimonials-grid');
-    container.innerHTML = depoimentos.map(d => `
-        <div class="testimonial">
-            <img src="${d.foto}" alt="${d.nome}">
-            <p>"${d.texto}"</p>
-            <strong>${d.nome}</strong>
-        </div>
-    `).join('');
-}
-
-function renderFAQ() {
-    const container = document.getElementById('faq-list');
-    container.innerHTML = faqs.map(faq => `
-        <div class="faq-item">
-            <div class="faq-question" onclick="toggleFAQ(this)">
-                <span>${faq.q}</span>
-                <span class="toggle-icon"><i class="fa-solid fa-plus"></i></span>
-            </div>
-            <div class="faq-answer">${faq.a}</div>
-        </div>
-    `).join('');
-}
-
-function toggleFAQ(el) {
-    const answer = el.nextElementSibling;
-    const icon = el.querySelector('.toggle-icon i');
-    
-    if (answer.style.display === 'block') {
-        answer.style.display = 'none';
-        icon.className = 'fa-solid fa-plus';
-    } else {
-        answer.style.display = 'block';
-        icon.className = 'fa-solid fa-minus';
-    }
-}
-
-function contactWhatsApp() {
-    window.open('https://wa.me/5516989477519?text=Olá!%20Gostaria%20de%20mais%20informações%20sobre%20os%20serviços.', '_blank');
-}
-
-// ==================== AUTO-START ====================
-
-window.onload = () => {
-    const savedName = localStorage.getItem('userName');
-    if (savedName) {
-        document.getElementById('welcome-screen').classList.add('hidden');
-        document.getElementById('main-content').classList.remove('hidden');
-        document.getElementById('greeting').innerHTML = `Bem-vindo(a), ${savedName}! 👋`;
-        renderAll();
-    }
-};
