@@ -1,3 +1,39 @@
+// ==================== GERENCIADOR DE TEMAS (ESCURO, CINZA, CLARO) ====================
+
+const themes = ['dark', 'gray', 'light'];
+const themeIcons = {
+    dark: 'fa-moon',
+    gray: 'fa-circle-half-stroke',
+    light: 'fa-sun'
+};
+const themeNames = {
+    dark: 'Escuro',
+    gray: 'Cinza',
+    light: 'Claro'
+};
+
+function toggleTheme() {
+    const currentTheme = document.body.getAttribute('data-theme') || 'dark';
+    const currentIndex = themes.indexOf(currentTheme);
+    const nextIndex = (currentIndex + 1) % themes.length;
+    const nextTheme = themes[nextIndex];
+
+    applyTheme(nextTheme);
+    localStorage.setItem('siteTheme', nextTheme);
+}
+
+function applyTheme(theme) {
+    document.body.setAttribute('data-theme', theme);
+    
+    const iconEl = document.getElementById('theme-icon');
+    const textEl = document.getElementById('theme-text');
+    
+    if (iconEl && textEl) {
+        iconEl.className = `fa-solid ${themeIcons[theme]}`;
+        textEl.textContent = themeNames[theme];
+    }
+}
+
 // ==================== ANIMAÇÃO DE FUNDO TECNOLÓGICO (CANVAS NETWORK) ====================
 
 function initTechBackground() {
@@ -70,46 +106,46 @@ function initTechBackground() {
 // ==================== DADOS DA APLICAÇÃO ====================
 
 const servicos = [
-    { titulo: "Aprimoramento Visual", desc: "Melhoria automática de clareza e detalhes acionada por IA." },
-    { titulo: "Super Resolução", desc: "Upscaling inteligente de imagens sem perda de definição." },
-    { titulo: "Restauração Digital", desc: "Recuperação minuciosa de fotografias antigas ou danificadas." },
-    { titulo: "Ajuste Cromático", desc: "Correções profissionais de cor, balanço de branco e iluminação." },
-    { titulo: "Limpeza de Imperfeições", desc: "Remoção precisa de ruídos, manchas e elementos indesejados." },
-    { titulo: "Artes Publicitárias", desc: "Criação de banners e anúncios focados em conversão." },
-    { titulo: "Social Media Kits", desc: "Conteúdos otimizados para Instagram, LinkedIn e TikTok." },
-    { titulo: "Branding Corporativo", desc: "Identidade visual elegante para empresas e marcas." }
+    { titulo: "Aprimoramento Visual", desc: "Melhoria automática de clareza e detalhes acionada por Inteligência Artificial." },
+    { titulo: "Super Resolução", desc: "Aumento de escala (upscaling) inteligente sem perda de qualidade original." },
+    { titulo: "Restauração Digital", desc: "Recuperação minuciosa de fotografias antigas, foscas ou desgastadas." },
+    { titulo: "Ajuste Cromático", desc: "Correção de cores, balanço de branco e equilíbrio de iluminação profissional." },
+    { titulo: "Limpeza de Imperfeições", desc: "Remoção precisa de ruídos digitais, manchas e objetos indesejados." },
+    { titulo: "Artes Publicitárias", desc: "Criação de banners e peças visuais para campanhas de alta conversão." },
+    { titulo: "Social Media Kits", desc: "Conteúdos visuais padronizados para Instagram, LinkedIn e Facebook." },
+    { titulo: "Branding Corporativo", desc: "Adequação de imagens para identidades visuais de marcas e empresas." }
 ];
 
-// Removida a imagem de comida/bife e substituída por restauração de retrato
+// NENHUMA IMAGEM DE BIFE/COMIDA. Substituído por demonstração genérica e neutra de resolução.
 const portfolioItems = [
     { 
-        titulo: "Restauração de Imagem & Nitidez", 
+        titulo: "Recuperação de Nitidez & Resolução", 
         antes: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&sat=-100&blur=3", 
         depois: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500" 
     }
 ];
 
 const stats = [
-    { numero: 5000, texto: "Imagens Aprimoradas" }
+    { numero: 5000, texto: "Imagens Aprimoradas com Sucesso" }
 ];
 
 const planos = [
     { 
         nome: "Iniciante", 
         preco: "49,90", 
-        itens: ["10 aprimoramentos", "Entrega em até 24h", "Qualidade HD"], 
+        itens: ["10 aprimoramentos", "Entrega em até 24h úteis", "Resolução HD"], 
         destaque: false 
     },
     { 
         nome: "Profissional", 
         preco: "69,90", 
-        itens: ["20 aprimoramentos", "Atendimento prioritário", "Revisões ilimitadas", "Ultra Resolução"], 
+        itens: ["20 aprimoramentos", "Atendimento prioritário", "Revisões garantidas", "Qualidade Ultra HD"], 
         destaque: true 
     },
     { 
         nome: "Master", 
         preco: "119,90", 
-        itens: ["40 aprimoramentos", "Suporte VIP via WhatsApp", "Revisões ilimitadas", "Arquivos em alta fidelidade"], 
+        itens: ["40 aprimoramentos", "Suporte VIP via WhatsApp", "Revisões ilimitadas", "Arquivos em máxima fidelidade"], 
         destaque: false 
     }
 ];
@@ -121,7 +157,7 @@ const pacotes = [
 ];
 
 const porQue = [
-    "Algoritmos de IA de ponta combinados com supervisão e ajuste profissional"
+    "Algoritmos avançados de Inteligência Artificial combinados com validação técnica e olhar profissional."
 ];
 
 const depoimentos = [
@@ -140,27 +176,27 @@ const depoimentos = [
 const faqs = [
     { 
         q: "Qual o prazo padrão para entrega das imagens?", 
-        a: "A grande maioria dos projetos é entregue dentro do prazo de 24 horas úteis. Para pedidos maiores ou pacotes promocionais, combinamos um cronograma personalizado." 
+        a: "A maioria dos projetos é entregue no prazo de 24 horas úteis. Para demandas de alto volume ou pacotes promocionais, combinamos um cronograma personalizado." 
     },
     { 
         q: "Como envio as minhas fotos para edição?", 
-        a: "Após a confirmação do plano, você pode enviar suas imagens diretamente pelo WhatsApp, Google Drive ou WeTransfer em alta qualidade." 
+        a: "Após confirmar o seu pedido, você envia seus arquivos diretamente via WhatsApp, Google Drive ou WeTransfer mantendo a qualidade original." 
     },
     { 
         q: "Quais formatos de arquivo vocês aceitam e entregam?", 
-        a: "Aceitamos PNG, JPG, WEBP e formatos RAW. Entregamos as fotos finais nos formatos prontos para uso em redes sociais, e-commerce ou impressão (PNG/JPG em alta resolução)." 
+        a: "Aceitamos PNG, JPG, WEBP e formatos RAW. As imagens finais são entregues prontas para e-commerce, redes sociais ou impressão de alta resolução." 
     },
     { 
-        q: "E se eu não gostar do resultado da edição?", 
-        a: "Oferecemos revisões para garantir que a foto fique do jeito que você precisa! A satisfação com o resultado final é nossa prioridade." 
+        q: "E se eu precisar de ajustes na imagem entregue?", 
+        a: "Oferecemos etapas de revisão para garantir que o resultado atenda totalmente às suas expectativas visuais." 
     },
     { 
         q: "Quais são as formas de pagamento aceitas?", 
-        a: "Aceitamos Pix, cartões de crédito e boleto bancário. O início do trabalho é feito logo após a confirmação do pagamento." 
+        a: "Aceitamos Pix, cartões de crédito e boleto bancário. O processamento é iniciado imediatamente após a confirmação." 
     },
     { 
-        q: "Funciona para fotos tiradas pelo celular?", 
-        a: "Sim! Nossa tecnologia de IA e ajustes manuais conseguem melhorar consideravelmente a nitidez, iluminação e cores de fotos tiradas de qualquer smartphone." 
+        q: "Fotos tiradas por celular também podem ser aprimoradas?", 
+        a: "Com certeza! A IA otimiza o contraste, a nitidez e as cores de fotos capturadas em smartphones de qualquer modelo." 
     }
 ];
 
@@ -211,13 +247,13 @@ function renderPortfolio() {
         <div class="portfolio-item">
             <h3>${item.titulo}</h3>
             <div class="comparison-slider">
-                <img src="${item.depois}" alt="Depois" class="img-after">
+                <img src="${item.depois}" alt="Depois da Otimização" class="img-after">
                 <div class="img-before-wrapper" id="beforeWrapper">
-                    <img src="${item.antes}" alt="Antes" class="img-before">
+                    <img src="${item.antes}" alt="Antes da Otimização" class="img-before">
                 </div>
                 <span class="badge badge-antes">ANTES</span>
                 <span class="badge badge-depois">DEPOIS</span>
-                <input type="range" min="0" max="100" value="50" class="slider-input" oninput="moveSlider(this)">
+                <input type="range" min="0" max="100" value="50" class="slider-input" oninput="moveSlider(this)" aria-label="Deslizar para comparar antes e depois">
                 <div class="slider-handle" id="sliderHandle">
                     <div class="handle-button"><i class="fa-solid fa-code-compare"></i></div>
                 </div>
@@ -280,7 +316,7 @@ function renderPlans() {
                 <h3>${plan.nome}</h3>
                 <div class="price">R$ ${plan.preco}</div>
                 <ul>
-                    ${plan.itens.map(i => `<li><i class="fa-solid fa-check" style="color:var(--accent); margin-right:8px;"></i>${i}</li>`).join('')}
+                    ${plan.itens.map(i => `<li><i class="fa-solid fa-check" style="color:var(--primary); margin-right:8px;"></i>${i}</li>`).join('')}
                 </ul>
             </div>
             <button onclick="contactWhatsApp()">Contratar Plano</button>
@@ -310,7 +346,7 @@ function renderWhy() {
     const container = document.getElementById('why-grid');
     container.innerHTML = porQue.map(item => `
         <div class="why-card">
-            <p><i class="fa-solid fa-shield-halved" style="color:var(--accent); margin-right:8px;"></i>${item}</p>
+            <p><i class="fa-solid fa-shield-halved" style="color:var(--primary); margin-right:8px;"></i>${item}</p>
         </div>
     `).join('');
 }
@@ -359,6 +395,10 @@ function contactWhatsApp() {
 // ==================== AUTO-START ====================
 
 window.onload = () => {
+    // Carrega o tema salvo no navegador ou usa 'dark' como padrão
+    const savedTheme = localStorage.getItem('siteTheme') || 'dark';
+    applyTheme(savedTheme);
+
     initTechBackground();
     
     const savedName = localStorage.getItem('userName');
