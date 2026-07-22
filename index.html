@@ -3,203 +3,327 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="VisualSync - Aprimoramento de imagens com IA">
-    <title>VisualSync - Transformando imagens comuns em resultados extraordinários</title>
+    <meta name="description" content="VisualSync - Aprimoramento profissional de imagens com Inteligência Artificial">
+    <title>VisualSync • IA para Imagens Extraordinárias</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <style>
         :root {
-            --primary: #00AEEF;
-            --dark: #0E0E0E;
-            --card: #1A1A1A;
-            --text: #FFFFFF;
-            --gray-text: #AAAAAA;
+            --primary: #00D4FF;
+            --primary-dark: #00A8CC;
+            --dark: #0A0A0A;
+            --card: #121212;
+            --accent: #1E1E1E;
+            --text: #F0F0F0;
+            --gray: #B0B0B0;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
-            font-family: 'Segoe UI', system-ui, sans-serif;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
             background-color: var(--dark);
             color: var(--text);
-            line-height: 1.6;
+            line-height: 1.7;
+            overflow-x: hidden;
         }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-
-        /* Welcome */
-        .welcome-screen {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: radial-gradient(circle at center, #1A1A1A 0%, #0E0E0E 100%);
-            text-align: center;
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
         }
-
-        .logo-welcome { font-size: 4.2rem; font-weight: 700; margin-bottom: 1.5rem; letter-spacing: -2px; }
-        .logo-sync { color: var(--primary); }
-
-        .title { font-size: 2.6rem; margin-bottom: 1rem; }
-        .subtitle { font-size: 1.35rem; color: var(--gray-text); margin-bottom: 2.5rem; }
-
-        .name-input-container {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .name-input {
-            padding: 18px 28px;
-            font-size: 1.2rem;
-            background: #1A1A1A;
-            border: 2px solid #333;
-            border-radius: 50px;
-            color: white;
-            width: 340px;
-            outline: none;
-        }
-
-        .name-input:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 4px rgba(0, 174, 239, 0.2);
-        }
-
-        .proceed-btn {
-            padding: 18px 42px;
-            background: var(--primary);
-            color: #0E0E0E;
-            font-weight: 700;
-            font-size: 1.2rem;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-        }
-
-        .proceed-btn:hover { background: #22D3EE; transform: translateY(-3px); }
 
         /* Navbar */
         .navbar {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(14, 14, 14, 0.95);
-            backdrop-filter: blur(20px);
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(24px);
             z-index: 1000;
-            border-bottom: 1px solid #222;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            transition: all 0.4s ease;
         }
 
         .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 20px 40px;
         }
 
-        .logo-nav { font-size: 1.8rem; font-weight: 700; }
-        .nav-links a { color: white; text-decoration: none; margin: 0 20px; font-weight: 500; }
-        .nav-links a:hover { color: var(--primary); }
+        .logo {
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: -2px;
+            background: linear-gradient(90deg, var(--primary), #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Welcome Screen */
+        .welcome-screen {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at 50% 30%, #1a1a2e 0%, var(--dark) 70%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome-screen::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://picsum.photos/id/1015/2000/1200') center/cover no-repeat;
+            opacity: 0.15;
+            z-index: 0;
+        }
+
+        .welcome-content {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+        }
+
+        .logo-welcome {
+            font-size: 5.5rem;
+            font-weight: 900;
+            letter-spacing: -4px;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .title {
+            font-size: 2.8rem;
+            margin-bottom: 1.2rem;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            color: var(--gray);
+            margin-bottom: 3rem;
+        }
+
+        .name-input-container {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .name-input {
+            padding: 20px 32px;
+            font-size: 1.25rem;
+            background: rgba(255,255,255,0.05);
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: 9999px;
+            color: white;
+            width: 380px;
+            transition: all 0.4s ease;
+        }
+
+        .name-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 6px rgba(0, 212, 255, 0.15);
+            outline: none;
+        }
+
+        .proceed-btn {
+            padding: 20px 48px;
+            background: var(--primary);
+            color: #000;
+            font-weight: 700;
+            font-size: 1.25rem;
+            border: none;
+            border-radius: 9999px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .proceed-btn:hover {
+            background: #ffffff;
+            transform: translateY(-6px) scale(1.05);
+        }
 
         /* Hero */
         .hero {
-            padding: 160px 40px 100px;
+            padding: 180px 40px 140px;
             text-align: center;
-            background: linear-gradient(135deg, #0E0E0E, #1A1A1A);
-        }
-
-        .greeting { font-size: 2.8rem; color: var(--primary); margin-bottom: 20px; }
-
-        /* Sections */
-        .section { padding: 100px 40px; }
-        .section-title {
-            font-size: 2.8rem;
-            text-align: center;
-            margin-bottom: 60px;
+            background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
             position: relative;
         }
-        .section-title:after {
+
+        .greeting {
+            font-size: 3.2rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--primary), #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-text {
+            font-size: 1.6rem;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            color: var(--gray);
+        }
+
+        /* Sections */
+        .section {
+            padding: 120px 40px;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+        }
+
+        .section-title::after {
             content: '';
-            width: 80px;
-            height: 3px;
+            width: 90px;
+            height: 4px;
             background: var(--primary);
             position: absolute;
-            bottom: -15px;
+            bottom: -20px;
             left: 50%;
             transform: translateX(-50%);
+            border-radius: 2px;
         }
 
         /* Grids */
-        .services-grid, .plans-grid, .packages-grid, .why-grid, .testimonials-grid {
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 32px;
         }
 
-        .service-card, .plan-card, .package-card, .why-card, .testimonial {
+        .card {
             background: var(--card);
-            padding: 35px;
-            border-radius: 24px;
-            border: 1px solid #222;
-            transition: all 0.4s;
+            padding: 40px 32px;
+            border-radius: 28px;
+            border: 1px solid rgba(255,255,255,0.06);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .service-card:hover, .plan-card:hover, .package-card:hover {
-            transform: translateY(-12px);
+        .card:hover {
+            transform: translateY(-20px);
             border-color: var(--primary);
+            box-shadow: 0 30px 60px rgba(0, 212, 255, 0.12);
         }
 
+        /* Portfolio */
         .portfolio-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
             gap: 40px;
         }
 
         .before-after {
             display: flex;
-            gap: 8px;
+            gap: 12px;
             border-radius: 20px;
             overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
         }
 
         .before-after img {
             width: 50%;
-            height: 260px;
+            height: 320px;
             object-fit: cover;
+            transition: transform 0.6s ease;
         }
 
-        .featured { border: 3px solid var(--primary) !important; }
+        .before-after:hover img {
+            transform: scale(1.08);
+        }
 
         /* CTA */
         .cta-section {
-            background: linear-gradient(135deg, var(--primary), #22D3EE);
-            color: #0E0E0E;
+            background: linear-gradient(135deg, var(--primary), #00A8CC);
+            color: #000;
             text-align: center;
-            padding: 120px 40px;
+            padding: 140px 40px;
+            margin: 60px 0;
         }
 
         .cta-button {
             display: inline-block;
             margin-top: 30px;
-            padding: 22px 60px;
-            background: #0E0E0E;
+            padding: 24px 72px;
+            background: #000;
             color: white;
-            font-size: 1.4rem;
+            font-size: 1.45rem;
             font-weight: 700;
-            border-radius: 50px;
+            border-radius: 9999px;
             text-decoration: none;
+            transition: all 0.4s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
 
         /* Footer */
         .footer {
-            background: #0A0A0A;
-            padding: 80px 40px 40px;
+            background: #050505;
+            padding: 100px 40px 60px;
             text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.08);
         }
 
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
             .nav-links { display: none; }
             .hero, .section { padding: 100px 20px; }
+            .logo-welcome { font-size: 4rem; }
         }
     </style>
 </head>
@@ -209,32 +333,33 @@
     <section id="welcome-screen" class="welcome-screen">
         <div class="welcome-content container">
             <div class="logo-welcome">
-                <span class="logo-text">Visual</span><span class="logo-sync">Sync</span>
+                Visual<span style="color:var(--primary)">Sync</span>
             </div>
-            <h1 class="title">Bem-vindo à VisualSync</h1>
-            <p class="subtitle">Transformando imagens comuns em resultados extraordinários com inteligência artificial.</p>
+            <h1 class="title">Imagens comuns.<br>Resultados extraordinários.</h1>
+            <p class="subtitle">Aprimoramento profissional de imagens usando Inteligência Artificial de última geração.</p>
             
             <div class="name-input-container">
                 <input type="text" id="user-name" placeholder="Digite seu nome" class="name-input">
-                <button onclick="proceedToMain()" class="proceed-btn">Prosseguir</button>
+                <button onclick="proceedToMain()" class="proceed-btn">Entrar na Experiência</button>
             </div>
-            <p id="error-msg" style="color:#ff6b6b; margin-top:15px;"></p>
+            <p id="error-msg" style="color:#ff6b6b; margin-top:20px; min-height:24px;"></p>
         </div>
     </section>
 
     <!-- Main Content -->
     <div id="main-content" style="display: none;">
+
         <!-- Navbar -->
         <nav class="navbar">
-            <div class="nav-container">
-                <div class="logo-nav"><span class="logo-text">Visual</span><span class="logo-sync">Sync</span></div>
+            <div class="nav-container container">
+                <div class="logo">VisualSync</div>
                 <div class="nav-links">
                     <a href="#servicos">Serviços</a>
                     <a href="#portfolio">Portfólio</a>
                     <a href="#planos">Planos</a>
                     <a href="#faq">FAQ</a>
                 </div>
-                <a href="https://wa.me/5516989477519" target="_blank" class="whatsapp-btn">WhatsApp</a>
+                <a href="https://wa.me/5516989477519" target="_blank" style="background:var(--primary); color:#000; padding:12px 32px; border-radius:9999px; font-weight:700; text-decoration:none;">Falar no WhatsApp</a>
             </div>
         </nav>
 
@@ -242,7 +367,8 @@
         <header class="hero">
             <div class="container">
                 <h2 id="greeting" class="greeting"></h2>
-                <p class="hero-text">Transformamos suas imagens com o poder da Inteligência Artificial.</p>
+                <p class="hero-text">Transforme suas fotos, cardápios, anúncios e conteúdos com a potência da IA.</p>
+                <a href="#servicos" class="cta-button" style="background:var(--primary); color:#000; padding:18px 52px; font-size:1.2rem;">Ver Serviços</a>
             </div>
         </header>
 
@@ -250,14 +376,14 @@
         <section id="servicos" class="section">
             <div class="container">
                 <h2 class="section-title">Nossos Serviços</h2>
-                <div class="services-grid" id="services-grid"></div>
+                <div class="grid" id="services-grid"></div>
             </div>
         </section>
 
         <!-- Portfólio -->
         <section id="portfolio" class="section" style="background:#111;">
             <div class="container">
-                <h2 class="section-title">Nosso Portfólio</h2>
+                <h2 class="section-title">Portfólio</h2>
                 <div class="portfolio-grid" id="portfolio-grid"></div>
             </div>
         </section>
@@ -265,15 +391,15 @@
         <!-- Estatísticas -->
         <section class="section">
             <div class="container">
-                <div class="stats-grid" id="stats-grid"></div>
+                <div class="grid" id="stats-grid"></div>
             </div>
         </section>
 
         <!-- Planos -->
         <section id="planos" class="section">
             <div class="container">
-                <h2 class="section-title">Nossos Planos</h2>
-                <div class="plans-grid" id="plans-grid"></div>
+                <h2 class="section-title">Planos de Serviço</h2>
+                <div class="grid" id="plans-grid"></div>
             </div>
         </section>
 
@@ -281,23 +407,23 @@
         <section class="section" style="background:#111;">
             <div class="container">
                 <h2 class="section-title">Pacotes Promocionais</h2>
-                <div class="packages-grid" id="packages-grid"></div>
+                <div class="grid" id="packages-grid"></div>
             </div>
         </section>
 
-        <!-- Por que escolher -->
+        <!-- Por que nós -->
         <section class="section">
             <div class="container">
                 <h2 class="section-title">Por que escolher a VisualSync?</h2>
-                <div class="why-grid" id="why-grid"></div>
+                <div class="grid" id="why-grid"></div>
             </div>
         </section>
 
         <!-- Depoimentos -->
         <section class="section" style="background:#111;">
             <div class="container">
-                <h2 class="section-title">O que nossos clientes dizem</h2>
-                <div class="testimonials-grid" id="testimonials-grid"></div>
+                <h2 class="section-title">Depoimentos</h2>
+                <div class="grid" id="testimonials-grid"></div>
             </div>
         </section>
 
@@ -305,116 +431,265 @@
         <section id="faq" class="section">
             <div class="container">
                 <h2 class="section-title">Perguntas Frequentes</h2>
-                <div class="faq-list" id="faq-list"></div>
+                <div id="faq-list"></div>
             </div>
         </section>
 
-        <!-- CTA -->
+        <!-- CTA Final -->
         <section class="cta-section">
             <div class="container">
-                <h2>Pronto para transformar suas imagens?</h2>
-                <p style="font-size:1.3rem; margin:20px 0;">Entre em contato e solicite seu orçamento.</p>
-                <a href="https://wa.me/5516989477519?text=Olá!%20Gostaria%20de%20um%20orçamento." class="cta-button" target="_blank">Falar no WhatsApp</a>
+                <h2 style="font-size:3rem; margin-bottom:20px;">Pronto para elevar suas imagens?</h2>
+                <p style="font-size:1.5rem; max-width:700px; margin:0 auto 40px;">Entre em contato agora e receba um orçamento personalizado.</p>
+                <a href="https://wa.me/5516989477519?text=Olá!%20Quero%20transformar%20minhas%20imagens%20com%20VisualSync." class="cta-button" target="_blank">Falar no WhatsApp</a>
             </div>
         </section>
 
         <!-- Footer -->
         <footer class="footer">
             <div class="container">
-                <p>&copy; 2026 VisualSync. Todos os direitos reservados.</p>
+                <p style="font-size:1.1rem; opacity:0.7;">© 2026 VisualSync • Todos os direitos reservados.</p>
             </div>
         </footer>
     </div>
 
     <script>
-        // === DADOS ===
+        // Dados completos
         const servicos = [
-            { titulo: "Aprimoramento de imagens", desc: "Melhoria automática de qualidade com IA" },
-            { titulo: "Aumento de resolução", desc: "Upscaling inteligente para alta definição" },
-            { titulo: "Restauração de fotos", desc: "Recuperação de imagens antigas" },
-            { titulo: "Correção de cores", desc: "Ajustes profissionais de tonalidade" },
-            { titulo: "Remoção de imperfeições", desc: "Limpeza e retoques precisos" },
-            { titulo: "Criação de anúncios", desc: "Anúncios visualmente impactantes" }
+            { titulo: "Aprimoramento de Imagens", desc: "Melhoria automática de qualidade, nitidez e detalhes com IA avançada" },
+            { titulo: "Upscaling & Resolução", desc: "Aumente a resolução mantendo qualidade realista" },
+            { titulo: "Restauração de Fotos", desc: "Recupere e revitalize imagens antigas ou danificadas" },
+            { titulo: "Correção de Cores", desc: "Ajustes profissionais de tonalidade e equilíbrio" },
+            { titulo: "Remoção de Imperfeições", desc: "Limpeza precisa de ruídos, manchas e objetos indesejados" },
+            { titulo: "Criação de Anúncios", desc: "Designs impactantes otimizados para conversão" }
         ];
 
         const portfolioItems = [
-            { titulo: "Cardápio de Restaurante", antes: "https://picsum.photos/id/1015/800/600", depois: "https://picsum.photos/id/106/800/600" },
+            { titulo: "Cardápio Restaurante", antes: "https://picsum.photos/id/1015/800/600", depois: "https://picsum.photos/id/106/800/600" },
             { titulo: "Anúncio de Produto", antes: "https://picsum.photos/id/201/800/600", depois: "https://picsum.photos/id/237/800/600" },
-            { titulo: "Fotografia Antiga", antes: "https://picsum.photos/id/133/800/600", depois: "https://picsum.photos/id/180/800/600" }
+            { titulo: "Foto Antiga Restaurada", antes: "https://picsum.photos/id/133/800/600", depois: "https://picsum.photos/id/180/800/600" }
         ];
 
         const stats = [
-            { numero: 5000, texto: "Imagens aprimoradas" },
-            { numero: 1200, texto: "Clientes atendidos" },
-            { numero: 98,  texto: "Satisfação", sufixo: "%" },
-            { numero: 24,   texto: "Horas de entrega média" }
+            { numero: 5200, texto: "Imagens transformadas", sufixo: "" },
+            { numero: 1240, texto: "Clientes satisfeitos", sufixo: "" },
+            { numero: 98,  texto: "Taxa de satisfação", sufixo: "%" },
+            { numero: 24,   texto: "Horas de entrega média", sufixo: "h" }
         ];
 
         const planos = [
-            { nome: "Essencial", preco: "49,90", itens: ["10 aprimoramentos", "Alta qualidade", "Entrega rápida"] },
-            { nome: "Profissional", preco: "69,90", itens: ["15 aprimoramentos", "Atendimento prioritário", "Revisão incluída"], destaque: true },
-            { nome: "Premium", preco: "89,90", itens: ["20 aprimoramentos", "Qualidade máxima", "Revisões extras"] }
+            { nome: "Essencial", preco: "49,90", itens: ["10 créditos", "Qualidade HD", "Entrega em 24h"], destaque: false },
+            { nome: "Profissional", preco: "79,90", itens: ["20 créditos", "Prioridade", "Revisões ilimitadas"], destaque: true },
+            { nome: "Premium", preco: "119,90", itens: ["Ilimitado", "Qualidade 8K", "Suporte VIP"], destaque: false }
         ];
 
         const pacotes = [
-            { nome: "Loja Virtual", qtd: "50 imagens", de: "249,90", por: "199,90" },
-            { nome: "Empresarial", qtd: "100 imagens", de: "499,90", por: "349,90" },
-            { nome: "Criador de Conteúdo", qtd: "200 imagens", de: "799,90", por: "599,90", destaque: true }
+            { nome: "Loja Virtual", qtd: "50 imagens", de: "249,90", por: "189,90" },
+            { nome: "Empresarial", qtd: "120 imagens", de: "549,90", por: "399,90", destaque: true },
+            { nome: "Criador de Conteúdo", qtd: "250 imagens", de: "899,90", por: "649,90" }
         ];
 
-        const porQue = ["Inteligência Artificial avançada", "Designers profissionais", "Entrega rápida", "Garantia de qualidade", "Resultados premium"];
+        const porQue = [
+            "Inteligência Artificial de ponta",
+            "Designers experientes no time",
+            "Entrega ultra-rápida",
+            "Garantia total de qualidade",
+            "Suporte humano personalizado",
+            "Resultados que vendem mais"
+        ];
 
         const depoimentos = [
-            { nome: "Carlos Mendes", texto: "Transformaram meu cardápio completamente!", foto: "https://picsum.photos/id/64/80/80" },
-            { nome: "Ana Silva", texto: "Minhas fotos antigas voltaram à vida. Incrível!", foto: "https://picsum.photos/id/65/80/80" }
+            { nome: "Carlos Mendes", texto: "O cardápio ficou incrível! Minhas vendas subiram 47% na primeira semana.", foto: "https://picsum.photos/id/64/120/120" },
+            { nome: "Ana Beatriz", texto: "Minhas fotos antigas da família voltaram à vida. Serviço sensacional!", foto: "https://picsum.photos/id/65/120/120" }
         ];
 
         const faqs = [
-            { q: "Quanto tempo demora?", a: "A maioria dos trabalhos é entregue em até 24 horas." },
-            { q: "Como envio as imagens?", a: "Via WhatsApp ou e-mail após a contratação." }
+            { q: "Quanto tempo leva para entregar?", a: "A maioria dos pedidos é entregue em até 24 horas úteis." },
+            { q: "Como envio as imagens?", a: "Após o pagamento, enviamos um link seguro ou via WhatsApp." },
+            { q: "Quais formatos são aceitos?", a: "JPG, PNG, WEBP, TIFF e até arquivos RAW." },
+            { q: "Vocês oferecem garantia?", a: "Sim. Oferecemos até 3 revisões gratuitas por projeto." }
         ];
 
-        // === FUNÇÕES ===
         function proceedToMain() {
             const nome = document.getElementById('user-name').value.trim();
+            const errorMsg = document.getElementById('error-msg');
+
             if (!nome) {
-                document.getElementById('error-msg').textContent = "Por favor, digite seu nome.";
+                errorMsg.textContent = "Por favor, digite seu nome para continuar.";
                 return;
             }
 
             localStorage.setItem('userName', nome);
             document.getElementById('welcome-screen').style.display = 'none';
             document.getElementById('main-content').style.display = 'block';
-            document.getElementById('greeting').textContent = `Olá, ${nome}! 👋`;
+            document.getElementById('greeting').textContent = `Olá, ${nome}!`;
 
             renderAll();
         }
 
         function renderAll() {
-            // Serviços, Portfólio, Stats, Planos, etc.
-            document.getElementById('services-grid').innerHTML = servicos.map(s => `
-                <div class="service-card"><h3>\( {s.titulo}</h3><p> \){s.desc}</p></div>
-            `).join('');
+            renderServices();
+            renderPortfolio();
+            renderStats();
+            renderPlans();
+            renderPackages();
+            renderWhy();
+            renderTestimonials();
+            renderFAQ();
+        }
 
-            document.getElementById('portfolio-grid').innerHTML = portfolioItems.map(p => `
-                <div>
-                    <h3 style="text-align:center;margin-bottom:15px;">${p.titulo}</h3>
+        function renderServices() {
+            const container = document.getElementById('services-grid');
+            container.innerHTML = servicos.map(s => `
+                <div class="card">
+                    <h3 style="margin-bottom:16px; font-size:1.5rem;">${s.titulo}</h3>
+                    <p style="color:var(--gray);">${s.desc}</p>
+                </div>
+            `).join('');
+        }
+
+        function renderPortfolio() {
+            const container = document.getElementById('portfolio-grid');
+            container.innerHTML = portfolioItems.map(p => `
+                <div class="card">
+                    <h3 style="text-align:center; margin-bottom:20px;">${p.titulo}</h3>
                     <div class="before-after">
                         <img src="${p.antes}" alt="Antes">
                         <img src="${p.depois}" alt="Depois">
                     </div>
+                    <p style="text-align:center; margin-top:12px; color:var(--gray); font-size:0.95rem;">Arraste para comparar</p>
                 </div>
             `).join('');
-
-            // (Outros renders podem ser adicionados conforme necessário)
         }
 
+        function renderStats() {
+            const container = document.getElementById('stats-grid');
+            container.innerHTML = stats.map(stat => `
+                <div class="card" style="text-align:center;">
+                    <h3 class="stat-number" data-target="\( {stat.numero}" style="font-size:3.2rem; margin-bottom:8px;">0 \){stat.sufixo || ''}</h3>
+                    <p style="color:var(--gray);">${stat.texto}</p>
+                </div>
+            `).join('');
+        }
+
+        function renderPlans() {
+            const container = document.getElementById('plans-grid');
+            container.innerHTML = planos.map(plan => `
+                <div class="card \( {plan.destaque ? 'featured' : ''}" style=" \){plan.destaque ? 'border: 3px solid var(--primary);' : ''}">
+                    ${plan.destaque ? `<div style="background:var(--primary); color:#000; padding:6px 20px; border-radius:9999px; display:inline-block; margin-bottom:20px; font-weight:700;">Mais Popular</div>` : ''}
+                    <h3 style="font-size:1.8rem;">${plan.nome}</h3>
+                    <div style="font-size:3rem; font-weight:800; margin:20px 0;">R$ ${plan.preco}</div>
+                    <ul style="margin:30px 0; list-style:none;">
+                        ${plan.itens.map(item => `<li style="padding:8px 0;">✓ ${item}</li>`).join('')}
+                    </ul>
+                    <button onclick="contactWhatsApp()" style="width:100%; padding:18px; background:var(--primary); color:#000; border:none; border-radius:9999px; font-weight:700; cursor:pointer;">Escolher Plano</button>
+                </div>
+            `).join('');
+        }
+
+        function renderPackages() {
+            const container = document.getElementById('packages-grid');
+            container.innerHTML = pacotes.map(p => `
+                <div class="card ${p.destaque ? 'featured' : ''}">
+                    <h3>${p.nome}</h3>
+                    <p style="font-size:1.8rem; margin:20px 0;">${p.qtd}</p>
+                    <div style="margin:20px 0;">
+                        <s style="color:var(--gray);">De R$ ${p.de}</s><br>
+                        <strong style="font-size:2.2rem;">R$ ${p.por}</strong>
+                    </div>
+                    <button onclick="contactWhatsApp()" style="width:100%; padding:18px; background:var(--primary); color:#000; border:none; border-radius:9999px; font-weight:700;">Adquirir</button>
+                </div>
+            `).join('');
+        }
+
+        function renderWhy() {
+            const container = document.getElementById('why-grid');
+            container.innerHTML = porQue.map(item => `
+                <div class="card" style="text-align:center;">
+                    <p style="font-size:1.35rem;">🚀 ${item}</p>
+                </div>
+            `).join('');
+        }
+
+        function renderTestimonials() {
+            const container = document.getElementById('testimonials-grid');
+            container.innerHTML = depoimentos.map(d => `
+                <div class="card">
+                    <img src="\( {d.foto}" alt=" \){d.nome}" style="width:80px; height:80px; border-radius:50%; margin-bottom:20px;">
+                    <p style="font-style:italic; margin-bottom:20px;">"${d.texto}"</p>
+                    <strong>${d.nome}</strong>
+                </div>
+            `).join('');
+        }
+
+        function renderFAQ() {
+            const container = document.getElementById('faq-list');
+            container.innerHTML = faqs.map((faq, index) => `
+                <div class="card" style="margin-bottom:16px; cursor:pointer;" onclick="toggleFAQ(this)">
+                    <div style="display:flex; justify-content:space-between; align-items:center; font-weight:600;">
+                        <span>${faq.q}</span>
+                        <span class="toggle-icon" style="font-size:1.8rem;">+</span>
+                    </div>
+                    <div class="faq-answer" style="display:none; margin-top:20px; color:var(--gray);">${faq.a}</div>
+                </div>
+            `).join('');
+        }
+
+        function toggleFAQ(el) {
+            const answer = el.querySelector('.faq-answer');
+            const icon = el.querySelector('.toggle-icon');
+            if (answer.style.display === 'block') {
+                answer.style.display = 'none';
+                icon.textContent = '+';
+            } else {
+                answer.style.display = 'block';
+                icon.textContent = '−';
+            }
+        }
+
+        function contactWhatsApp() {
+            window.open('https://wa.me/5516989477519?text=Olá!%20Gostaria%20de%20um%20orçamento%20para%20VisualSync.', '_blank');
+        }
+
+        // Animação dos números
+        function animateNumbers() {
+            document.querySelectorAll('.stat-number').forEach(el => {
+                const target = parseInt(el.getAttribute('data-target'));
+                let count = 0;
+                const increment = Math.ceil(target / 40);
+                const timer = setInterval(() => {
+                    count += increment;
+                    if (count >= target) {
+                        el.textContent = target + (el.textContent.includes('%') ? '%' : '');
+                        clearInterval(timer);
+                    } else {
+                        el.textContent = count;
+                    }
+                }, 35);
+            });
+        }
+
+        // Inicialização
         window.onload = () => {
-            if (localStorage.getItem('userName')) {
+            const savedName = localStorage.getItem('userName');
+            if (savedName) {
                 document.getElementById('welcome-screen').style.display = 'none';
                 document.getElementById('main-content').style.display = 'block';
-                document.getElementById('greeting').textContent = `Olá, ${localStorage.getItem('userName')}! 👋`;
+                document.getElementById('greeting').textContent = `Olá, ${savedName}!`;
                 renderAll();
+            }
+
+            // Observador para animação das estatísticas
+            const statsSection = document.querySelector('#stats-grid');
+            if (statsSection) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            animateNumbers();
+                            observer.disconnect();
+                        }
+                    });
+                }, { threshold: 0.5 });
+                observer.observe(statsSection);
             }
         };
     </script>
