@@ -1,6 +1,6 @@
 // ==================== CONFIGURAÇÃO DO SUPABASE ====================
-const SUPABASE_URL = 'SUA_SUPABASE_URL'; // ex: https://xyz.supabase.co
-const SUPABASE_KEY = 'SUA_SUPABASE_ANON_KEY';
+const SUPABASE_URL = 'https://xdqoxpfipqswbgkkshys.supabase.co/rest/v1/'; // ex: https://xyz.supabase.co
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhkcW94cGZpcHFzd2Jna2tzaHlzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ2OTMzNzQsImV4cCI6MjEwMDI2OTM3NH0.W4LhLmQavvQyEfexNc7xAdrKuDSiZ7iXxiGnEHHDCYk';
 
 const supabaseClient = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
 
