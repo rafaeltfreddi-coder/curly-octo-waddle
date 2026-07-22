@@ -1,4 +1,4 @@
-// ==================== GERENCIADOR DE TEMAS (ESCURO, CINZA, CLARO) ====================
+// ==================== GERENCIADOR DE TEMAS ====================
 
 const themes = ['dark', 'gray', 'light'];
 const themeIcons = {
@@ -34,7 +34,23 @@ function applyTheme(theme) {
     }
 }
 
-// ==================== ANIMAÇÃO DE FUNDO TECNOLÓGICO (CANVAS NETWORK) ====================
+// ==================== NOTIFICAÇÃO "EM DESENVOLVIMENTO" ====================
+
+let toastTimeout;
+function showInDevelopment(feature) {
+    const toast = document.getElementById('toast');
+    const msg = document.getElementById('toast-message');
+    
+    msg.textContent = `${feature}: Em desenvolvimento`;
+    toast.classList.remove('hidden');
+
+    clearTimeout(toastTimeout);
+    toastTimeout = setTimeout(() => {
+        toast.classList.add('hidden');
+    }, 2800);
+}
+
+// ==================== CANVA TECNOLÓGICO DE FUNDO ====================
 
 function initTechBackground() {
     const canvas = document.getElementById('tech-bg');
@@ -50,16 +66,16 @@ function initTechBackground() {
     });
 
     const particles = [];
-    const particleCount = Math.min(Math.floor(width / 18), 70);
+    const particleCount = Math.min(Math.floor(width / 16), 80);
 
     for (let i = 0; i < particleCount; i++) {
         particles.push({
             x: Math.random() * width,
             y: Math.random() * height,
-            vx: (Math.random() - 0.5) * 0.8,
-            vy: (Math.random() - 0.5) * 0.8,
+            vx: (Math.random() - 0.5) * 0.7,
+            vy: (Math.random() - 0.5) * 0.7,
             radius: Math.random() * 2 + 1,
-            color: Math.random() > 0.5 ? 'rgba(99, 102, 241, ' : 'rgba(255, 59, 92, '
+            color: Math.random() > 0.5 ? 'rgba(255, 255, 255, ' : 'rgba(0, 240, 255, '
         });
     }
 
@@ -76,7 +92,7 @@ function initTechBackground() {
 
             ctx.beginPath();
             ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-            ctx.fillStyle = p.color + '0.7)';
+            ctx.fillStyle = p.color + '0.8)';
             ctx.fill();
 
             for (let j = i + 1; j < particles.length; j++) {
@@ -89,9 +105,9 @@ function initTechBackground() {
                     ctx.beginPath();
                     ctx.moveTo(p.x, p.y);
                     ctx.lineTo(p2.x, p2.y);
-                    let alpha = (1 - dist / 130) * 0.25;
-                    ctx.strokeStyle = 'rgba(148, 163, 184, ' + alpha + ')';
-                    ctx.lineWidth = 0.8;
+                    let alpha = (1 - dist / 130) * 0.2;
+                    ctx.strokeStyle = 'rgba(255, 255, 255, ' + alpha + ')';
+                    ctx.lineWidth = 0.7;
                     ctx.stroke();
                 }
             }
@@ -116,12 +132,12 @@ const servicos = [
     { titulo: "Branding Corporativo", desc: "Adequação de imagens para identidades visuais de marcas e empresas." }
 ];
 
-// NENHUMA IMAGEM DE BIFE/COMIDA. Substituído por demonstração genérica e neutra de resolução.
+// Atualizado para usar o link da imagem solicitado
 const portfolioItems = [
     { 
-        titulo: "Recuperação de Nitidez & Resolução", 
-        antes: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&sat=-100&blur=3", 
-        depois: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500" 
+        titulo: "Recuperação de Nitidez & Resolução IA", 
+        antes: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9YufkeKJAA4dSH8u0jwadar3-lCeeKx6mXN9L3wJs0KqUhwyJHLJ6aXH2&s=10", 
+        depois: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9YufkeKJAA4dSH8u0jwadar3-lCeeKx6mXN9L3wJs0KqUhwyJHLJ6aXH2&s=10" 
     }
 ];
 
@@ -176,7 +192,7 @@ const depoimentos = [
 const faqs = [
     { 
         q: "Qual o prazo padrão para entrega das imagens?", 
-        a: "A maioria dos projetos é entregue no prazo de 24 horas úteis. Para demandas de alto volume ou pacotes promocionais, combinamos um cronograma personalizado." 
+        a: "A maioria dos projetos é entregue no prazo de 24 horas úteis. Para demandas de alto volume, combinamos um cronograma personalizado." 
     },
     { 
         q: "Como envio as minhas fotos para edição?", 
@@ -184,7 +200,7 @@ const faqs = [
     },
     { 
         q: "Quais formatos de arquivo vocês aceitam e entregam?", 
-        a: "Aceitamos PNG, JPG, WEBP e formatos RAW. As imagens finais são entregues prontas para e-commerce, redes sociais ou impressão de alta resolução." 
+        a: "Aceitamos PNG, JPG, WEBP e formatos RAW. As imagens finais são entregues prontas para e-commerce ou redes sociais." 
     },
     { 
         q: "E se eu precisar de ajustes na imagem entregue?", 
@@ -200,7 +216,7 @@ const faqs = [
     }
 ];
 
-// ==================== LÓGICA E RENDERIZAÇÃO ====================
+// ==================== LÓGICA DE RENDERIZAÇÃO ====================
 
 function proceedToMain() {
     const nome = document.getElementById('user-name').value.trim();
@@ -253,7 +269,7 @@ function renderPortfolio() {
                 </div>
                 <span class="badge badge-antes">ANTES</span>
                 <span class="badge badge-depois">DEPOIS</span>
-                <input type="range" min="0" max="100" value="50" class="slider-input" oninput="moveSlider(this)" aria-label="Deslizar para comparar antes e depois">
+                <input type="range" min="0" max="100" value="50" class="slider-input" oninput="moveSlider(this)">
                 <div class="slider-handle" id="sliderHandle">
                     <div class="handle-button"><i class="fa-solid fa-code-compare"></i></div>
                 </div>
@@ -316,7 +332,7 @@ function renderPlans() {
                 <h3>${plan.nome}</h3>
                 <div class="price">R$ ${plan.preco}</div>
                 <ul>
-                    ${plan.itens.map(i => `<li><i class="fa-solid fa-check" style="color:var(--primary); margin-right:8px;"></i>${i}</li>`).join('')}
+                    ${plan.itens.map(i => `<li><i class="fa-solid fa-check" style="color:var(--accent); margin-right:8px;"></i>${i}</li>`).join('')}
                 </ul>
             </div>
             <button onclick="contactWhatsApp()">Contratar Plano</button>
@@ -346,7 +362,7 @@ function renderWhy() {
     const container = document.getElementById('why-grid');
     container.innerHTML = porQue.map(item => `
         <div class="why-card">
-            <p><i class="fa-solid fa-shield-halved" style="color:var(--primary); margin-right:8px;"></i>${item}</p>
+            <p><i class="fa-solid fa-shield-halved" style="color:var(--accent); margin-right:8px;"></i>${item}</p>
         </div>
     `).join('');
 }
@@ -392,10 +408,9 @@ function contactWhatsApp() {
     window.open('https://wa.me/5516989477519?text=Olá!%20Gostaria%20de%20mais%20informações%20sobre%20os%20serviços.', '_blank');
 }
 
-// ==================== AUTO-START ====================
+// ==================== INICIALIZAÇÃO ====================
 
 window.onload = () => {
-    // Carrega o tema salvo no navegador ou usa 'dark' como padrão
     const savedTheme = localStorage.getItem('siteTheme') || 'dark';
     applyTheme(savedTheme);
 
