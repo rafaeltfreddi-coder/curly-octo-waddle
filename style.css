@@ -1,4 +1,4 @@
-/* Reset e configurações básicas */
+/* ==================== RESET E BASE ==================== */
 * {
     margin: 0;
     padding: 0;
@@ -17,9 +17,15 @@ body {
     display: none !important;
 }
 
-/* Tela de Boas-vindas */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ==================== TELA DE BOAS-VINDAS ==================== */
 .welcome-screen {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -41,13 +47,8 @@ body {
     letter-spacing: -2px;
 }
 
-.logo-text {
-    color: #FFFFFF;
-}
-
-.logo-sync {
-    color: #00AEEF;
-}
+.logo-text { color: #FFFFFF; }
+.logo-sync { color: #00AEEF; }
 
 .title {
     font-size: 2.8rem;
@@ -107,7 +108,7 @@ body {
     font-size: 1.1rem;
 }
 
-/* Navbar */
+/* ==================== NAVBAR ==================== */
 .navbar {
     position: fixed;
     top: 0;
@@ -151,9 +152,14 @@ body {
     border-radius: 50px;
     text-decoration: none;
     font-weight: 600;
+    transition: transform 0.3s;
 }
 
-/* Hero */
+.whatsapp-btn:hover {
+    transform: scale(1.05);
+}
+
+/* ==================== HERO ==================== */
 .hero {
     padding: 160px 40px 100px;
     text-align: center;
@@ -161,7 +167,7 @@ body {
 }
 
 .greeting {
-    font-size: 2.4rem;
+    font-size: 2.8rem;
     margin-bottom: 20px;
     color: #00AEEF;
 }
@@ -179,14 +185,9 @@ body {
     margin: 0 auto;
 }
 
-/* Seções gerais */
+/* ==================== SEÇÕES GERAIS ==================== */
 .section {
     padding: 100px 40px;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
 }
 
 .section-title {
@@ -207,7 +208,7 @@ body {
     transform: translateX(-50%);
 }
 
-/* Grid de serviços */
+/* ==================== SERVIÇOS ==================== */
 .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -229,21 +230,38 @@ body {
     box-shadow: 0 20px 40px rgba(0, 174, 239, 0.15);
 }
 
-/* Portfólio */
+/* ==================== PORTFÓLIO ==================== */
 .portfolio-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
     gap: 40px;
 }
 
+.portfolio-item h3 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
 .before-after {
-    position: relative;
+    display: flex;
+    gap: 10px;
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
-/* Outros estilos semelhantes para stats, planos etc. */
+.before-after img {
+    width: 50%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s;
+}
+
+.before-after:hover img {
+    transform: scale(1.05);
+}
+
+/* ==================== ESTATÍSTICAS ==================== */
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -254,8 +272,10 @@ body {
 .stat-item h3 {
     font-size: 3.5rem;
     color: #00AEEF;
+    margin-bottom: 10px;
 }
 
+/* ==================== PLANOS E PACOTES ==================== */
 .plans-grid, .packages-grid, .why-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -267,13 +287,63 @@ body {
     padding: 40px;
     border-radius: 24px;
     position: relative;
+    transition: all 0.4s;
+    border: 1px solid #222;
+}
+
+.plan-card:hover, .package-card:hover {
+    transform: translateY(-10px);
+    border-color: #00AEEF;
 }
 
 .featured {
     border: 3px solid #00AEEF;
+    transform: scale(1.03);
 }
 
-/* FAQ */
+.featured-badge {
+    position: absolute;
+    top: -15px;
+    right: 20px;
+    background: #00AEEF;
+    color: #0E0E0E;
+    padding: 6px 18px;
+    border-radius: 30px;
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+/* ==================== POR QUE ESCOLHER ==================== */
+.why-card {
+    background: #1A1A1A;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+/* ==================== DEPOIMENTOS ==================== */
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.testimonial {
+    background: #1A1A1A;
+    padding: 35px;
+    border-radius: 24px;
+    text-align: center;
+}
+
+.testimonial img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    object-fit: cover;
+}
+
+/* ==================== FAQ ==================== */
 .faq-item {
     margin-bottom: 15px;
     background: #1A1A1A;
@@ -287,14 +357,16 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-weight: 500;
 }
 
 .faq-answer {
     padding: 0 25px 25px;
     display: none;
+    color: #CCCCCC;
 }
 
-/* CTA */
+/* ==================== CTA ==================== */
 .cta-section {
     background: linear-gradient(135deg, #00AEEF, #22D3EE);
     color: #0E0E0E;
@@ -312,9 +384,14 @@ body {
     font-weight: 700;
     border-radius: 50px;
     text-decoration: none;
+    transition: all 0.3s;
 }
 
-/* Footer */
+.cta-button:hover {
+    transform: translateY(-5px);
+}
+
+/* ==================== FOOTER ==================== */
 .footer {
     background: #0A0A0A;
     padding: 80px 40px 40px;
@@ -325,6 +402,8 @@ body {
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .copyright {
@@ -335,16 +414,26 @@ body {
     color: #666;
 }
 
-/* Responsividade */
+/* ==================== RESPONSIVIDADE ==================== */
 @media (max-width: 768px) {
     .name-input-container {
         flex-direction: column;
         align-items: center;
     }
+    
     .nav-links {
         display: none;
     }
-    .hero {
-        padding: 140px 20px 80px;
+    
+    .hero, .section {
+        padding: 100px 20px;
+    }
+    
+    .greeting {
+        font-size: 2.2rem;
+    }
+    
+    .portfolio-grid {
+        grid-template-columns: 1fr;
     }
 }
