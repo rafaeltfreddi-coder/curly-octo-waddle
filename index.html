@@ -12,7 +12,7 @@
     
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body data-theme="dark">
 
     <canvas id="tech-bg"></canvas>
 
@@ -29,14 +29,14 @@
             <div class="name-input-container">
                 <div class="input-wrapper">
                     <i class="fa-regular fa-user input-icon"></i>
-                    <input type="text" id="user-name" placeholder="Como podemos te chamar?" class="name-input" autocomplete="off">
+                    <input type="text" id="user-name" placeholder="Como podemos te chamar?" class="name-input" autocomplete="off" aria-label="Nome do usuário">
                 </div>
                 <button onclick="proceedToMain()" class="proceed-btn">
                     <span>Acessar Plataforma</span>
                     <i class="fa-solid fa-arrow-right"></i>
                 </button>
             </div>
-            <p id="error-msg" class="error-msg"></p>
+            <p id="error-msg" class="error-msg" role="alert"></p>
         </div>
     </section>
 
@@ -50,10 +50,20 @@
                     <a href="#plans"><i class="fa-solid fa-tag"></i> Planos</a>
                     <a href="#faq"><i class="fa-solid fa-circle-question"></i> FAQ</a>
                 </div>
-                <a href="https://wa.me/5516989477519" target="_blank" class="whatsapp-btn nav-wsp">
-                    <i class="fab fa-whatsapp"></i>
-                    <span>Falar no WhatsApp</span>
-                </a>
+                
+                <div class="nav-actions">
+                    <div class="theme-switch-container">
+                        <button id="theme-btn" class="theme-btn" onclick="toggleTheme()" aria-label="Mudar tema de cores">
+                            <i id="theme-icon" class="fa-solid fa-moon"></i>
+                            <span id="theme-text">Tema</span>
+                        </button>
+                    </div>
+
+                    <a href="https://wa.me/5516989477519" target="_blank" rel="noopener" class="whatsapp-btn nav-wsp">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>Falar no WhatsApp</span>
+                    </a>
+                </div>
             </div>
         </nav>
 
@@ -61,8 +71,8 @@
             <div class="container">
                 <div class="hero-badge"><i class="fa-solid fa-sparkles"></i> Tecnologia de Alta Definição</div>
                 <h2 id="greeting" class="greeting"></h2>
-                <p class="hero-text">Transformação de imagens em altíssima qualidade com Inteligência Artificial.</p>
-                <p class="hero-subtext">Edições profissionais, restauração e aprimoramento gastronômico & comercial.</p>
+                <p class="hero-text">Transformação e otimização visual com Inteligência Artificial de última geração.</p>
+                <p class="hero-subtext">Aprimoramento de nitidez, restauração detalhada e tratamento profissional para mídias digitais e impressas.</p>
             </div>
         </header>
 
@@ -144,8 +154,8 @@
 
         <section class="cta-section">
             <div class="container">
-                <h2 class="cta-title">Pronto para transformar suas fotos?</h2>
-                <p class="cta-desc">Chame a nossa equipe diretamente no WhatsApp e solicite seu orçamento.</p>
+                <h2 class="cta-title">Pronto para transformar suas imagens?</h2>
+                <p class="cta-desc">Fale diretamente com nossa equipe no WhatsApp e solicite um atendimento personalizado.</p>
                 <a href="#" onclick="contactWhatsApp()" class="cta-button">
                     <i class="fab fa-whatsapp"></i>
                     <span>Iniciar Atendimento Agora</span>
@@ -161,6 +171,7 @@
                 </div>
             </div>
             <p class="copyright">&copy; 2026 VisualSync. Todos os direitos reservados.</p>
+            <p class="version-tag">v1.0</p>
         </footer>
     </div>
 
