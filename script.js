@@ -11,7 +11,6 @@ const servicos = [
     { titulo: "Branding Corporativo", desc: "Identidade visual elegante para empresas e marcas." }
 ];
 
-// Portfólio contendo apenas o item selecionado e formatado
 const portfolioItems = [
     { 
         titulo: "Fotografia Gastronômica (Melhoria de Foto de Comida)", 
@@ -37,7 +36,16 @@ const porQue = [
 ];
 
 const depoimentos = [
-    { nome: "Carlos Mendes", texto: "Superou minhas expectativas. Nossos materiais visuais ganharam um nível totalmente profissional.", foto: "https://i.pinimg.com/474x/e1/05/41/e105419e21e2f0dfd1579c6aef739bb5.jpg" }
+    { 
+        nome: "Ana Souza", 
+        texto: "Incrível! As fotos dos meus produtos mudaram de nível da noite para o dia. Super recomendo o trabalho da equipe.", 
+        foto: "https://i.pinimg.com/564x/4f/2e/d8/4f2ed84f1f2374e3cb20a233b2bf405e.jpg" 
+    },
+    { 
+        nome: "Carlos Mendes", 
+        texto: "Superou minhas expectativas. Nossos materiais visuais ganharam um nível totalmente profissional.", 
+        foto: "https://i.pinimg.com/474x/e1/05/41/e105419e21e2f0dfd1579c6aef739bb5.jpg" 
+    }
 ];
 
 const faqs = [
@@ -90,18 +98,27 @@ function renderPortfolio() {
     container.innerHTML = portfolioItems.map(item => `
         <div class="portfolio-item">
             <h3>${item.titulo}</h3>
-            <div class="before-after">
-                <div class="img-box">
-                    <small>Antes</small>
-                    <img src="${item.antes}" alt="Antes">
+            <div class="comparison-slider">
+                <img src="${item.depois}" alt="Depois" class="img-after">
+                <div class="img-before-wrapper" id="beforeWrapper">
+                    <img src="${item.antes}" alt="Antes" class="img-before">
                 </div>
-                <div class="img-box">
-                    <small>Depois</small>
-                    <img src="${item.depois}" alt="Depois">
+                <span class="badge badge-antes">ANTES</span>
+                <span class="badge badge-depois">DEPOIS</span>
+                <input type="range" min="0" max="100" value="50" class="slider-input" oninput="moveSlider(this)">
+                <div class="slider-handle" id="sliderHandle">
+                    <div class="handle-line"></div>
+                    <div class="handle-button"><i class="fa-solid fa-code-compare"></i></div>
                 </div>
             </div>
         </div>
     `).join('');
+}
+
+function moveSlider(input) {
+    const value = input.value + '%';
+    document.getElementById('beforeWrapper').style.width = value;
+    document.getElementById('sliderHandle').style.left = value;
 }
 
 function renderStats() {
