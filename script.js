@@ -80,11 +80,12 @@ const servicos = [
     { titulo: "Branding Corporativo", desc: "Identidade visual elegante para empresas e marcas." }
 ];
 
+// Removida a imagem de comida/bife e substituída por restauração de retrato
 const portfolioItems = [
     { 
-        titulo: "Fotografia Gastronômica (Melhoria de Foto de Comida)", 
-        antes: "https://cozinhabase.com.br/wp-content/uploads/2025/08/prompt-4-para-melhorar-foto-de-comida.jpg", 
-        depois: "https://cozinhabase.com.br/wp-content/uploads/2025/08/prompt-6-para-melhorar-foto-de-comida.jpg" 
+        titulo: "Restauração de Imagem & Nitidez", 
+        antes: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&sat=-100&blur=3", 
+        depois: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500" 
     }
 ];
 
