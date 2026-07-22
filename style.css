@@ -97,7 +97,7 @@ body {
     height: 100vh;
     z-index: -2;
     pointer-events: none;
-    opacity: 0.6;
+    opacity: 0.75;
 }
 
 .hidden {
@@ -140,7 +140,7 @@ body {
     background: var(--accent);
 }
 
-/* Notificação Toast ("Em desenvolvimento") */
+/* Notificação Toast */
 .toast {
     position: fixed;
     bottom: 30px;
@@ -345,7 +345,6 @@ body {
     color: var(--text-white);
 }
 
-/* Ferramentas do Usuário na Nav (Pix, Saldo, Login) */
 .nav-user-tools {
     display: flex;
     align-items: center;
@@ -541,7 +540,7 @@ body {
     font-size: 0.92rem;
 }
 
-/* ==================== PORTFÓLIO SLIDER INTERATIVO ==================== */
+/* ==================== PORTFÓLIO LADO A LADO ==================== */
 .portfolio-grid {
     display: flex;
     justify-content: center;
@@ -551,61 +550,55 @@ body {
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: 24px;
-    padding: 24px;
-    max-width: 550px;
+    padding: 28px;
+    max-width: 820px;
     width: 100%;
 }
 
 .portfolio-item h3 {
     text-align: center;
-    margin-bottom: 20px;
-    font-size: 1.15rem;
-    font-weight: 700;
+    margin-bottom: 24px;
+    font-size: 1.25rem;
+    font-weight: 800;
 }
 
-.comparison-slider {
+.portfolio-comparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.img-box {
     position: relative;
-    width: 100%;
-    height: 340px;
     border-radius: 18px;
     overflow: hidden;
-    user-select: none;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
-.comparison-slider img {
-    position: absolute;
-    top: 0;
-    left: 0;
+.img-box img {
     width: 100%;
-    height: 100%;
+    height: 280px;
     object-fit: cover;
-    pointer-events: none;
+    display: block;
+    transition: transform 0.4s ease;
 }
 
-.img-before-wrapper {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 50%;
-    height: 100%;
-    overflow: hidden;
-    z-index: 2;
+.img-box:hover img {
+    transform: scale(1.03);
 }
 
-.img-before-wrapper .img-before {
-    width: 502px;
-    max-width: none;
-    filter: blur(3px) grayscale(80%);
+.img-box.before-box img {
+    filter: blur(2px) grayscale(70%);
 }
 
 .badge {
     position: absolute;
     top: 14px;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.82);
     backdrop-filter: blur(6px);
     color: #FFF;
-    padding: 4px 12px;
+    padding: 5px 14px;
     border-radius: 50px;
     font-size: 0.75rem;
     font-weight: 800;
@@ -621,47 +614,6 @@ body {
 .badge-depois {
     right: 14px;
     color: var(--accent);
-}
-
-.slider-input {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    z-index: 5;
-    cursor: ew-resize;
-}
-
-.slider-handle {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 2px;
-    height: 100%;
-    background: var(--text-white);
-    z-index: 4;
-    transform: translateX(-50%);
-    pointer-events: none;
-}
-
-.handle-button {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 42px;
-    height: 42px;
-    background: var(--accent);
-    color: #000;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.95rem;
-    box-shadow: 0 0 20px var(--accent-glow);
-    border: 2px solid #FFF;
 }
 
 /* Estatísticas */
@@ -716,7 +668,6 @@ body {
 }
 
 .plan-card:hover, .package-card:hover {
-    transform: translateY(-50px 0 0);
     transform: translateY(-6px);
     border-color: var(--border-hover);
 }
@@ -967,14 +918,17 @@ body {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 650px) {
+    .portfolio-comparison {
+        grid-template-columns: 1fr;
+    }
+    .img-box img {
+        height: 220px;
+    }
     .greeting {
         font-size: 2.2rem;
     }
     .section-title {
         font-size: 1.8rem;
-    }
-    .comparison-slider {
-        height: 250px;
     }
 }
