@@ -1,70 +1,8 @@
-// ==================== CONFIGURAÇÃO DO SUPABASE ====================
-// Substitua pelas suas credenciais do projeto no Supabase
-const SUPABASE_URL = 'https://SEU_PROJETO.supabase.co';
-const SUPABASE_ANON_KEY = 'SUA_CHAVE_ANONIMA_AQUI';
+// ==================== APLICAÇÃO LOCAL (SEM SUPABASE OBRIGATÓRIO) ====================
 
-const supabase = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
-
-// Login com Google via Supabase
-async function loginWithGoogle() {
-    if (!supabase) {
-        showInDevelopment('Login com Google');
-        return;
-    }
-
-    const { data, error } = await supabase.auth.signInWithOAuth({
-        provider: 'google',
-        options: {
-            redirectTo: window.location.origin
-        }
-    });
-
-    if (error) {
-        alert('Erro ao realizar login: ' + error.message);
-    }
-}
-
-// Logout do Supabase
-async function logout() {
-    if (supabase) {
-        await supabase.auth.signOut();
-    }
+function resetUserSession() {
     localStorage.removeItem('userName');
     window.location.reload();
-}
-
-// Verificar Sessão de Usuário Ativa
-async function checkUserSession() {
-    if (!supabase) return;
-
-    const { data: { session } } = await supabase.auth.getSession();
-
-    if (session) {
-        const user = session.user;
-        const userName = user.user_metadata?.full_name || user.email;
-
-        localStorage.setItem('userName', userName);
-        
-        document.getElementById('welcome-screen').classList.add('hidden');
-        document.getElementById('main-content').classList.remove('hidden');
-        document.getElementById('greeting').innerHTML = `Bem-vindo(a), ${userName}! 👋`;
-
-        const loginBtn = document.getElementById('login-nav-btn');
-        if (loginBtn) {
-            loginBtn.innerHTML = `<i class="fa-solid fa-right-from-bracket"></i> <span>Sair</span>`;
-            loginBtn.onclick = logout;
-        }
-
-        renderAll();
-    }
-}
-
-if (supabase) {
-    supabase.auth.onAuthStateChange((event, session) => {
-        if (event === 'SIGNED_IN') {
-            checkUserSession();
-        }
-    });
 }
 
 // ==================== GERENCIADOR DE TEMAS ====================
@@ -110,13 +48,15 @@ function showInDevelopment(feature) {
     const toast = document.getElementById('toast');
     const msg = document.getElementById('toast-message');
     
-    msg.textContent = `${feature}: Em desenvolvimento`;
-    toast.classList.remove('hidden');
+    if (toast && msg) {
+        msg.textContent = `${feature}: Em desenvolvimento`;
+        toast.classList.remove('hidden');
 
-    clearTimeout(toastTimeout);
-    toastTimeout = setTimeout(() => {
-        toast.classList.add('hidden');
-    }, 2800);
+        clearTimeout(toastTimeout);
+        toastTimeout = setTimeout(() => {
+            toast.classList.add('hidden');
+        }, 2800);
+    }
 }
 
 // ==================== CANVAS TECNOLÓGICO ADAPTÁVEL AO TEMA ====================
@@ -219,7 +159,6 @@ const servicos = [
     { titulo: "Branding Corporativo", desc: "Adequação de imagens para identidades visuais de marcas e empresas." }
 ];
 
-// Comparativo de Imagem Única sem clonagem
 const portfolioItems = [
     { 
         titulo: "Recuperação de Nitidez & Resolução IA", 
@@ -303,23 +242,34 @@ const faqs = [
     }
 ];
 
-// ==================== LÓGICA DE RENDERIZAÇÃO ====================
+// ==================== FUNÇÃO DE ENTRADA (GARANTIDA) ====================
 
 function proceedToMain() {
-    const nome = document.getElementById('user-name').value.trim();
+    const nameInput = document.getElementById('user-name');
     const errorMsg = document.getElementById('error-msg');
     
+    if (!nameInput) return;
+    
+    const nome = nameInput.value.trim();
+    
     if (nome === '') {
-        errorMsg.textContent = "Por favor, informe seu nome para prosseguir.";
+        if (errorMsg) errorMsg.textContent = "Por favor, informe seu nome para prosseguir.";
         return;
     }
     
+    // Salva o nome no armazenamento do navegador
     localStorage.setItem('userName', nome);
-    document.getElementById('welcome-screen').classList.add('hidden');
-    document.getElementById('main-content').classList.remove('hidden');
     
-    document.getElementById('greeting').innerHTML = `Bem-vindo(a), ${nome}! 👋`;
+    // Altera visibilidade das telas
+    const welcomeScreen = document.getElementById('welcome-screen');
+    const mainContent = document.getElementById('main-content');
+    const greeting = document.getElementById('greeting');
     
+    if (welcomeScreen) welcomeScreen.classList.add('hidden');
+    if (mainContent) mainContent.classList.remove('hidden');
+    if (greeting) greeting.innerHTML = `Bem-vindo(a), ${nome}! 👋`;
+    
+    // Renderiza todo o conteúdo da aplicação
     renderAll();
 }
 
@@ -336,6 +286,7 @@ function renderAll() {
 
 function renderServices() {
     const container = document.getElementById('services-grid');
+    if (!container) return;
     container.innerHTML = servicos.map(s => `
         <div class="service-card">
             <h3>${s.titulo}</h3>
@@ -346,6 +297,7 @@ function renderServices() {
 
 function renderPortfolio() {
     const container = document.getElementById('portfolio-grid');
+    if (!container) return;
     container.innerHTML = portfolioItems.map(item => `
         <div class="portfolio-item">
             <h3>${item.titulo}</h3>
@@ -365,6 +317,7 @@ function renderPortfolio() {
 
 function renderStats() {
     const container = document.getElementById('stats-grid');
+    if (!container) return;
     container.innerHTML = stats.map(stat => `
         <div class="stat-item">
             <div class="stat-number" data-target="${stat.numero}">0</div>
@@ -404,6 +357,7 @@ function animateNumbers() {
 
 function renderPlans() {
     const container = document.getElementById('plans-grid');
+    if (!container) return;
     container.innerHTML = planos.map(plan => `
         <div class="plan-card ${plan.destaque ? 'featured' : ''}">
             ${plan.destaque ? `<div class="featured-badge">Mais Popular</div>` : ''}
@@ -421,6 +375,7 @@ function renderPlans() {
 
 function renderPackages() {
     const container = document.getElementById('packages-grid');
+    if (!container) return;
     container.innerHTML = pacotes.map(p => `
         <div class="package-card ${p.destaque ? 'featured' : ''}">
             ${p.destaque ? `<div class="featured-badge">Melhor Custo</div>` : ''}
@@ -439,6 +394,7 @@ function renderPackages() {
 
 function renderWhy() {
     const container = document.getElementById('why-grid');
+    if (!container) return;
     container.innerHTML = porQue.map(item => `
         <div class="why-card">
             <p><i class="fa-solid fa-shield-halved" style="color:var(--accent); margin-right:8px;"></i>${item}</p>
@@ -448,6 +404,7 @@ function renderWhy() {
 
 function renderTestimonials() {
     const container = document.getElementById('testimonials-grid');
+    if (!container) return;
     container.innerHTML = depoimentos.map(d => `
         <div class="testimonial">
             <img src="${d.foto}" alt="${d.nome}">
@@ -459,6 +416,7 @@ function renderTestimonials() {
 
 function renderFAQ() {
     const container = document.getElementById('faq-list');
+    if (!container) return;
     container.innerHTML = faqs.map(faq => `
         <div class="faq-item">
             <div class="faq-question" onclick="toggleFAQ(this)">
@@ -487,20 +445,36 @@ function contactWhatsApp() {
     window.open('https://wa.me/5516989477519?text=Olá!%20Gostaria%20de%20mais%20informações%20sobre%20os%20serviços.', '_blank');
 }
 
-// ==================== INICIALIZAÇÃO ====================
+// ==================== INICIALIZAÇÃO DE EVENTOS ====================
 
-window.onload = () => {
+document.addEventListener('DOMContentLoaded', () => {
     const savedTheme = localStorage.getItem('siteTheme') || 'dark';
     applyTheme(savedTheme);
 
     initTechBackground();
-    checkUserSession();
 
+    // Evento de apertar ENTER no campo de texto
+    const nameInput = document.getElementById('user-name');
+    if (nameInput) {
+        nameInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                proceedToMain();
+            }
+        });
+    }
+
+    // Verifica se já existia um nome salvo anteriormente
     const savedName = localStorage.getItem('userName');
     if (savedName) {
-        document.getElementById('welcome-screen').classList.add('hidden');
-        document.getElementById('main-content').classList.remove('hidden');
-        document.getElementById('greeting').innerHTML = `Bem-vindo(a), ${savedName}! 👋`;
+        const welcomeScreen = document.getElementById('welcome-screen');
+        const mainContent = document.getElementById('main-content');
+        const greeting = document.getElementById('greeting');
+
+        if (welcomeScreen) welcomeScreen.classList.add('hidden');
+        if (mainContent) mainContent.classList.remove('hidden');
+        if (greeting) greeting.innerHTML = `Bem-vindo(a), ${savedName}! 👋`;
+        
         renderAll();
     }
-};
+});
