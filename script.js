@@ -1,6 +1,5 @@
-<!-- ==================== DADOS ==================== -->
+// ==================== DADOS ====================
 
-<!-- Dados dos serviços -->
 const servicos = [
     { titulo: "Aprimoramento de imagens", desc: "Melhoria automática de qualidade com IA" },
     { titulo: "Aumento de resolução", desc: "Upscaling inteligente para alta definição" },
@@ -12,14 +11,12 @@ const servicos = [
     { titulo: "Design para empresas", desc: "Identidade visual completa" }
 ];
 
-// Dados do portfólio
 const portfolioItems = [
     { titulo: "Cardápio de Restaurante", antes: "https://picsum.photos/id/1015/800/600", depois: "https://picsum.photos/id/106/800/600" },
     { titulo: "Anúncio de Produto", antes: "https://picsum.photos/id/201/800/600", depois: "https://picsum.photos/id/237/800/600" },
     { titulo: "Fotografia Antiga", antes: "https://picsum.photos/id/133/800/600", depois: "https://picsum.photos/id/180/800/600" }
 ];
 
-// Estatísticas
 const stats = [
     { numero: 5000, texto: "Imagens aprimoradas" },
     { numero: 1200, texto: "Clientes atendidos" },
@@ -27,21 +24,18 @@ const stats = [
     { numero: 24,   texto: "Horas de entrega média" }
 ];
 
-// Planos
 const planos = [
     { nome: "Essencial", preco: "49,90", itens: ["10 aprimoramentos", "Alta qualidade", "Entrega rápida"] },
     { nome: "Profissional", preco: "69,90", itens: ["15 aprimoramentos", "Atendimento prioritário", "Revisão incluída"], destaque: true },
     { nome: "Premium", preco: "89,90", itens: ["20 aprimoramentos", "Qualidade máxima", "Revisões extras"] }
 ];
 
-// Pacotes Promocionais
 const pacotes = [
     { nome: "Loja Virtual", qtd: "50 imagens", de: "249,90", por: "199,90" },
     { nome: "Empresarial", qtd: "100 imagens", de: "499,90", por: "349,90" },
     { nome: "Criador de Conteúdo", qtd: "200 imagens", de: "799,90", por: "599,90", destaque: true }
 ];
 
-// Por que escolher
 const porQue = [
     "Inteligência Artificial avançada",
     "Designers profissionais",
@@ -51,13 +45,12 @@ const porQue = [
     "Atendimento personalizado"
 ];
 
-// Depoimentos
+// Fotos das avaliações atualizadas com os links enviados
 const depoimentos = [
-    { nome: "Carlos Mendes", texto: "Transformaram meu cardápio completamente! Vendas aumentaram muito.", foto: "https://picsum.photos/id/64/80/80" },
-    { nome: "Ana Silva", texto: "Minhas fotos antigas voltaram à vida. Serviço incrível!", foto: "https://picsum.photos/id/65/80/80" }
+    { nome: "Carlos Mendes", texto: "Transformaram meu cardápio completamente! Vendas aumentaram muito.", foto: "https://i.pinimg.com/474x/e1/05/41/e105419e21e2f0dfd1579c6aef739bb5.jpg" },
+    { nome: "Ana Silva", texto: "Minhas fotos antigas voltaram à vida. Serviço incrível!", foto: "https://i.pinimg.com/736x/fb/7b/30/fb7b300123dcd922492c421c9465661a.jpg" }
 ];
 
-// FAQ
 const faqs = [
     { q: "Quanto tempo demora o serviço?", a: "A maioria dos trabalhos é entregue em até 24 horas." },
     { q: "Como envio minhas imagens?", a: "Basta enviar por WhatsApp ou e-mail após a contratação." },
@@ -85,7 +78,6 @@ function proceedToMain() {
     renderAll();
 }
 
-// Renderiza todos os blocos
 function renderAll() {
     renderServices();
     renderPortfolio();
@@ -97,7 +89,6 @@ function renderAll() {
     renderFAQ();
 }
 
-// Serviços
 function renderServices() {
     const container = document.getElementById('services-grid');
     container.innerHTML = servicos.map(s => `
@@ -108,7 +99,6 @@ function renderServices() {
     `).join('');
 }
 
-// Portfólio
 function renderPortfolio() {
     const container = document.getElementById('portfolio-grid');
     container.innerHTML = portfolioItems.map(item => `
@@ -128,17 +118,15 @@ function renderPortfolio() {
     `).join('');
 }
 
-// Estatísticas com animação
 function renderStats() {
     const container = document.getElementById('stats-grid');
     container.innerHTML = stats.map(stat => `
         <div class="stat-item">
-            <h3 data-target="\( {stat.numero}" class="stat-number">0 \){stat.sufixo || ''}</h3>
+            <h3 data-target="${stat.numero}" class="stat-number">0${stat.sufixo || ''}</h3>
             <p>${stat.texto}</p>
         </div>
     `).join('');
 
-    // Animação ao entrar na tela
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -169,7 +157,6 @@ function animateNumbers() {
     });
 }
 
-// Planos
 function renderPlans() {
     const container = document.getElementById('plans-grid');
     container.innerHTML = planos.map(plan => `
@@ -185,15 +172,15 @@ function renderPlans() {
     `).join('');
 }
 
-// Pacotes
 function renderPackages() {
     const container = document.getElementById('packages-grid');
     container.innerHTML = pacotes.map(p => `
         <div class="package-card ${p.destaque ? 'featured' : ''}">
+            ${p.destaque ? `<div class="featured-badge">Destaque</div>` : ''}
             <h3>${p.nome}</h3>
             <p class="qtd">${p.qtd}</p>
             <div class="price">
-                De <s>R$ ${p.de}</s><br>
+                <span style="font-size:1rem; color:#aaa; text-decoration:line-through;">De R$ ${p.de}</span><br>
                 por <strong>R$ ${p.por}</strong>
             </div>
             <button onclick="contactWhatsApp()">Adquirir Pacote</button>
@@ -201,7 +188,6 @@ function renderPackages() {
     `).join('');
 }
 
-// Por que escolher
 function renderWhy() {
     const container = document.getElementById('why-grid');
     container.innerHTML = porQue.map(item => `
@@ -211,19 +197,17 @@ function renderWhy() {
     `).join('');
 }
 
-// Depoimentos
 function renderTestimonials() {
     const container = document.getElementById('testimonials-grid');
     container.innerHTML = depoimentos.map(d => `
         <div class="testimonial">
-            <img src="\( {d.foto}" alt=" \){d.nome}">
+            <img src="${d.foto}" alt="${d.nome}">
             <p>"${d.texto}"</p>
-            <strong>${d.nome}</strong>
+            <strong style="margin-top:10px; display:block;">${d.nome}</strong>
         </div>
     `).join('');
 }
 
-// FAQ
 function renderFAQ() {
     const container = document.getElementById('faq-list');
     container.innerHTML = faqs.map(faq => `
@@ -251,7 +235,7 @@ function toggleFAQ(el) {
 }
 
 function contactWhatsApp() {
-    window.open('https://wa.me/5516989477519?text=Olá!%20Gostaria%20de%20mais%20informações%20sobre%20os%20planos.', '_blank');
+    window.open('https://wa.me/5516989477519?text=Olá!%20Gostaria%20de%20mais%20informações%20sobre%20os%20serviços.', '_blank');
 }
 
 // ==================== INICIALIZAÇÃO ====================
