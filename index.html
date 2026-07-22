@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     
     <link rel="stylesheet" href="style.css">
+
+    <!-- Supabase JS SDK CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body data-theme="dark">
 
@@ -29,9 +32,19 @@
             <div class="brand-badge"><i class="fa-solid fa-bolt"></i> IA Visual Pro</div>
             <div class="logo-welcome">Visual<span>Sync</span></div>
             <h1 class="title">Sua visão, potencializada por IA.</h1>
-            <p class="subtitle">Insira seu nome para acessar o painel exclusivo.</p>
+            <p class="subtitle">Acesse com Google ou informe seu nome para prosseguir.</p>
             
             <div class="name-input-container">
+                <!-- Botão Login Google (Supabase) -->
+                <button id="google-login-btn" onclick="loginWithGoogle()" class="google-login-btn">
+                    <i class="fa-brands fa-google"></i>
+                    <span>Entrar com o Google</span>
+                </button>
+
+                <div class="divider">
+                    <span>ou acesse como convidado</span>
+                </div>
+
                 <div class="input-wrapper">
                     <i class="fa-regular fa-user input-icon"></i>
                     <input type="text" id="user-name" placeholder="Como podemos te chamar?" class="name-input" autocomplete="off" aria-label="Nome do usuário">
@@ -55,6 +68,7 @@
                     <a href="#portfolio"><i class="fa-solid fa-layer-group"></i> Portfólio</a>
                     <a href="#plans"><i class="fa-solid fa-tag"></i> Planos</a>
                     <a href="#faq"><i class="fa-solid fa-circle-question"></i> FAQ</a>
+                    <a href="#contact"><i class="fa-solid fa-envelope"></i> Contato</a>
                 </div>
 
                 <div class="nav-user-tools">
@@ -165,6 +179,31 @@
                     <h2 class="section-title">Perguntas Frequentes</h2>
                 </div>
                 <div id="faq-list" class="faq-container"></div>
+            </div>
+        </section>
+
+        <!-- Formulário de Contato Direto com Supabase -->
+        <section id="contact" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Fale Conosco</span>
+                    <h2 class="section-title">Envie uma Mensagem</h2>
+                </div>
+                <form id="contact-form" class="contact-form">
+                    <div class="input-wrapper">
+                        <input type="text" id="contact-nome" placeholder="Seu Nome" required class="name-input">
+                    </div>
+                    <div class="input-wrapper">
+                        <input type="email" id="contact-email" placeholder="Seu E-mail" required class="name-input">
+                    </div>
+                    <div class="input-wrapper">
+                        <textarea id="contact-mensagem" placeholder="Sua Mensagem" required class="name-input textarea-input" rows="4"></textarea>
+                    </div>
+                    <button type="submit" id="submit-msg-btn" class="proceed-btn">
+                        <span>Enviar Mensagem</span>
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </form>
             </div>
         </section>
 
