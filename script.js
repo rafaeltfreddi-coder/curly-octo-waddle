@@ -1,3 +1,72 @@
+// ==================== ANIMAÇÃO DE FUNDO TECNOLÓGICO (CANVAS NETWORK) ====================
+
+function initTechBackground() {
+    const canvas = document.getElementById('tech-bg');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+    });
+
+    const particles = [];
+    const particleCount = Math.min(Math.floor(width / 18), 70);
+
+    for (let i = 0; i < particleCount; i++) {
+        particles.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            vx: (Math.random() - 0.5) * 0.8,
+            vy: (Math.random() - 0.5) * 0.8,
+            radius: Math.random() * 2 + 1,
+            color: Math.random() > 0.5 ? 'rgba(99, 102, 241, ' : 'rgba(255, 59, 92, '
+        });
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, width, height);
+
+        for (let i = 0; i < particles.length; i++) {
+            let p = particles[i];
+            p.x += p.vx;
+            p.y += p.vy;
+
+            if (p.x < 0 || p.x > width) p.vx *= -1;
+            if (p.y < 0 || p.y > height) p.vy *= -1;
+
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+            ctx.fillStyle = p.color + '0.7)';
+            ctx.fill();
+
+            for (let j = i + 1; j < particles.length; j++) {
+                let p2 = particles[j];
+                let dx = p.x - p2.x;
+                let dy = p.y - p2.y;
+                let dist = Math.sqrt(dx * dx + dy * dy);
+
+                if (dist < 130) {
+                    ctx.beginPath();
+                    ctx.moveTo(p.x, p.y);
+                    ctx.lineTo(p2.x, p2.y);
+                    let alpha = (1 - dist / 130) * 0.25;
+                    ctx.strokeStyle = 'rgba(148, 163, 184, ' + alpha + ')';
+                    ctx.lineWidth = 0.8;
+                    ctx.stroke();
+                }
+            }
+        }
+
+        requestAnimationFrame(animate);
+    }
+
+    animate();
+}
+
 // ==================== DADOS DA APLICAÇÃO ====================
 
 const servicos = [
@@ -23,7 +92,6 @@ const stats = [
     { numero: 5000, texto: "Imagens Aprimoradas" }
 ];
 
-// VARIABILIDADE DE PLANOS INDIVIDUAIS
 const planos = [
     { 
         nome: "Iniciante", 
@@ -45,7 +113,6 @@ const planos = [
     }
 ];
 
-// VARIABILIDADE DE PACOTES DE ALTO VOLUME
 const pacotes = [
     { nome: "Starter Pack", qtd: "50 imagens", de: "249,90", por: "189,90", destaque: false },
     { nome: "Scale Content", qtd: "200 imagens", de: "799,90", por: "599,90", destaque: true },
@@ -56,7 +123,6 @@ const porQue = [
     "Algoritmos de IA de ponta combinados com supervisão e ajuste profissional"
 ];
 
-// Foto oficial fornecida para a Ana Souza + Carlos Mendes
 const depoimentos = [
     { 
         nome: "Ana Souza", 
@@ -71,7 +137,30 @@ const depoimentos = [
 ];
 
 const faqs = [
-    { q: "Qual o prazo padrão para entrega das imagens?", a: "A grande maioria dos projetos é entregue dentro do prazo de 24 horas úteis." }
+    { 
+        q: "Qual o prazo padrão para entrega das imagens?", 
+        a: "A grande maioria dos projetos é entregue dentro do prazo de 24 horas úteis. Para pedidos maiores ou pacotes promocionais, combinamos um cronograma personalizado." 
+    },
+    { 
+        q: "Como envio as minhas fotos para edição?", 
+        a: "Após a confirmação do plano, você pode enviar suas imagens diretamente pelo WhatsApp, Google Drive ou WeTransfer em alta qualidade." 
+    },
+    { 
+        q: "Quais formatos de arquivo vocês aceitam e entregam?", 
+        a: "Aceitamos PNG, JPG, WEBP e formatos RAW. Entregamos as fotos finais nos formatos prontos para uso em redes sociais, e-commerce ou impressão (PNG/JPG em alta resolução)." 
+    },
+    { 
+        q: "E se eu não gostar do resultado da edição?", 
+        a: "Oferecemos revisões para garantir que a foto fique do jeito que você precisa! A satisfação com o resultado final é nossa prioridade." 
+    },
+    { 
+        q: "Quais são as formas de pagamento aceitas?", 
+        a: "Aceitamos Pix, cartões de crédito e boleto bancário. O início do trabalho é feito logo após a confirmação do pagamento." 
+    },
+    { 
+        q: "Funciona para fotos tiradas pelo celular?", 
+        a: "Sim! Nossa tecnologia de IA e ajustes manuais conseguem melhorar consideravelmente a nitidez, iluminação e cores de fotos tiradas de qualquer smartphone." 
+    }
 ];
 
 // ==================== LÓGICA E RENDERIZAÇÃO ====================
@@ -269,6 +358,8 @@ function contactWhatsApp() {
 // ==================== AUTO-START ====================
 
 window.onload = () => {
+    initTechBackground();
+    
     const savedName = localStorage.getItem('userName');
     if (savedName) {
         document.getElementById('welcome-screen').classList.add('hidden');
