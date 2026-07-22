@@ -233,7 +233,7 @@ body {
 /* ==================== PORTFÓLIO ==================== */
 .portfolio-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 40px;
 }
 
@@ -250,9 +250,14 @@ body {
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
-.before-after img {
+.before-after div {
     width: 50%;
-    height: 100%;
+    text-align: center;
+}
+
+.before-after img {
+    width: 100%;
+    height: 200px;
     object-fit: cover;
     transition: transform 0.4s;
 }
@@ -280,7 +285,7 @@ body {
 .packages-grid, 
 .why-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
 }
 
@@ -294,10 +299,38 @@ body {
     border: 1px solid #222;
 }
 
+.plan-card ul {
+    list-style: none;
+    margin: 20px 0;
+}
+
+.plan-card li {
+    margin-bottom: 10px;
+}
+
+.plan-card button,
+.package-card button {
+    width: 100%;
+    padding: 12px;
+    background: #00AEEF;
+    border: none;
+    border-radius: 50px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
 .plan-card:hover, 
 .package-card:hover {
     transform: translateY(-10px);
     border-color: #00AEEF;
+}
+
+.price {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin: 15px 0;
+    color: #00AEEF;
 }
 
 .featured {
@@ -340,11 +373,12 @@ body {
 }
 
 .testimonial img {
-    width: 80px;
-    height: 80px;
+    width: 90px;
+    height: 90px;
     border-radius: 50%;
     margin-bottom: 20px;
     object-fit: cover;
+    border: 3px solid #00AEEF;
 }
 
 /* ==================== FAQ ==================== */
