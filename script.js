@@ -50,7 +50,7 @@ function showInDevelopment(feature) {
     }, 2800);
 }
 
-// ==================== CANVA TECNOLÓGICO DE FUNDO ====================
+// ==================== CANVAS TECNOLÓGICO ADAPTÁVEL AO TEMA ====================
 
 function initTechBackground() {
     const canvas = document.getElementById('tech-bg');
@@ -75,12 +75,34 @@ function initTechBackground() {
             vx: (Math.random() - 0.5) * 0.7,
             vy: (Math.random() - 0.5) * 0.7,
             radius: Math.random() * 2 + 1,
-            color: Math.random() > 0.5 ? 'rgba(255, 255, 255, ' : 'rgba(0, 240, 255, '
+            type: Math.random() > 0.5 ? 1 : 2
         });
     }
 
     function animate() {
         ctx.clearRect(0, 0, width, height);
+
+        // Define as cores dinamicamente dependendo do tema ativo no momento
+        const currentTheme = document.body.getAttribute('data-theme') || 'dark';
+        
+        let color1, color2, lineColor;
+
+        if (currentTheme === 'light') {
+            // Tema claro: azul escuro e preto
+            color1 = 'rgba(37, 99, 235, ';
+            color2 = 'rgba(0, 0, 0, ';
+            lineColor = 'rgba(15, 23, 42, ';
+        } else if (currentTheme === 'gray') {
+            // Tema cinza
+            color1 = 'rgba(0, 240, 255, ';
+            color2 = 'rgba(112, 0, 255, ';
+            lineColor = 'rgba(255, 255, 255, ';
+        } else {
+            // Tema escuro (Preto OLED): branco e ciano
+            color1 = 'rgba(255, 255, 255, ';
+            color2 = 'rgba(0, 240, 255, ';
+            lineColor = 'rgba(255, 255, 255, ';
+        }
 
         for (let i = 0; i < particles.length; i++) {
             let p = particles[i];
@@ -92,7 +114,7 @@ function initTechBackground() {
 
             ctx.beginPath();
             ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-            ctx.fillStyle = p.color + '0.8)';
+            ctx.fillStyle = (p.type === 1 ? color1 : color2) + '0.85)';
             ctx.fill();
 
             for (let j = i + 1; j < particles.length; j++) {
@@ -105,9 +127,9 @@ function initTechBackground() {
                     ctx.beginPath();
                     ctx.moveTo(p.x, p.y);
                     ctx.lineTo(p2.x, p2.y);
-                    let alpha = (1 - dist / 130) * 0.2;
-                    ctx.strokeStyle = 'rgba(255, 255, 255, ' + alpha + ')';
-                    ctx.lineWidth = 0.7;
+                    let alpha = (1 - dist / 130) * 0.22;
+                    ctx.strokeStyle = lineColor + alpha + ')';
+                    ctx.lineWidth = 0.8;
                     ctx.stroke();
                 }
             }
@@ -132,7 +154,6 @@ const servicos = [
     { titulo: "Branding Corporativo", desc: "Adequação de imagens para identidades visuais de marcas e empresas." }
 ];
 
-// Atualizado para usar o link da imagem solicitado
 const portfolioItems = [
     { 
         titulo: "Recuperação de Nitidez & Resolução IA", 
@@ -257,31 +278,24 @@ function renderServices() {
     `).join('');
 }
 
+// Renderização lado a lado (Esquerda: Antes, Direita: Depois)
 function renderPortfolio() {
     const container = document.getElementById('portfolio-grid');
     container.innerHTML = portfolioItems.map(item => `
         <div class="portfolio-item">
             <h3>${item.titulo}</h3>
-            <div class="comparison-slider">
-                <img src="${item.depois}" alt="Depois da Otimização" class="img-after">
-                <div class="img-before-wrapper" id="beforeWrapper">
-                    <img src="${item.antes}" alt="Antes da Otimização" class="img-before">
+            <div class="portfolio-comparison">
+                <div class="img-box before-box">
+                    <span class="badge badge-antes">ANTES</span>
+                    <img src="${item.antes}" alt="Antes da Otimização">
                 </div>
-                <span class="badge badge-antes">ANTES</span>
-                <span class="badge badge-depois">DEPOIS</span>
-                <input type="range" min="0" max="100" value="50" class="slider-input" oninput="moveSlider(this)">
-                <div class="slider-handle" id="sliderHandle">
-                    <div class="handle-button"><i class="fa-solid fa-code-compare"></i></div>
+                <div class="img-box after-box">
+                    <span class="badge badge-depois">DEPOIS</span>
+                    <img src="${item.depois}" alt="Depois da Otimização">
                 </div>
             </div>
         </div>
     `).join('');
-}
-
-function moveSlider(input) {
-    const value = input.value + '%';
-    document.getElementById('beforeWrapper').style.width = value;
-    document.getElementById('sliderHandle').style.left = value;
 }
 
 function renderStats() {
