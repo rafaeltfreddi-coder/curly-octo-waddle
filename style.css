@@ -4,15 +4,14 @@
     --bg-card: rgba(18, 24, 38, 0.75);
     --bg-card-hover: rgba(26, 35, 54, 0.9);
     
-    /* Destaques de Cor */
-    --primary: #FF3B5C;          /* Vermelho/Carmim vibrante para CTAs e Destaques principais */
+    --primary: #FF3B5C;          
     --primary-hover: #E02B49;
     --primary-glow: rgba(255, 59, 92, 0.35);
     
-    --accent: #6366F1;           /* Roxo/Índigo para balancear o tom e tirar a sensação monocolor */
+    --accent: #6366F1;           
     --accent-glow: rgba(99, 102, 241, 0.3);
     
-    --whatsapp-green: #25D366;   /* Verde Oficial do WhatsApp */
+    --whatsapp-green: #25D366;   
     --whatsapp-glow: rgba(37, 211, 102, 0.4);
     
     --text-white: #FFFFFF;
@@ -40,6 +39,18 @@ body {
     line-height: 1.6;
 }
 
+/* Canvas para Animação Tecnológica de Fundo */
+#tech-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -2;
+    pointer-events: none;
+    opacity: 0.45;
+}
+
 .hidden {
     display: none !important;
 }
@@ -50,7 +61,7 @@ body {
     padding: 0 24px;
 }
 
-/* Background Glow Effects Multi-coloridos */
+/* Ambient Glow Effects com Animação de Pulso suave */
 .bg-glow {
     position: fixed;
     width: 550px;
@@ -60,6 +71,12 @@ body {
     z-index: -1;
     pointer-events: none;
     opacity: 0.18;
+    animation: glowPulse 8s infinite alternate ease-in-out;
+}
+
+@keyframes glowPulse {
+    0% { transform: scale(1) translate(0, 0); }
+    100% { transform: scale(1.15) translate(20px, -20px); }
 }
 
 .bg-glow-primary {
@@ -81,7 +98,7 @@ body {
     align-items: center;
     justify-content: center;
     padding: 20px;
-    background: radial-gradient(circle at center, #151A28 0%, #0B0E14 100%);
+    background: radial-gradient(circle at center, rgba(21, 26, 40, 0.8) 0%, rgba(11, 14, 20, 0.95) 100%);
 }
 
 .welcome-card {
@@ -246,7 +263,6 @@ body {
     color: var(--primary);
 }
 
-/* Botão WhatsApp VERDE Oficial */
 .whatsapp-btn {
     background: rgba(37, 211, 102, 0.15);
     color: var(--whatsapp-green);
@@ -532,7 +548,7 @@ body {
     font-weight: 600;
 }
 
-/* ==================== PLANOS E PACOTES (GRADE DE 3 COLUNAS) ==================== */
+/* ==================== PLANOS E PACOTES ==================== */
 .plans-grid, .packages-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -702,6 +718,7 @@ body {
     border: 1px solid var(--border);
     border-radius: 16px;
     overflow: hidden;
+    margin-bottom: 12px;
 }
 
 .faq-question {
