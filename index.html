@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body data-theme="dark">
 
@@ -30,14 +29,14 @@
             <div class="brand-badge"><i class="fa-solid fa-bolt"></i> IA Visual Pro</div>
             <div class="logo-welcome">Visual<span>Sync</span></div>
             <h1 class="title">Sua visão, potencializada por IA.</h1>
-            <p class="subtitle">Insira seu nome ou faça login para acessar o painel exclusivo.</p>
+            <p class="subtitle">Insira seu nome para acessar o painel exclusivo.</p>
             
             <div class="name-input-container">
                 <div class="input-wrapper">
                     <i class="fa-regular fa-user input-icon"></i>
                     <input type="text" id="user-name" placeholder="Como podemos te chamar?" class="name-input" autocomplete="off" aria-label="Nome do usuário">
                 </div>
-                <button onclick="proceedToMain()" class="proceed-btn">
+                <button id="proceed-btn" onclick="proceedToMain()" class="proceed-btn">
                     <span>Acessar Plataforma</span>
                     <i class="fa-solid fa-arrow-right"></i>
                 </button>
@@ -65,8 +64,8 @@
                     <button class="nav-action-btn" onclick="showInDevelopment('Saldo')">
                         <i class="fa-solid fa-wallet"></i> <span>Saldo</span>
                     </button>
-                    <button class="nav-action-btn btn-login" id="login-nav-btn" onclick="loginWithGoogle()">
-                        <i class="fa-solid fa-user-lock"></i> <span>Login</span>
+                    <button class="nav-action-btn btn-login" id="login-nav-btn" onclick="resetUserSession()">
+                        <i class="fa-solid fa-right-from-bracket"></i> <span>Sair</span>
                     </button>
                 </div>
                 
