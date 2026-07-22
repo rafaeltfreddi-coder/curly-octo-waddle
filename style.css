@@ -276,13 +276,16 @@ body {
 }
 
 /* ==================== PLANOS E PACOTES ==================== */
-.plans-grid, .packages-grid, .why-grid {
+.plans-grid, 
+.packages-grid, 
+.why-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 30px;
 }
 
-.plan-card, .package-card {
+.plan-card, 
+.package-card {
     background: #1A1A1A;
     padding: 40px;
     border-radius: 24px;
@@ -291,7 +294,8 @@ body {
     border: 1px solid #222;
 }
 
-.plan-card:hover, .package-card:hover {
+.plan-card:hover, 
+.package-card:hover {
     transform: translateY(-10px);
     border-color: #00AEEF;
 }
@@ -425,7 +429,8 @@ body {
         display: none;
     }
     
-    .hero, .section {
+    .hero, 
+    .section {
         padding: 100px 20px;
     }
     
@@ -435,5 +440,9 @@ body {
     
     .portfolio-grid {
         grid-template-columns: 1fr;
+    }
+    
+    .title {
+        font-size: 2.3rem;
     }
 }
