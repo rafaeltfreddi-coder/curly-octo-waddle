@@ -12,9 +12,21 @@ const servicos = [
 ];
 
 const portfolioItems = [
-    { titulo: "Cardápio de Gastronomia", antes: "https://picsum.photos/id/1015/800/600", depois: "https://picsum.photos/id/106/800/600" },
-    { titulo: "Campanha de Produto", antes: "https://picsum.photos/id/201/800/600", depois: "https://picsum.photos/id/237/800/600" },
-    { titulo: "Fotografia Histórica", antes: "https://picsum.photos/id/133/800/600", depois: "https://picsum.photos/id/180/800/600" }
+    { 
+        titulo: "Fotografia Gastronômica (Melhoria de Foto de Comida)", 
+        antes: "https://cozinhabase.com.br/wp-content/uploads/2025/08/prompt-4-para-melhorar-foto-de-comida.jpg", 
+        depois: "https://cozinhabase.com.br/wp-content/uploads/2025/08/prompt-6-para-melhorar-foto-de-comida.jpg" 
+    },
+    { 
+        titulo: "Campanha de Produto", 
+        antes: "https://picsum.photos/id/201/800/600", 
+        depois: "https://picsum.photos/id/237/800/600" 
+    },
+    { 
+        titulo: "Fotografia Histórica", 
+        antes: "https://picsum.photos/id/133/800/600", 
+        depois: "https://picsum.photos/id/180/800/600" 
+    }
 ];
 
 const stats = [
